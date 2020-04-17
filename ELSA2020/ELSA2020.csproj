@@ -196,7 +196,6 @@
     <Content Include="img\gallery\gallery-9.jpg" />
     <Content Include="img\hero\hero-1.jpg" />
     <Content Include="img\hero\hero-2.jpg" />
-
     <Content Include="img\hotel1.jpg" />
     <Content Include="img\hotel10.jpg" />
     <Content Include="img\hotel11.jpg" />
@@ -211,7 +210,6 @@
     <Content Include="img\hotel8.jpg" />
     <Content Include="img\hotel9.jpg" />
     <Content Include="img\favicon.ico" />
-
     <Content Include="img\instagram\insta-1.jpg" />
     <Content Include="img\instagram\insta-2.jpg" />
     <Content Include="img\instagram\insta-3.jpg" />
@@ -604,6 +602,7 @@
     <Content Include="phozogy\__MACOSX\phozogy\Source\._OwlCarousel2-2.3.4.zip" />
     <Content Include="phozogy\__MACOSX\phozogy\Source\._sass.zip" />
     <Content Include="phozogy\__MACOSX\phozogy\Source\._SlickNav-master.zip" />
+    <Content Include="Views\Home\Ofert.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
