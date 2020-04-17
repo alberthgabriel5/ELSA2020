@@ -20,55 +20,132 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Content/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Content/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="~/Content/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Content/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="~/Content/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="~/Content/style.css" type="text/css">
+    @*<link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="~/Content/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="~/Content/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="~/Content/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="~/Content/magnific-popup.css" type="text/css">
+        <link rel="stylesheet" href="~/Content/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="~/Content/style.css" type="text/css">*@
 
 
 </head>
 <body>
-     @*Page Preloder 
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>*@
+    <!-- Page Preloder -->
+    @*<div id="preloder">
+            <div class="loader"></div>
+        </div>*@
     <!-- Header Section Begin -->
     <header class="header-section">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="logo">
-                        <a href="./Home/Index">
+                        <a href="./Index">
                             <img src="~/img/logo.png" alt="Hotel Colibrí">
                         </a>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-2 col-sm-12 col-md-12">
+                <div class="col-lg-2 ">
                     <div class="marco">
-                    <nav class="nav-menu mobile-menu">
-                        <ul>
-                            <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                            <li><a href="./services.html">Services</a></li>
-                        </ul>
-                    </nav>
-                    <div id="mobile-menu-wrap"></div>
-                        </div>
-
-                    <div class="marco">
-                        Publicidad
+                        <nav class="nav-menu mobile-menu">
+                            <ul>
+                                <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Ofertas", "Ofert", "Home")</li>
+                            </ul>
+                        </nav>
+                        <div id="mobile-menu-wrap"></div>
                     </div>
+                    <div class="marco">
+                        <div class="col-lg-2 ">                       
+                            
+                                <div class="hs-slider owl-carousel">
+                                    <div class="hs-item set-bg" data-setbg="~/img/hero/hero-1.jpg">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="hs-text">
+                                                        <h2>Photography Studio</h2>
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                                            incididunt ut labore et<br /> dolore magna aliqua. Quis ipsum suspendisse ultrices
+                                                            gravida accumsan lacus vel facilisis.
+                                                        </p>
+                                                        <a href="#" class="primary-btn">Contact us</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hs-item set-bg" data-setbg="~/img/hero/hero-2.jpg">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="hs-text">
+                                                        <h2>Photography Studio</h2>
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                                            incididunt ut labore et<br /> dolore magna aliqua. Quis ipsum suspendisse ultrices
+                                                            gravida accumsan lacus vel facilisis.
+                                                        </p>
+                                                        <a href="#" class="primary-btn">Contact us</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- Hero Section End -->
+                            <!-- Services Section Begin -->
+                            <section class="services-section spad">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                            <div class="services-item">
+                                                <img src="~/img/services/service-1.jpg" alt="">
+                                                <h3>Shooting</h3>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                                    magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                            <div class="services-item">
+                                                <img src="~/img/services/service-2.jpg" alt="">
+                                                <h3>Videos</h3>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                                    magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                            <div class="services-item">
+                                                <img src="~/img/services/service-3.jpg" alt="">
+                                                <h3>Editing</h3>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                                    magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- Services Section End -->
+                        </div>
+                        </div>
                 </div>
                 <div class="col-lg-10 container body-content">
                     @RenderBody()
                 </div>
-                
+
             </div>
         </div>
     </header>
@@ -113,9 +190,9 @@
                         <div class="fs-widget">
                             <h5>Quick links</h5>
                             <ul>
-                                <li><a href="~/Home/Index">Inicio</a></li>
-                                <li><a href="~/Home/About">Acerca</a></li>
-                                <li><a href="~/Home/Contact">Contacto</a></li>
+                                <li><a href="/Index">Inicio</a></li>
+                                <li><a href="/About">Acerca</a></li>
+                                <li><a href="/Contact">Contacto</a></li>
                             </ul>
                             <ul>
                                 <li><a href="#">Gallery</a></li>
@@ -174,13 +251,14 @@
         @Scripts.Render("~/bundles/map")
         @RenderSection("scripts", required: false)*@
     <!-- Js Plugins -->
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery.magnific-popup.min.js"></script>
-    <script src="~/Scripts/isotope.pkgd.min.js"></script>
-    <script src="~/Scripts/masonry.pkgd.min.js"></script>
-    <script src="~/Scripts/jquery.slicknav.js"></script>
-    <script src="~/Scripts/owl.carousel.min.js"></script>
-    <script src="~/Scripts/main.js"></script>
+
 </body>
+@*<script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery.magnific-popup.min.js"></script>
+    <script src="Scripts/isotope.pkgd.min.js"></script>
+    <script src="Scripts/masonry.pkgd.min.js"></script>
+    <script src="Scripts/jquery.slicknav.js"></script>
+    <script src="Scripts/owl.carousel.min.js"></script>
+    <script src="Scripts/main.js"></script>*@
 </html>
