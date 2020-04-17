@@ -10,6 +10,7 @@
 
 
     <title>@ViewBag.Title Hotel Colibri</title>
+    <link rel="shortcut icon" href="~/img/favicon.ico" />
     @Styles.Render("~/Content/css")
     @*@Scripts.Render("~/bundles/modernizr")*@
 
@@ -19,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    @*<link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
-   <link rel="stylesheet" href="~/Content/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="~/Content/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="~/Content/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="~/Content/magnific-popup.css" type="text/css">
-        <link rel="stylesheet" href="~/Content/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="~/Content/style.css" type="text/css">*@
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/style.css" type="text/css">
 
 
 </head>
@@ -34,7 +35,6 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
     <!-- Header Section Begin -->
     <header class="header-section">
         <div class="container-fluid">
@@ -45,36 +45,37 @@
                             <img src="~/img/logo.png" alt="Hotel Colibrí">
                         </a>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-sm-12 col-md-12">
+                    <div class="marco">
                     <nav class="nav-menu mobile-menu">
                         <ul>
                             <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                             <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                             <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                             <li><a href="./services.html">Services</a></li>
-                            <li><a href="./pricing.html">Pricing</a></li>
-                            <li><a href="./portfolio.html">Portfolio</a></li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li>
-                                <a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="./gallery.html">Gallery</a></li>
-                                    <li><a href="./portfolio-details.html">Portfolio Details</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./contact.html">Contact</a></li>
                         </ul>
                     </nav>
-                    <div class="top-search search-switch">
-                        <i class="fa fa-search"></i>
-                    </div>
                     <div id="mobile-menu-wrap"></div>
+                        </div>
+
+                    <div class="marco">
+                        Publicidad
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    Imagen
+                </div>
+                <div class="col-lg-6">
+                    Esta es una descripcion del hotel
                 </div>
             </div>
         </div>
     </header>
     <!-- Header End -->
-   
+
 
     <div class="container body-content">
         @RenderBody()
@@ -168,16 +169,24 @@
 
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryslicknav")
-    @Scripts.Render("~/bundles/jquerymagnific")
-    @Scripts.Render("~/bundles/main")
-    @Scripts.Render("~/bundles/isotope")
-    @Scripts.Render("~/bundles/masonry")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/carousel")
-    @Scripts.Render("~/bundles/map")
-    @RenderSection("scripts", required: false)
+    @*Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryslicknav")
+        @Scripts.Render("~/bundles/jquerymagnific")
+        @Scripts.Render("~/bundles/main")
+        @Scripts.Render("~/bundles/isotope")
+        @Scripts.Render("~/bundles/masonry")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/carousel")
+        @Scripts.Render("~/bundles/map")
+        @RenderSection("scripts", required: false)*@
     <!-- Js Plugins -->
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery.magnific-popup.min.js"></script>
+    <script src="Scripts/isotope.pkgd.min.js"></script>
+    <script src="Scripts/masonry.pkgd.min.js"></script>
+    <script src="Scripts/jquery.slicknav.js"></script>
+    <script src="Scripts/owl.carousel.min.js"></script>
+    <script src="Scripts/main.js"></script>
 </body>
 </html>
