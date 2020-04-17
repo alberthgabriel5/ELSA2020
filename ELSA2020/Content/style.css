@@ -32,6 +32,10 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+.marco {
+    background: linear-gradient(to bottom, #66ff66 0%, #6699ff 100%);
+}
+
 html,
 body {
 	height: 100%;
@@ -335,14 +339,15 @@ ol {
 }
 
 .nav-menu {
-	float: left;
+    float: unset;
+    margin-bottom: 10em;
 }
 
 .nav-menu ul li {
-	list-style: none;
-	display: inline-block;
-	margin-right: 30px;
-	position: relative;
+    list-style: none;
+    display: list-item;
+    margin-right: 30px;
+    position: relative;
 }
 
 .nav-menu ul li:last-child {
