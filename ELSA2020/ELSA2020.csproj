@@ -631,6 +631,7 @@
     <Content Include="phozogy\__MACOSX\phozogy\Source\._OwlCarousel2-2.3.4.zip" />
     <Content Include="phozogy\__MACOSX\phozogy\Source\._sass.zip" />
     <Content Include="phozogy\__MACOSX\phozogy\Source\._SlickNav-master.zip" />
+    <Content Include="Views\Home\Ofert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
