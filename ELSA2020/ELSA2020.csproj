@@ -129,6 +129,7 @@
     <Content Include="Content\elegant-icons.css" />
     <Content Include="Content\flaticon.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\gallery.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\owl.carousel.min.css" />
     <Content Include="Content\slicknav.min.css" />
@@ -195,7 +196,22 @@
     <Content Include="img\gallery\gallery-9.jpg" />
     <Content Include="img\hero\hero-1.jpg" />
     <Content Include="img\hero\hero-2.jpg" />
+
+    <Content Include="img\hotel1.jpg" />
+    <Content Include="img\hotel10.jpg" />
+    <Content Include="img\hotel11.jpg" />
+    <Content Include="img\hotel12.jpg" />
+    <Content Include="img\hotel13.jpg" />
+    <Content Include="img\hotel2.jpg" />
+    <Content Include="img\hotel3.jpg" />
+    <Content Include="img\hotel4.jpg" />
+    <Content Include="img\hotel5.jpg" />
+    <Content Include="img\hotel6.jpg" />
+    <Content Include="img\hotel7.jpg" />
+    <Content Include="img\hotel8.jpg" />
+    <Content Include="img\hotel9.jpg" />
     <Content Include="img\favicon.ico" />
+
     <Content Include="img\instagram\insta-1.jpg" />
     <Content Include="img\instagram\insta-2.jpg" />
     <Content Include="img\instagram\insta-3.jpg" />
@@ -494,6 +510,7 @@
     <Content Include="phozogy\__MACOSX\phozogy\js\._masonry.pkgd.min.js" />
     <Content Include="phozogy\__MACOSX\phozogy\js\._owl.carousel.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\gallery.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery.magnific-popup.min.js" />
