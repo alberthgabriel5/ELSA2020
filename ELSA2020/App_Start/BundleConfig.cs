@@ -1,11 +1,10 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace ELSA2020
 {
     public class BundleConfig
     {
-       
+
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -41,7 +40,7 @@ namespace ELSA2020
                       "~/Content/elegant-icons.css",
                       "~/Content/flaticon.css",
                       "~/Content/font-awesome.min.css",
-                      "~/Content/magnific-popup.css",                      
+                      "~/Content/magnific-popup.css",
                       "~/Content/slicknav.min.css",
                       "~/Content/style.css"));
         }
