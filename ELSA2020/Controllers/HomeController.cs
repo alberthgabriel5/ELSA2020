@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using ELSA2020.Models;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace ELSA2020.Controllers
 {
@@ -33,7 +35,13 @@ namespace ELSA2020.Controllers
 
         public ActionResult Tariff()
         {
+            TipoHabitacion tipo = new TipoHabitacion();
+            List<TipoHabitacion> tiposDeHabitacion = tipo.obtenerTiposDeHabitacion();
+
+            var tipos = tiposDeHabitacion;
+
             ViewBag.Message = "Tarifas de habitaciones";
+            ViewBag.tiposDeHabitacion = tipos;
 
             return View();
         }

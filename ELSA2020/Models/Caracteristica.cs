@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -48,5 +51,35 @@ namespace ELSA2020.Models
         public int IdCaracteriticaHabitacion1 { get => IdCaracteriticaHabitacion; set => IdCaracteriticaHabitacion = value; }
         public int IdHabitacion1 { get => IdHabitacion; set => IdHabitacion = value; }
         public int IdCaracteristica1 { get => IdCaracteristica; set => IdCaracteristica = value; }
+
+        public List<Caracteristica> obtenerCaracteristicas(int idTipoHabitacion)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connStr);
+            String sqlSelect = "sp_obtenerCaractaeriticasHabitacion";
+            SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
+            sqlDataAdapterClient.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
+            sqlDataAdapterClient.SelectCommand.Connection = connection;
+            sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@idTipoHabitacion", idTipoHabitacion));
+            DataSet dataSetTiposHabitacion = new DataSet();
+            sqlDataAdapterClient.Fill(dataSetTiposHabitacion, "bdELSA.caracteristica");
+            sqlDataAdapterClient.SelectCommand.Connection.Close();
+            DataRowCollection dataRowCollection = dataSetTiposHabitacion.Tables["bdELSA.caracteristica"].Rows;
+
+            List<Caracteristica> caracteristicas = new List<Caracteristica>();
+
+            foreach (DataRow currentRow in dataRowCollection)
+            {
+                Caracteristica caracteristicaActual = new Caracteristica();
+                caracteristicaActual.Nombre1 = currentRow["nombre"].ToString();
+                caracteristicaActual.Descripcion1 = currentRow["descripcion"].ToString();
+                caracteristicaActual.Imagen1 = currentRow["imagen"].ToString();
+                caracteristicas.Add(caracteristicaActual);
+            }//Fin del foreach.
+
+            return caracteristicas;
+        }
     }
 }
