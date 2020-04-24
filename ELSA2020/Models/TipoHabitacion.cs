@@ -51,6 +51,28 @@ namespace ELSA2020.Models
         public List<TipoHabitacion> obtenerTiposDeHabitacion()
         {
             string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+
+            SqlConnection connection1 = new SqlConnection(connStr);
+            String sqlSelect1 = "sp_obtenerTemporada";
+            SqlDataAdapter sqlDataAdapterClient1 = new SqlDataAdapter();
+            sqlDataAdapterClient1.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient1.SelectCommand.CommandText = sqlSelect1;
+            sqlDataAdapterClient1.SelectCommand.Connection = connection1;
+            sqlDataAdapterClient1.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            DataSet dataSetTemporada = new DataSet();
+            sqlDataAdapterClient1.Fill(dataSetTemporada, "bdELSA.temporada");
+            sqlDataAdapterClient1.SelectCommand.Connection.Close();
+            DataRowCollection dataRowCollection1 = dataSetTemporada.Tables["bdELSA.temporada"].Rows;
+
+            float variacion = 0;
+
+            foreach (DataRow currentRow in dataRowCollection1)
+            {
+                variacion = float.Parse(currentRow["variacionPrecio"].ToString());
+                break;
+            }//Fin del foreach.
+
+
             SqlConnection connection = new SqlConnection(connStr);
             String sqlSelect = "sp_obtenerTiposDeHabitacion";
             SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
@@ -70,8 +92,15 @@ namespace ELSA2020.Models
                 TipoHabitacion tipoActual = new TipoHabitacion();
                 tipoActual.Id1 = (int)currentRow["id"];
                 tipoActual.Nombre1 = currentRow["nombre"].ToString();
-                tipoActual.PrecioColones1 = currentRow["precioColones"].ToString();
-                tipoActual.PrecioDolares1 = currentRow["precioDolares"].ToString();
+
+                float precioColones = float.Parse(currentRow["precioColones"].ToString());
+                float variacionColones = precioColones - (precioColones*variacion);
+                tipoActual.PrecioColones1 = variacionColones.ToString();
+
+                float precioDolares = float.Parse(currentRow["precioDolares"].ToString());
+                float variacionDolares = precioDolares - (precioDolares * variacion);
+                tipoActual.PrecioDolares1 = variacionDolares.ToString();
+
                 tipoActual.Descripcion1 = currentRow["descripcion"].ToString();
                 tipoActual.Imagen1 = currentRow["imagen"].ToString();
 
