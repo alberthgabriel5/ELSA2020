@@ -1,18 +1,20 @@
-﻿@*tiempo= 2 horas*@
+﻿
 @{
     ViewBag.Title = "Bienvenidos a Hotel Colibrí";
 }
 <h1 class="text-center">@ViewBag.Title</h1>
 <body>
-    <div class="row">
-        <div class="col-md-4">
-            <img class="img-responsive" src="~/img/paginainicio/hotel.jpg"/>
-        </div>
-        <div class="col-md-8">
-            <p id="textohome">@ViewData["texto"]</p>
-        </div>
+ 
+        <div class="row">
+            <div class="col-md-4">
+                <img class="card-img-top responsive" id="imgTipoHabitacion" src="~/img/paginainicio/@ViewBag.infoHotel.Imagen1" alt="No se pudo cargar">
+            </div>
+            <div class="col-md-8">
+                <p id="textohome">@ViewBag.infoHotel.Descripcion1</p>
+            </div>
 
-    </div>
-</body>
+        </div>
+   
+ </body>
 
 

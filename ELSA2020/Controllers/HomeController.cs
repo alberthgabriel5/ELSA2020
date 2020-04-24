@@ -8,8 +8,13 @@ namespace ELSA2020.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["texto"] = "Hotel colibri, es un lugar rodeado de montañas, hermosas vistas, arboles, vegetacion hermosa, aves y animales silvestres lo cuales se pueden apreciar en los recorrido atravez de los senderos de los alrededores del hotel, cuenta con varios servicios a los cuales podra accesar durante su estadia en nuestro hotel.";
-            ViewData["imagen"] = "~/img/paginainicio/hotel.jpg";
+            Hotel hotel = new Hotel();
+            Hotel respuesta = hotel.obtenerHotel();
+
+            var hotelrespuesta = respuesta;
+            
+            ViewBag.infoHotel = hotelrespuesta;
+
             return View();
         }
 
