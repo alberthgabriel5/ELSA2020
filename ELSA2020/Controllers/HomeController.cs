@@ -30,5 +30,11 @@ namespace ELSA2020.Controllers
 
             return View();
         }
+        public ActionResult Location()
+        {
+            ViewBag.Message = "Como llegar";
+
+            return View();
+        }
     }
 }
