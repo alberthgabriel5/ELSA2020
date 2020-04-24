@@ -3,15 +3,17 @@
 }
 <h2>Sobre Nosotros</h2>
 
-<p style=" text-align: justify">El complejo Hotel Colibr&iacute; destaca por ofrecer al viajero una amplia variedad de 
-    opciones de alojamiento en la montaña y por estar rodeado del espectacular bosque 
-    tropical costarricense. Sus habitaciones están equipadas con aire acondicionado, 
-    televisor por cable, caja fuerte y balcón privado con ducha y secador de cabello. 
-    No obstante, también cuenta con casas y apartamentos de diferentes características 
-    y aforos. Sus instalaciones albergan pistas de fútbol sala, tenis y vóley-playa, 
-    así como una piscina, un spa, un parking y un centro de negocios. Igualmente, 
-    se facilitan servicios de alquiler de automóviles, cambio de moneda, 
-    información turística, recepción 24 horas y conexión wifi.</p>
+<p style=" text-align: justify">
+    El complejo Hotel Colibr&iacute; destaca por ofrecer al viajero una amplia variedad de
+    opciones de alojamiento en la montaña y por estar rodeado del espectacular bosque
+    tropical costarricense. Sus habitaciones están equipadas con aire acondicionado,
+    televisor por cable, caja fuerte y balcón privado con ducha y secador de cabello.
+    No obstante, también cuenta con casas y apartamentos de diferentes características
+    y aforos. Sus instalaciones albergan pistas de fútbol sala, tenis y vóley-playa,
+    así como una piscina, un spa, un parking y un centro de negocios. Igualmente,
+    se facilitan servicios de alquiler de automóviles, cambio de moneda,
+    información turística, recepción 24 horas y conexión wifi.
+</p>
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="~/Content/gallery.css" rel="stylesheet" />"
@@ -23,6 +25,8 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 
+<h2>Galer&iacute;a</h2>
+<br />
 <div class="container">
     <div class="row">
 
@@ -32,7 +36,7 @@
 
             <div class="card col-lg-6 col-md-6 col-xs-11">
                 <img class="card-img-top" id="mainImage" src="~/img/About Us/hotel1.jpg" alt="Card image cap">
-                
+
             </div>
 
 
@@ -135,16 +139,16 @@
 
 
 @section scripts{
-    
-<script>
-    $(".getImage").click(function () {
-        var img = $(this).attr("src");
-        $("#mainImage").attr("src",img);
-        //alert(img);
 
-    });
-</script>    
-    
+    <script>
+        $(".getImage").click(function () {
+            var img = $(this).attr("src");
+            $("#mainImage").attr("src", img);
+            //alert(img);
+
+        });
+    </script>
+
 
 }
 
