@@ -30,5 +30,12 @@ namespace ELSA2020.Controllers
 
             return View();
         }
+
+        public ActionResult Tariff()
+        {
+            ViewBag.Message = "Tarifas de habitaciones";
+
+            return View();
+        }
     }
 }
