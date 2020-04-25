@@ -38,6 +38,7 @@ namespace ELSA2020.Controllers
             return View();
         }
 
+
         public ActionResult Tariff()
         {
             TipoHabitacion tipo = new TipoHabitacion();
@@ -47,6 +48,11 @@ namespace ELSA2020.Controllers
 
             ViewBag.Message = "Tarifas de habitaciones";
             ViewBag.tiposDeHabitacion = tipos;
+
+        public ActionResult Location()
+        {
+            ViewBag.Message = "Como llegar";
+
 
             return View();
         }

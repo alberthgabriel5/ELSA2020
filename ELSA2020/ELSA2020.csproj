@@ -220,22 +220,7 @@
     <Content Include="img\gallery\gallery-9.jpg" />
     <Content Include="img\hero\hero-1.jpg" />
     <Content Include="img\hero\hero-2.jpg" />
-    <Content Include="img\hotel1.jpg" />
-    <Content Include="img\hotel10.jpg" />
-    <Content Include="img\hotel11.jpg" />
-    <Content Include="img\hotel12.jpg" />
-    <Content Include="img\hotel13.jpg" />
-    <Content Include="img\hotel14.jpg" />
-    <Content Include="img\hotel15.jpg" />
-    <Content Include="img\hotel16.jpg" />
-    <Content Include="img\hotel2.jpg" />
-    <Content Include="img\hotel3.jpg" />
-    <Content Include="img\hotel4.jpg" />
-    <Content Include="img\hotel5.jpg" />
-    <Content Include="img\hotel6.jpg" />
-    <Content Include="img\hotel7.jpg" />
-    <Content Include="img\hotel8.jpg" />
-    <Content Include="img\hotel9.jpg" />
+    <Content Include="img\About Us\hotel10.jpg" />
     <Content Include="img\favicon.ico" />
     <Content Include="img\instagram\insta-1.jpg" />
     <Content Include="img\instagram\insta-2.jpg" />
@@ -638,7 +623,14 @@
     <Content Include="phozogy\__MACOSX\phozogy\Source\._OwlCarousel2-2.3.4.zip" />
     <Content Include="phozogy\__MACOSX\phozogy\Source\._sass.zip" />
     <Content Include="phozogy\__MACOSX\phozogy\Source\._SlickNav-master.zip" />
+
     <Content Include="Views\Home\Tariff.cshtml" />
+
+    <Content Include="Views\Home\Location.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
