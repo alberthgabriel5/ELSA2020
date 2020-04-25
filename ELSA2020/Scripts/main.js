@@ -139,3 +139,15 @@
     });
 
 })(jQuery);
+
+$(".moneda").on('click', function () {
+    if ($(".moneda").val() == "Precio en Dolares") {
+        $(".moneda").val("Precio en Colones");
+        $(".precioColones").hide("1");
+        $(".precioDolares").show("1");
+    } else {
+        $(".moneda").val("Precio en Dolares");
+        $(".precioDolares").hide("1");
+        $(".precioColones").show("1");
+    }
+});

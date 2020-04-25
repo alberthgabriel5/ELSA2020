@@ -141,6 +141,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Caracteristica.cs" />
+    <Compile Include="Models\Habitacion.cs" />
+    <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\Temporada.cs" />
+    <Compile Include="Models\TipoHabitacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -549,7 +554,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Inicio\" />
   </ItemGroup>
   <ItemGroup>
@@ -619,10 +623,14 @@
     <Content Include="phozogy\__MACOSX\phozogy\Source\._OwlCarousel2-2.3.4.zip" />
     <Content Include="phozogy\__MACOSX\phozogy\Source\._sass.zip" />
     <Content Include="phozogy\__MACOSX\phozogy\Source\._SlickNav-master.zip" />
+
+    <Content Include="Views\Home\Tariff.cshtml" />
+
     <Content Include="Views\Home\Location.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
