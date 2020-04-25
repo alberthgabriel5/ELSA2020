@@ -48,7 +48,9 @@ namespace ELSA2020.Controllers
 
             ViewBag.Message = "Tarifas de habitaciones";
             ViewBag.tiposDeHabitacion = tipos;
+            return View();
 
+        }
         public ActionResult Location()
         {
             ViewBag.Message = "Como llegar";
