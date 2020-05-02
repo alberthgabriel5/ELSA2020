@@ -6,6 +6,7 @@ namespace ELSA2020.Controllers
 {
     public class HomeController : Controller
     {
+        About_UsEF aboutUs = new About_UsEF();
         public ActionResult Index()
         {
             Hotel hotel = new Hotel();
@@ -20,8 +21,8 @@ namespace ELSA2020.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.NombreUnico = aboutUs.getPageAboutUs().nombreUnico;
+            ViewBag.valorTexto = aboutUs.getPageAboutUs().valorTexto;
             return View();
         }
 

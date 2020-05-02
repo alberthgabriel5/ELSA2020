@@ -137,16 +137,104 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="caracteristica.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="caracteristicaHabitacion.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContenidoImagen.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContenidoTexto.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="EntityF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityF.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityF.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Facilidades.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetDataAboutUsPage_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="habitacion.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="hotel.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mobiliario.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\About_UsEF.cs" />
     <Compile Include="Models\Caracteristica.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Temporada.cs" />
     <Compile Include="Models\TipoHabitacion.cs" />
+    <Compile Include="Pagina.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReporteDaño.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reservacion.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getDataAboutUsPage_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_obtenerCaractaeriticasHabitacion_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_obtenerHotel_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_obtenerTemporada_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_obtenerTiposDeHabitacion_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temporada.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipoHabitacion.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
@@ -158,6 +246,16 @@
     <Content Include="Content\owl.carousel.min.css" />
     <Content Include="Content\slicknav.min.css" />
     <Content Include="Content\style.css" />
+    <Content Include="EntityF.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EntityF.edmx</DependentUpon>
+      <LastGenOutput>EntityF.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityF.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EntityF.edmx</DependentUpon>
+      <LastGenOutput>EntityF.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\ElegantIcons.svg" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -563,6 +661,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\style.css.map" />
     <Content Include="fonts\EdwardianScriptITC.ttf" />
+    <EntityDeploy Include="EntityF.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityF.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EntityF.edmx.diagram">
+      <DependentUpon>EntityF.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="phozogy\phozogy\css\style.css.map" />
     <Content Include="phozogy\phozogy\fonts\EdwardianScriptITC.ttf" />
@@ -623,14 +728,11 @@
     <Content Include="phozogy\__MACOSX\phozogy\Source\._OwlCarousel2-2.3.4.zip" />
     <Content Include="phozogy\__MACOSX\phozogy\Source\._sass.zip" />
     <Content Include="phozogy\__MACOSX\phozogy\Source\._SlickNav-master.zip" />
-
     <Content Include="Views\Home\Tariff.cshtml" />
-
     <Content Include="Views\Home\Location.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
