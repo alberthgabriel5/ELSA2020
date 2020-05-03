@@ -17,6 +17,14 @@ namespace ELSA2020.Models
             }
         }
 
+        public IEnumerable<ContenidoImagen> getImagesAboutUs()
+        {
+            using (var context = new entityFramework())
+            {
+                return context.getImagesAboutUs().ToList();
+            }
+        }
+
 
     }
 }

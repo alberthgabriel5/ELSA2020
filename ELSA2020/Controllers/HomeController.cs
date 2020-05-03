@@ -1,5 +1,6 @@
 ﻿using ELSA2020.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ELSA2020.Controllers
@@ -23,6 +24,7 @@ namespace ELSA2020.Controllers
         {
             ViewBag.NombreUnico = aboutUs.getPageAboutUs().nombreUnico;
             ViewBag.valorTexto = aboutUs.getPageAboutUs().valorTexto;
+            ViewBag.Imagenes = aboutUs.getImagesAboutUs().ToList();
             return View();
         }
 

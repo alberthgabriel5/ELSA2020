@@ -406,6 +406,7 @@
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_getDataAboutUsPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getImagesAboutUs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -1056,6 +1057,7 @@
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="sp_getDataAboutUsPage" ReturnType="Collection(bdELSAModel.sp_getDataAboutUsPage_Result)" />
           <FunctionImport Name="GetDataAboutUsPage" EntitySet="ContenidoTexto" ReturnType="Collection(bdELSAModel.ContenidoTexto)" />
+          <FunctionImport Name="getImagesAboutUs" EntitySet="ContenidoImagen" ReturnType="Collection(bdELSAModel.ContenidoImagen)" />
         </EntityContainer>
         <ComplexType Name="GetDataAboutUsPage_Result">
           <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
@@ -1370,6 +1372,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetDataAboutUsPage" FunctionName="bdELSAModel.Store.sp_getDataAboutUsPage" />
+          <FunctionImportMapping FunctionImportName="getImagesAboutUs" FunctionName="bdELSAModel.Store.sp_getImagesAboutUs" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

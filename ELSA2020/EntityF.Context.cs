@@ -185,5 +185,15 @@ namespace ELSA2020
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ContenidoTexto>("GetDataAboutUsPage", mergeOption);
         }
+    
+        public virtual ObjectResult<ContenidoImagen> getImagesAboutUs()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ContenidoImagen>("getImagesAboutUs");
+        }
+    
+        public virtual ObjectResult<ContenidoImagen> getImagesAboutUs(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ContenidoImagen>("getImagesAboutUs", mergeOption);
+        }
     }
 }
