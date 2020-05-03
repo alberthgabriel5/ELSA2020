@@ -1,10 +1,11 @@
 ﻿@{
     ViewBag.Title = "About";
-    
+    List<ContenidoImagen> c = (List<ContenidoImagen>)ViewBag.Imagenes;
 
 }
 
     <h2>@ViewBag.NombreUnico</h2>
+
 
 <p style=" text-align: justify">@ViewBag.valorTexto</p>
 
@@ -25,11 +26,10 @@
 
         <div class="row" style="padding: 0;">
 
-
-
+            
             <div class="col-lg-6 col-md-6 col-xs-4" style="padding: 0">
-                <img class="card-img-top" id="mainImage" src="~/img/About Us/hotel1.jpg" >
-
+                @*<img class="card-img-top" id="mainImage" src="~/img/About Us/hotel1.jpg">*@
+                <img class="card-img-top" id="mainImage" src="@c[0].nombreUnico">
             </div>
 
 
@@ -38,44 +38,44 @@
             <div class="col-lg-1 col-md-1 col-xs-2 xs">
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel1.jpg">
+                         src="@c[0].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel2.jpg">
+                         src="@c[1].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel3.jpg">
+                         src="@c[2].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel4.jpg">
+                         src="@c[3].nombreUnico">
                 </a>
             </div>
 
             <div class="col-lg-1 col-md-1 col-xs-2 xs">
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel5.jpg">
+                         src="@c[4].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel6.jpg">
+                         src="@c[5].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel7.jpg">
+                         src="@c[6].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel8.jpg">
+                         src="@c[7].nombreUnico">
                 </a>
 
 
@@ -84,44 +84,44 @@
             <div class="col-lg-1 col-md-1 col-xs-2 ">
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel9.jpg">
+                         src="@c[8].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel10.jpg">
+                         src="@c[9].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel11.jpg">
+                         src="@c[10].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel12.jpg">
+                         src="@c[11].nombreUnico">
                 </a>
             </div>
 
-            <div class="col-lg-1 col-md-1 col-xs-2" >
+            <div class="col-lg-1 col-md-1 col-xs-2">
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel13.jpg">
+                         src="@c[12].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel14.jpg">
+                         src="@c[13].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel15.jpg">
+                         src="@c[14].nombreUnico">
                 </a>
 
                 <a class="thumbnail" href="#">
                     <img class="img-thumbnail getImage"
-                         src="~/img/About Us/hotel16.jpg">
+                         src="@c[15].nombreUnico">
                 </a>
             </div>
 
@@ -135,13 +135,9 @@
 
     <script>
         $(".getImage").click(function () {
-            var img = $(this).attr("src");
+                    var img = $(this).attr("src");
             $("#mainImage").attr("src", img);
-            //alert(img);
-
-
-
-
+                    //alert(img);
 
         });
 
