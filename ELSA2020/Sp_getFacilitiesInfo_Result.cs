@@ -10,9 +10,8 @@
 namespace ELSA2020
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Facilidades
+    public partial class Sp_getFacilitiesInfo_Result
     {
         public int id { get; set; }
         public byte[] Imagen { get; set; }
@@ -20,7 +19,5 @@ namespace ELSA2020
         public string descripcionEn { get; set; }
         public Nullable<int> idHotel { get; set; }
         public string ImgSrc { get; set; }
-    
-        public virtual hotel hotel { get; set; }
     }
 }

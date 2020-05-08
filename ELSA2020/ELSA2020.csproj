@@ -152,6 +152,7 @@
     <Compile Include="ContenidoTexto.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\FacilidadesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReservacionController.cs" />
     <Compile Include="EntityF.Context.cs">
@@ -189,7 +190,10 @@
     </Compile>
     <Compile Include="Models\About_UsEF.cs" />
     <Compile Include="Models\Caracteristica.cs" />
+
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\FacilitiesEF.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Reservacion.cs" />
@@ -206,6 +210,12 @@
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_getDataAboutUsPage_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getDataFacilitiesPageContent_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_getFacilitiesInfo_Result.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
@@ -315,6 +325,10 @@
     <Content Include="img\categories\cat-3.jpg" />
     <Content Include="img\categories\cat-4.jpg" />
     <Content Include="img\categories\cat-5.jpg" />
+    <Content Include="img\colibri\295-2954059_bird-png-images-libre-de-droit-colibri-transparent.png" />
+    <Content Include="img\colibri\Imagen1.png" />
+    <Content Include="img\colibri\images.png" />
+    <Content Include="img\colibri\Nice-Colibri-Tattoo-Design.png" />
     <Content Include="img\cta-bg.jpg" />
     <Content Include="img\f-logo.png" />
     <Content Include="img\gallery\gallery-1.jpg" />
@@ -749,10 +763,13 @@
     <Content Include="phozogy\__MACOSX\phozogy\Source\._SlickNav-master.zip" />
     <Content Include="Views\Home\Tariff.cshtml" />
     <Content Include="Views\Home\Location.cshtml" />
+
     <Content Include="Views\Reservacion\ReservaEnLinea.cshtml" />
     <Content Include="Views\Reservacion\ReservaPositiva.cshtml" />
     <Content Include="Views\Reservacion\ReservaNegativa.cshtml" />
     <Content Include="Views\Reservacion\ReservaInformacion.cshtml" />
+    <Content Include="Views\Facilidades\Index.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

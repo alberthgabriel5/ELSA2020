@@ -8,8 +8,10 @@ namespace ELSA2020.Controllers
     public class HomeController : Controller
     {
         About_UsEF aboutUs = new About_UsEF();
+        private Contact contact = new Contact();
         public ActionResult Index()
         {
+            ViewBag.NombreUnico = "Bienvenidos a Hotel Colibrí";
             Hotel hotel = new Hotel();
             Hotel respuesta = hotel.obtenerHotel();
 
@@ -28,14 +30,21 @@ namespace ELSA2020.Controllers
             return View();
         }
 
+       
+
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
 
+            ViewBag.NombreUnico = "Contactenos";
+            ViewBag.valorTexto = this.contact.getPageContact().ToList();
+            ViewBag.Imagenes = this.contact.getImagesContact().ToList();
+            
+            
             return View();
         }
         public ActionResult Ofert()
         {
+            ViewBag.NombreUnico = "Ofertas";
             ViewBag.Message = "Time Limited";
 
             return View();
@@ -44,6 +53,7 @@ namespace ELSA2020.Controllers
 
         public ActionResult Tariff()
         {
+            ViewBag.NombreUnico = "Facilidades";
             TipoHabitacion tipo = new TipoHabitacion();
             List<TipoHabitacion> tiposDeHabitacion = tipo.obtenerTiposDeHabitacion();
 
@@ -56,6 +66,7 @@ namespace ELSA2020.Controllers
         }
         public ActionResult Location()
         {
+            ViewBag.NombreUnico = "Como llegar";
             ViewBag.Message = "Como llegar";
 
 

@@ -44,12 +44,14 @@
     <header class="header-section">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="logo">
-                        <a href="./Index">
+                <div class="col-lg-12" style="display: inline-block">
+                    <div class="logo" >
+                        <a href="~/Views/Home/Index.cshtml">
                             <img src="~/img/logo.png" alt="Hotel Colibrí">
                         </a>
+                        
                     </div>
+                    <h2>@ViewBag.NombreUnico</h2>
                 </div>
             </div>
             <div class="row">
@@ -59,7 +61,7 @@
                             <ul>
                                 <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                                 <li>@Html.ActionLink("Sobre Nosotros", "About", "Home")</li>
-                                <li>@Html.ActionLink("Facilidades", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Facilidades", "Index", "Facilidades")</li>
                                 <li>@Html.ActionLink("Como llegar", "Location", "Home")</li>
                                 <li>@Html.ActionLink("Tarifas", "Tariff", "Home")</li>
                                 <li>@Html.ActionLink("Reservar en Linea", "ReservaEnLinea", "Reservacion")</li>
@@ -228,8 +230,10 @@
 
 </body>
 
+
 <script src="Scripts/owl.carousel.min.js"></script>
 <script src="~/Scripts/DatePicker.js"></script>
+
 @*<script src="Scripts/jquery-3.3.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/jquery.magnific-popup.min.js"></script>
@@ -237,5 +241,5 @@
     <script src="Scripts/masonry.pkgd.min.js"></script>
     <script src="Scripts/jquery.slicknav.js"></script>
     *@
-    <script src="~/Scripts/main.js"></script>
+    @*<script src="~/Scripts/main.js"></script>*@
 </html>

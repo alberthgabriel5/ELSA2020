@@ -70,6 +70,7 @@
           <Property Name="descripcionEsp" Type="varchar(max)" />
           <Property Name="descripcionEn" Type="varchar(max)" />
           <Property Name="idHotel" Type="int" />
+          <Property Name="ImgSrc" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="habitacion">
           <Key>
@@ -406,6 +407,8 @@
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_getDataAboutUsPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getDataFacilitiesPageContent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_getFacilitiesInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_getImagesAboutUs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -592,6 +595,7 @@
           <Property Name="descripcionEn" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="idHotel" Type="Int32" />
           <NavigationProperty Name="hotel" Relationship="Self.FK_Facilidades_Hotel" FromRole="Facilidades" ToRole="hotel" />
+          <Property Name="ImgSrc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="habitacion">
           <Key>
@@ -1058,6 +1062,8 @@
           <FunctionImport Name="sp_getDataAboutUsPage" ReturnType="Collection(bdELSAModel.sp_getDataAboutUsPage_Result)" />
           <FunctionImport Name="GetDataAboutUsPage" EntitySet="ContenidoTexto" ReturnType="Collection(bdELSAModel.ContenidoTexto)" />
           <FunctionImport Name="getImagesAboutUs" EntitySet="ContenidoImagen" ReturnType="Collection(bdELSAModel.ContenidoImagen)" />
+          <FunctionImport Name="Sp_getFacilitiesInfo" EntitySet="Facilidades" ReturnType="Collection(bdELSAModel.Facilidades)" />
+          <FunctionImport Name="sp_getDataFacilitiesPageContent" EntitySet="ContenidoTexto" ReturnType="Collection(bdELSAModel.ContenidoTexto)" />
         </EntityContainer>
         <ComplexType Name="GetDataAboutUsPage_Result">
           <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
@@ -1099,6 +1105,24 @@
         <ComplexType Name="sp_getDataAboutUsPage_Result">
           <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="valorTexto" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_getFacilitiesInfo_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Binary" Name="Imagen" Nullable="true" />
+          <Property Type="String" Name="descripcionEsp" Nullable="true" />
+          <Property Type="String" Name="descripcionEn" Nullable="true" />
+          <Property Type="Int32" Name="idHotel" Nullable="true" />
+          <Property Type="String" Name="ImgSrc" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_getDataFacilitiesPageContent_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="valorTexto" Nullable="true" />
+          <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fechaActualizacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="idioma" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idHotel" Nullable="true" />
+          <Property Type="Int32" Name="idPagina" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1170,6 +1194,7 @@
           <EntitySetMapping Name="Facilidades">
             <EntityTypeMapping TypeName="bdELSAModel.Facilidades">
               <MappingFragment StoreEntitySet="Facilidades">
+                <ScalarProperty Name="ImgSrc" ColumnName="ImgSrc" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
                 <ScalarProperty Name="descripcionEsp" ColumnName="descripcionEsp" />
@@ -1373,6 +1398,8 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetDataAboutUsPage" FunctionName="bdELSAModel.Store.sp_getDataAboutUsPage" />
           <FunctionImportMapping FunctionImportName="getImagesAboutUs" FunctionName="bdELSAModel.Store.sp_getImagesAboutUs" />
+          <FunctionImportMapping FunctionImportName="Sp_getFacilitiesInfo" FunctionName="bdELSAModel.Store.Sp_getFacilitiesInfo" />
+          <FunctionImportMapping FunctionImportName="sp_getDataFacilitiesPageContent" FunctionName="bdELSAModel.Store.sp_getDataFacilitiesPageContent" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
