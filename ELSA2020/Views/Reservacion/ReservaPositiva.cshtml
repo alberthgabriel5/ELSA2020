@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Reservar en Linea";
+}
+<h1 class="text-left">@ViewBag.Title</h1>
+<body>
+
+    <h4>Habitacion Disponible</h4>
+
+    <form action="/Reservacion/ReservaPositiva" method="post">
+        <input type="text" id="idHabitacion" name="idHabitacion" value="@ViewBag.infoReserva.Id1" hidden>
+        <input type="text" id="numeroHabitacion" name="numeroHabitacion" value="@ViewBag.infoReserva.PrecioDolares1" hidden>
+        <input type="text" id="fechaEntrada" name="fechaEntrada" value="@ViewBag.infoReserva.FechaEntrada1" hidden>
+        <input type="text" id="fechaSalida" name="fechaSalida" value="@ViewBag.infoReserva.FechaSalida1" hidden>
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-md-4" style="padding: 5em 5em 5em 5em;">
+                <img class="card-img-top" id="imgTipoHabitacion" src="~/img/About Us/@ViewBag.infoReserva.Imagen1" alt="No se pudo cargar">
+            </div>
+            <div class="col-lg-6 col-sm-12 col-md-6">
+                <p>Descripcion @ViewBag.infoReserva.Descripcion1</p>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div class="input-group-prepend">
+                    <span>Monto de su reservacion: @ViewBag.infoReserva.PrecioColones1</span>
+                    <input type="text" id="precio" name="precio" value="@ViewBag.infoReserva.PrecioColones1" hidden>
+                </div>
+                <div class="input-group-prepend">
+                    <span>Nombre</span>
+                    <input type="text" id="nombre" name="nombre">
+                </div>
+                <div class="input-group-prepend">
+                    <span>Apellidos</span>
+                    <input type="text" id="apellidos" name="apellidos">
+                </div>
+                <div class="input-group-prepend">
+                    <span>Email</span>
+                    <input type="text" id="email" name="email">
+                </div>
+                <div class="input-group-prepend">
+                    <span>Tarjeta de Credito</span>
+                    <input type="text" id="tarjeta" name="tarjeta">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-sm-12 col-md-2">
+                    <button type="submit" class="btn-group">Aceptar</button>
+                </div>
+                <div class="col-lg-2 col-sm-12 col-md-2">
+                    <input type="button" class="btn btn-secondary" id="btnCancelar" name="btnCancelar" value="Cancelar">
+                </div>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+

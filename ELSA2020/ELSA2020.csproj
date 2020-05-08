@@ -153,6 +153,7 @@
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReservacionController.cs" />
     <Compile Include="EntityF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -188,8 +189,10 @@
     </Compile>
     <Compile Include="Models\About_UsEF.cs" />
     <Compile Include="Models\Caracteristica.cs" />
+    <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\Reservacion.cs" />
     <Compile Include="Models\Temporada.cs" />
     <Compile Include="Models\TipoHabitacion.cs" />
     <Compile Include="Pagina.cs">
@@ -642,6 +645,7 @@
     <Content Include="phozogy\__MACOSX\phozogy\js\._masonry.pkgd.min.js" />
     <Content Include="phozogy\__MACOSX\phozogy\js\._owl.carousel.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\DatePicker.js" />
     <Content Include="Scripts\gallery.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -745,6 +749,10 @@
     <Content Include="phozogy\__MACOSX\phozogy\Source\._SlickNav-master.zip" />
     <Content Include="Views\Home\Tariff.cshtml" />
     <Content Include="Views\Home\Location.cshtml" />
+    <Content Include="Views\Reservacion\ReservaEnLinea.cshtml" />
+    <Content Include="Views\Reservacion\ReservaPositiva.cshtml" />
+    <Content Include="Views\Reservacion\ReservaNegativa.cshtml" />
+    <Content Include="Views\Reservacion\ReservaInformacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
