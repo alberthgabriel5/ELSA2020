@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+    <section>
+        <h2> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;@ViewBag.Titulo</h2>
+        <br />
+        @foreach (var t in (List<Facilidades>)ViewBag.ContenidoPagina)
+        {
+            <div class="row">
+                <div class="col-lg-1 col-md-1 col-xs-1" style="padding: 0"></div>
+                <div class="col-lg-5 col-md-5 col-xs-10" style="padding: 0">
+                    <img class="card-img-top" id="mainImage" src="@t.ImgSrc">
+                </div>
+                <div class="col-lg-1 col-md-1 col-xs-1" style="padding: 0"></div>
+                <div class="col-lg-5 col-md-5 col-xs-10" style="padding: 0">
+                    <p>@t.descripcionEsp</p>
+                </div>
+
+            </div>
+            <br />
+            <br />
+        }
+    </section>
+

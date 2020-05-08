@@ -152,6 +152,7 @@
     <Compile Include="ContenidoTexto.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\FacilidadesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="EntityF.Context.cs">
       <AutoGen>True</AutoGen>
@@ -189,6 +190,7 @@
     <Compile Include="Models\About_UsEF.cs" />
     <Compile Include="Models\Caracteristica.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\FacilitiesEF.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Temporada.cs" />
@@ -204,6 +206,12 @@
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_getDataAboutUsPage_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getDataFacilitiesPageContent_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_getFacilitiesInfo_Result.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
@@ -750,6 +758,7 @@
     <Content Include="phozogy\__MACOSX\phozogy\Source\._SlickNav-master.zip" />
     <Content Include="Views\Home\Tariff.cshtml" />
     <Content Include="Views\Home\Location.cshtml" />
+    <Content Include="Views\Facilidades\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

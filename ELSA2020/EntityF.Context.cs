@@ -195,5 +195,25 @@ namespace ELSA2020
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ContenidoImagen>("getImagesAboutUs", mergeOption);
         }
+    
+        public virtual ObjectResult<Facilidades> Sp_getFacilitiesInfo()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Facilidades>("Sp_getFacilitiesInfo");
+        }
+    
+        public virtual ObjectResult<Facilidades> Sp_getFacilitiesInfo(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Facilidades>("Sp_getFacilitiesInfo", mergeOption);
+        }
+    
+        public virtual ObjectResult<ContenidoTexto> sp_getDataFacilitiesPageContent()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ContenidoTexto>("sp_getDataFacilitiesPageContent");
+        }
+    
+        public virtual ObjectResult<ContenidoTexto> sp_getDataFacilitiesPageContent(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ContenidoTexto>("sp_getDataFacilitiesPageContent", mergeOption);
+        }
     }
 }
