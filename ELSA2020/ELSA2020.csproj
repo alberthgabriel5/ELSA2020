@@ -188,6 +188,7 @@
     </Compile>
     <Compile Include="Models\About_UsEF.cs" />
     <Compile Include="Models\Caracteristica.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Temporada.cs" />
@@ -312,6 +313,10 @@
     <Content Include="img\categories\cat-3.jpg" />
     <Content Include="img\categories\cat-4.jpg" />
     <Content Include="img\categories\cat-5.jpg" />
+    <Content Include="img\colibri\295-2954059_bird-png-images-libre-de-droit-colibri-transparent.png" />
+    <Content Include="img\colibri\Imagen1.png" />
+    <Content Include="img\colibri\images.png" />
+    <Content Include="img\colibri\Nice-Colibri-Tattoo-Design.png" />
     <Content Include="img\cta-bg.jpg" />
     <Content Include="img\f-logo.png" />
     <Content Include="img\gallery\gallery-1.jpg" />
