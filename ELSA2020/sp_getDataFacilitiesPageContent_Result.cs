@@ -10,17 +10,16 @@
 namespace ELSA2020
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Facilidades
+    public partial class sp_getDataFacilitiesPageContent_Result
     {
         public int id { get; set; }
-        public byte[] Imagen { get; set; }
-        public string descripcionEsp { get; set; }
-        public string descripcionEn { get; set; }
+        public string nombreUnico { get; set; }
+        public string valorTexto { get; set; }
+        public Nullable<System.DateTime> fechaCreacion { get; set; }
+        public Nullable<System.DateTime> fechaActualizacion { get; set; }
+        public string idioma { get; set; }
         public Nullable<int> idHotel { get; set; }
-        public string ImgSrc { get; set; }
-    
-        public virtual hotel hotel { get; set; }
+        public Nullable<int> idPagina { get; set; }
     }
 }
