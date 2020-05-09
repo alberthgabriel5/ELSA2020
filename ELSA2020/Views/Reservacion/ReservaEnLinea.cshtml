@@ -1,11 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "Reservar en Linea";
+    ViewBag.Title = "Reservación";
+    ViewBag.NombreUnico = "Reservar en Linea";
 }
 <h1 class="text-left">@ViewBag.Title</h1>
-<body>
+
     <form method="post">
-    <div class="container">
+    
         <div class="row">
             <div class='col-sm-3'>
                 <p id="textollegada">Fecha Llegada</p>
@@ -30,7 +31,7 @@
                 </div>
             </div>
         </div>
-    </div>
+ 
 
     <div style="padding: 2em 2em 2em 0em;">
         <select id="tipoHabitacion" name="tipoHabitacion">
@@ -43,4 +44,3 @@
         <button type="submit" class="btn-group">Aceptar</button>
     </div>
     </form>
-</body>

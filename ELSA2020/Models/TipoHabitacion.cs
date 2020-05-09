@@ -56,7 +56,7 @@ namespace ELSA2020.Models
         public string FechaEntrada1 { get => FechaEntrada; set => FechaEntrada = value; }
         public string FechaSalida1 { get => FechaSalida; set => FechaSalida = value; }
 
-        public List<TipoHabitacion> obtenerTiposDeHabitacion()
+        public List<TipoHabitacion> ObtenerTiposDeHabitacion()
         {
             string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
 
@@ -121,7 +121,7 @@ namespace ELSA2020.Models
             return tiposDeHabitacion;
         }
 
-        public TipoHabitacion obtenerHabitacionReserva(Reservacion reserva)
+        public TipoHabitacion ObtenerHabitacionReserva(Reservacion reserva)
         {
             string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
             SqlConnection connection = new SqlConnection(connStr);

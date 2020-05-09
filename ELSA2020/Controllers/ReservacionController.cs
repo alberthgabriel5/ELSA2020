@@ -53,7 +53,7 @@ namespace ELSA2020.Controllers
             reservar.FechaSalida1 = fs[0];
             reservar.Tipo1 = tipoHabitacion;
 
-            tipoHab = tipoHab.obtenerHabitacionReserva(reservar);
+            tipoHab = tipoHab.ObtenerHabitacionReserva(reservar);
             if (tipoHab.Descripcion1.CompareTo("") == 0 || tipoHab.Imagen1.CompareTo("") == 0 || tipoHab.PrecioColones1.CompareTo("") == 0)
             {
                 ViewBag.infoReserva = "Lo sentimos!No tenemos en ese rango de fechas no tenemos habitaciones disponibles.";
@@ -75,7 +75,7 @@ namespace ELSA2020.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReservaPositiva(string numeroHabitacion, string idHabitacion, string precio, string nombre, string apellidos, string email, string tarjeta, string fechaEntrada, string fechaSalida)
+        public ActionResult ReservaPositiva(string idHabitacion, string precio, string nombre, string apellidos, string email, string tarjeta, string fechaEntrada, string fechaSalida)
         {
 
             Models.Reservacion reservacion = new Models.Reservacion();
@@ -107,7 +107,7 @@ namespace ELSA2020.Controllers
                 reservacion.Estado1 = "Pagado";
             }
             Temporada temporada = new Temporada();
-            temporada = temporada.obtenerTemporada(reservacion.FechaEntrada1, reservacion.FechaSalida1);
+            temporada = temporada.ObtenerTemporada(reservacion.FechaEntrada1, reservacion.FechaSalida1);
             reservacion.IdTemporada1 = temporada.Id1;
             reservacion.NumeroReservacion1 = reservacion.generarNumeroReservacion(nombre);
             string numReserva = reservacion.reservarHabitacion(reservacion);

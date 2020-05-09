@@ -32,7 +32,7 @@
           <Property Name="apellidos" Type="varchar" MaxLength="100" />
           <Property Name="identificacion" Type="varchar" MaxLength="50" />
           <Property Name="telefono" Type="varchar" MaxLength="50" />
-          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="paisOrigen" Type="varchar" MaxLength="50" />
           <Property Name="fechaCreacion" Type="datetime" />
         </EntityType>
@@ -127,20 +127,16 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idCliente" Type="int" Nullable="false" />
-          <Property Name="idHabitacion" Type="int" />
-          <Property Name="cantidadAdultos" Type="int" Nullable="false" />
-          <Property Name="cantidadNiños" Type="int" />
-          <Property Name="fechaEntrada" Type="datetime" Nullable="false" />
-          <Property Name="fechaSalida" Type="datetime" Nullable="false" />
+          <Property Name="idHabitacion" Type="int" Nullable="false" />
+          <Property Name="fechaEntrada" Type="date" Nullable="false" />
+          <Property Name="fechaSalida" Type="date" Nullable="false" />
           <Property Name="cantidadDias" Type="int" Nullable="false" />
           <Property Name="cantidadNoches" Type="int" Nullable="false" />
           <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="fechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
           <Property Name="estado" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="pagada" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="comentariosCliente" Type="varchar" MaxLength="500" />
-          <Property Name="comentariosEmpleado" Type="varchar" MaxLength="500" />
-          <Property Name="idTemporada" Type="int" />
+          <Property Name="idTemporada" Type="int" Nullable="false" />
+          <Property Name="numeroReserva" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -158,8 +154,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fechaInicio" Type="datetime" Nullable="false" />
-          <Property Name="fechaFinal" Type="datetime" Nullable="false" />
+          <Property Name="fechaInicio" Type="date" />
+          <Property Name="fechaFinal" Type="date" />
           <Property Name="variacionPrecio" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="tipoHabitacion">
@@ -185,6 +181,42 @@
           <Property Name="tipo" Type="varchar" MaxLength="50" />
           <Property Name="idHotel" Type="int" />
         </EntityType>
+        <Association Name="FK__Reservaci__idCli__797309D9">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reservacion">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservaci__idHab__7A672E12">
+          <End Role="habitacion" Type="Self.habitacion" Multiplicity="1" />
+          <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reservacion">
+              <PropertyRef Name="idHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservaci__idTem__7B5B524B">
+          <End Role="temporada" Type="Self.temporada" Multiplicity="1" />
+          <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="temporada">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reservacion">
+              <PropertyRef Name="idTemporada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_caracteristicaHabiatacion_caracteristica">
           <End Role="caracteristica" Type="Self.caracteristica" Multiplicity="1" />
           <End Role="caracteristicaHabitacion" Type="Self.caracteristicaHabitacion" Multiplicity="*" />
@@ -341,42 +373,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservacion_Cliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Reservacion">
-              <PropertyRef Name="idCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reservacion_Habitacion">
-          <End Role="habitacion" Type="Self.habitacion" Multiplicity="0..1" />
-          <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="habitacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Reservacion">
-              <PropertyRef Name="idHabitacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reservacion_Temporada">
-          <End Role="temporada" Type="Self.temporada" Multiplicity="0..1" />
-          <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="temporada">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Reservacion">
-              <PropertyRef Name="idTemporada" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Usuario_Hotel">
           <End Role="hotel" Type="Self.hotel" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -395,6 +391,14 @@
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_buscarHabitacionDisponibleParaReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="varchar" Mode="In" />
+          <Parameter Name="fechaFin" Type="varchar" Mode="In" />
+          <Parameter Name="tipoHabitacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_comprobarNumeroReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="numeroReserva" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -423,7 +427,27 @@
         </Function>
         <Function Name="sp_obtenerHotel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_obtenerTemporada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_obtenerTemporadaIntervalo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+        </Function>
         <Function Name="sp_obtenerTiposDeHabitacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_registrarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_registrarReservacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="numeroReservacion" Type="varchar" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="idHabitacion" Type="int" Mode="In" />
+          <Parameter Name="fechaEntrada" Type="varchar" Mode="In" />
+          <Parameter Name="fechaSalida" Type="varchar" Mode="In" />
+          <Parameter Name="cantidadDias" Type="int" Mode="In" />
+          <Parameter Name="cantidadNoches" Type="int" Mode="In" />
+          <Parameter Name="precio" Type="decimal" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+          <Parameter Name="idTemporada" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -447,6 +471,18 @@
           <EntitySet Name="temporada" EntityType="Self.temporada" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipoHabitacion" EntityType="Self.tipoHabitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Reservaci__idCli__797309D9" Association="Self.FK__Reservaci__idCli__797309D9">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Reservacion" EntitySet="Reservacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservaci__idHab__7A672E12" Association="Self.FK__Reservaci__idHab__7A672E12">
+            <End Role="habitacion" EntitySet="habitacion" />
+            <End Role="Reservacion" EntitySet="Reservacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservaci__idTem__7B5B524B" Association="Self.FK__Reservaci__idTem__7B5B524B">
+            <End Role="temporada" EntitySet="temporada" />
+            <End Role="Reservacion" EntitySet="Reservacion" />
+          </AssociationSet>
           <AssociationSet Name="FK_caracteristicaHabiatacion_caracteristica" Association="Self.FK_caracteristicaHabiatacion_caracteristica">
             <End Role="caracteristica" EntitySet="caracteristica" />
             <End Role="caracteristicaHabitacion" EntitySet="caracteristicaHabitacion" />
@@ -499,18 +535,6 @@
             <End Role="Mobiliario" EntitySet="Mobiliario" />
             <End Role="ReporteDaño" EntitySet="ReporteDaño" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservacion_Cliente" Association="Self.FK_Reservacion_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Reservacion" EntitySet="Reservacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reservacion_Habitacion" Association="Self.FK_Reservacion_Habitacion">
-            <End Role="habitacion" EntitySet="habitacion" />
-            <End Role="Reservacion" EntitySet="Reservacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reservacion_Temporada" Association="Self.FK_Reservacion_Temporada">
-            <End Role="temporada" EntitySet="temporada" />
-            <End Role="Reservacion" EntitySet="Reservacion" />
-          </AssociationSet>
           <AssociationSet Name="FK_Usuario_Hotel" Association="Self.FK_Usuario_Hotel">
             <End Role="hotel" EntitySet="hotel" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -550,11 +574,10 @@
           <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="identificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="paisOrigen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ReporteDaño" Relationship="Self.FK_ReporteDaño_Cliente" FromRole="Cliente" ToRole="ReporteDaño" />
-          <NavigationProperty Name="Reservacion" Relationship="Self.FK_Reservacion_Cliente" FromRole="Cliente" ToRole="Reservacion" />
         </EntityType>
         <EntityType Name="ContenidoImagen">
           <Key>
@@ -611,7 +634,7 @@
           <NavigationProperty Name="tipoHabitacion" Relationship="Self.FK_habitacion_tipoHabitacion1" FromRole="habitacion" ToRole="tipoHabitacion" />
           <NavigationProperty Name="Mobiliario" Relationship="Self.FK_Mobiliario_Habitacion" FromRole="habitacion" ToRole="Mobiliario" />
           <NavigationProperty Name="ReporteDaño" Relationship="Self.FK_ReporteDaño_Habitacion" FromRole="habitacion" ToRole="ReporteDaño" />
-          <NavigationProperty Name="Reservacion" Relationship="Self.FK_Reservacion_Habitacion" FromRole="habitacion" ToRole="Reservacion" />
+          <NavigationProperty Name="Reservacion" Relationship="bdELSAModel.FK__Reservaci__idHab__7A672E12" FromRole="habitacion" ToRole="Reservacion" />
         </EntityType>
         <EntityType Name="hotel">
           <Key>
@@ -663,30 +686,6 @@
           <NavigationProperty Name="habitacion" Relationship="Self.FK_ReporteDaño_Habitacion" FromRole="ReporteDaño" ToRole="habitacion" />
           <NavigationProperty Name="Mobiliario" Relationship="Self.FK_ReporteDaño_Mobiliario" FromRole="ReporteDaño" ToRole="Mobiliario" />
         </EntityType>
-        <EntityType Name="Reservacion">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idCliente" Type="Int32" Nullable="false" />
-          <Property Name="idHabitacion" Type="Int32" />
-          <Property Name="cantidadAdultos" Type="Int32" Nullable="false" />
-          <Property Name="cantidadNiños" Type="Int32" />
-          <Property Name="fechaEntrada" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fechaSalida" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="cantidadDias" Type="Int32" Nullable="false" />
-          <Property Name="cantidadNoches" Type="Int32" Nullable="false" />
-          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="pagada" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="comentariosCliente" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="comentariosEmpleado" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="idTemporada" Type="Int32" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_Reservacion_Cliente" FromRole="Reservacion" ToRole="Cliente" />
-          <NavigationProperty Name="habitacion" Relationship="Self.FK_Reservacion_Habitacion" FromRole="Reservacion" ToRole="habitacion" />
-          <NavigationProperty Name="temporada" Relationship="Self.FK_Reservacion_Temporada" FromRole="Reservacion" ToRole="temporada" />
-        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -696,17 +695,6 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="temporada">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fechaFinal" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="variacionPrecio" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Reservacion" Relationship="Self.FK_Reservacion_Temporada" FromRole="temporada" ToRole="Reservacion" />
         </EntityType>
         <EntityType Name="tipoHabitacion">
           <Key>
@@ -770,18 +758,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservacion_Cliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Reservacion">
-              <PropertyRef Name="idCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ContenidoImagen_hotel">
           <End Role="hotel" Type="Self.hotel" Multiplicity="0..1" />
           <End Role="ContenidoImagen" Type="Self.ContenidoImagen" Multiplicity="*" />
@@ -890,18 +866,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservacion_Habitacion">
-          <End Role="habitacion" Type="Self.habitacion" Multiplicity="0..1" />
-          <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="habitacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Reservacion">
-              <PropertyRef Name="idHabitacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Usuario_Hotel">
           <End Role="hotel" Type="Self.hotel" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -926,18 +890,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservacion_Temporada">
-          <End Role="temporada" Type="Self.temporada" Multiplicity="0..1" />
-          <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="temporada">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Reservacion">
-              <PropertyRef Name="idTemporada" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="entityFramework" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="caracteristica" EntityType="Self.caracteristica" />
           <EntitySet Name="caracteristicaHabitacion" EntityType="Self.caracteristicaHabitacion" />
@@ -950,9 +902,7 @@
           <EntitySet Name="Mobiliario" EntityType="Self.Mobiliario" />
           <EntitySet Name="Pagina" EntityType="Self.Pagina" />
           <EntitySet Name="ReporteDaño" EntityType="Self.ReporteDaño" />
-          <EntitySet Name="Reservacion" EntityType="Self.Reservacion" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="temporada" EntityType="Self.temporada" />
           <EntitySet Name="tipoHabitacion" EntityType="Self.tipoHabitacion" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_caracteristicaHabiatacion_caracteristica" Association="Self.FK_caracteristicaHabiatacion_caracteristica">
@@ -966,10 +916,6 @@
           <AssociationSet Name="FK_ReporteDaño_Cliente" Association="Self.FK_ReporteDaño_Cliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="ReporteDaño" EntitySet="ReporteDaño" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reservacion_Cliente" Association="Self.FK_Reservacion_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Reservacion" EntitySet="Reservacion" />
           </AssociationSet>
           <AssociationSet Name="FK_ContenidoImagen_hotel" Association="Self.FK_ContenidoImagen_hotel">
             <End Role="hotel" EntitySet="hotel" />
@@ -1007,10 +953,6 @@
             <End Role="habitacion" EntitySet="habitacion" />
             <End Role="ReporteDaño" EntitySet="ReporteDaño" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservacion_Habitacion" Association="Self.FK_Reservacion_Habitacion">
-            <End Role="habitacion" EntitySet="habitacion" />
-            <End Role="Reservacion" EntitySet="Reservacion" />
-          </AssociationSet>
           <AssociationSet Name="FK_Usuario_Hotel" Association="Self.FK_Usuario_Hotel">
             <End Role="hotel" EntitySet="hotel" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -1018,10 +960,6 @@
           <AssociationSet Name="FK_ReporteDaño_Mobiliario" Association="Self.FK_ReporteDaño_Mobiliario">
             <End Role="Mobiliario" EntitySet="Mobiliario" />
             <End Role="ReporteDaño" EntitySet="ReporteDaño" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reservacion_Temporada" Association="Self.FK_Reservacion_Temporada">
-            <End Role="temporada" EntitySet="temporada" />
-            <End Role="Reservacion" EntitySet="Reservacion" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1064,6 +1002,48 @@
           <FunctionImport Name="getImagesAboutUs" EntitySet="ContenidoImagen" ReturnType="Collection(bdELSAModel.ContenidoImagen)" />
           <FunctionImport Name="Sp_getFacilitiesInfo" EntitySet="Facilidades" ReturnType="Collection(bdELSAModel.Facilidades)" />
           <FunctionImport Name="sp_getDataFacilitiesPageContent" EntitySet="ContenidoTexto" ReturnType="Collection(bdELSAModel.ContenidoTexto)" />
+          <FunctionImport Name="sp_buscarHabitacionDisponibleParaReserva" ReturnType="Collection(bdELSAModel.sp_buscarHabitacionDisponibleParaReserva_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="String" />
+            <Parameter Name="fechaFin" Mode="In" Type="String" />
+            <Parameter Name="tipoHabitacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_comprobarNumeroReserva" ReturnType="Collection(String)">
+          <Parameter Name="numeroReserva" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_obtenerTemporadaIntervalo" ReturnType="Collection(bdELSAModel.sp_obtenerTemporadaIntervalo_Result)">
+          <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_registrarCliente" ReturnType="Collection(Int32)">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_registrarReservacion" ReturnType="Collection(String)">
+            <Parameter Name="numeroReservacion" Mode="In" Type="String" />
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="idHabitacion" Mode="In" Type="Int32" />
+            <Parameter Name="fechaEntrada" Mode="In" Type="String" />
+            <Parameter Name="fechaSalida" Mode="In" Type="String" />
+            <Parameter Name="cantidadDias" Mode="In" Type="Int32" />
+            <Parameter Name="cantidadNoches" Mode="In" Type="Int32" />
+            <Parameter Name="precio" Mode="In" Type="Decimal" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="idTemporada" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Reservacion" EntityType="bdELSAModel.Reservacion" />
+          <EntitySet Name="temporada" EntityType="bdELSAModel.temporada" />
+          <AssociationSet Name="FK__Reservaci__idCli__797309D9" Association="bdELSAModel.FK__Reservaci__idCli__797309D9">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Reservacion" EntitySet="Reservacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservaci__idHab__7A672E12" Association="bdELSAModel.FK__Reservaci__idHab__7A672E12">
+            <End Role="habitacion" EntitySet="habitacion" />
+            <End Role="Reservacion" EntitySet="Reservacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservaci__idTem__7B5B524B" Association="bdELSAModel.FK__Reservaci__idTem__7B5B524B">
+            <End Role="temporada" EntitySet="temporada" />
+            <End Role="Reservacion" EntitySet="Reservacion" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="GetDataAboutUsPage_Result">
           <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
@@ -1124,6 +1104,84 @@
           <Property Type="Int32" Name="idHotel" Nullable="true" />
           <Property Type="Int32" Name="idPagina" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="sp_buscarHabitacionDisponibleParaReserva_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="numero" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="230" />
+          <Property Type="Double" Name="precioColones" Nullable="false" />
+          <Property Type="String" Name="imagen" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_obtenerTemporadaIntervalo_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+          <Property Type="Double" Name="variacionPrecio" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Reservacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idHabitacion" Type="Int32" Nullable="false" />
+          <Property Name="fechaEntrada" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaSalida" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cantidadDias" Type="Int32" Nullable="false" />
+          <Property Name="cantidadNoches" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idTemporada" Type="Int32" Nullable="false" />
+          <Property Name="numeroReserva" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="bdELSAModel.FK__Reservaci__idCli__797309D9" FromRole="Reservacion" ToRole="Cliente" />
+          <NavigationProperty Name="habitacion" Relationship="bdELSAModel.FK__Reservaci__idHab__7A672E12" FromRole="Reservacion" ToRole="habitacion" />
+          <NavigationProperty Name="temporada" Relationship="bdELSAModel.FK__Reservaci__idTem__7B5B524B" FromRole="Reservacion" ToRole="temporada" />
+        </EntityType>
+        <EntityType Name="temporada">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="fechaFinal" Type="DateTime" Precision="0" />
+          <Property Name="variacionPrecio" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Reservaci__idCli__797309D9">
+          <End Type="bdELSAModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="bdELSAModel.Reservacion" Role="Reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reservacion">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservaci__idHab__7A672E12">
+          <End Type="bdELSAModel.habitacion" Role="habitacion" Multiplicity="1" />
+          <End Type="bdELSAModel.Reservacion" Role="Reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reservacion">
+              <PropertyRef Name="idHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservaci__idTem__7B5B524B">
+          <End Type="bdELSAModel.temporada" Role="temporada" Multiplicity="1" />
+          <End Type="bdELSAModel.Reservacion" Role="Reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="temporada">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reservacion">
+              <PropertyRef Name="idTemporada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1257,28 +1315,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Reservacion">
-            <EntityTypeMapping TypeName="bdELSAModel.Reservacion">
-              <MappingFragment StoreEntitySet="Reservacion">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-                <ScalarProperty Name="idHabitacion" ColumnName="idHabitacion" />
-                <ScalarProperty Name="cantidadAdultos" ColumnName="cantidadAdultos" />
-                <ScalarProperty Name="cantidadNiños" ColumnName="cantidadNiños" />
-                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
-                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
-                <ScalarProperty Name="cantidadDias" ColumnName="cantidadDias" />
-                <ScalarProperty Name="cantidadNoches" ColumnName="cantidadNoches" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="pagada" ColumnName="pagada" />
-                <ScalarProperty Name="comentariosCliente" ColumnName="comentariosCliente" />
-                <ScalarProperty Name="comentariosEmpleado" ColumnName="comentariosEmpleado" />
-                <ScalarProperty Name="idTemporada" ColumnName="idTemporada" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="bdELSAModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1287,17 +1323,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="temporada">
-            <EntityTypeMapping TypeName="bdELSAModel.temporada">
-              <MappingFragment StoreEntitySet="temporada">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
-                <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
-                <ScalarProperty Name="variacionPrecio" ColumnName="variacionPrecio" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1400,6 +1425,58 @@
           <FunctionImportMapping FunctionImportName="getImagesAboutUs" FunctionName="bdELSAModel.Store.sp_getImagesAboutUs" />
           <FunctionImportMapping FunctionImportName="Sp_getFacilitiesInfo" FunctionName="bdELSAModel.Store.Sp_getFacilitiesInfo" />
           <FunctionImportMapping FunctionImportName="sp_getDataFacilitiesPageContent" FunctionName="bdELSAModel.Store.sp_getDataFacilitiesPageContent" />
+          <FunctionImportMapping FunctionImportName="sp_buscarHabitacionDisponibleParaReserva" FunctionName="bdELSAModel.Store.sp_buscarHabitacionDisponibleParaReserva">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bdELSAModel.sp_buscarHabitacionDisponibleParaReserva_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precioColones" ColumnName="precioColones" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_comprobarNumeroReserva" FunctionName="bdELSAModel.Store.sp_comprobarNumeroReserva" />
+          <FunctionImportMapping FunctionImportName="sp_obtenerTemporadaIntervalo" FunctionName="bdELSAModel.Store.sp_obtenerTemporadaIntervalo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bdELSAModel.sp_obtenerTemporadaIntervalo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="variacionPrecio" ColumnName="variacionPrecio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_registrarCliente" FunctionName="bdELSAModel.Store.sp_registrarCliente" />
+          <FunctionImportMapping FunctionImportName="sp_registrarReservacion" FunctionName="bdELSAModel.Store.sp_registrarReservacion" />
+          <EntitySetMapping Name="Reservacion">
+            <EntityTypeMapping TypeName="bdELSAModel.Reservacion">
+              <MappingFragment StoreEntitySet="Reservacion">
+                <ScalarProperty Name="numeroReserva" ColumnName="numeroReserva" />
+                <ScalarProperty Name="idTemporada" ColumnName="idTemporada" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="cantidadNoches" ColumnName="cantidadNoches" />
+                <ScalarProperty Name="cantidadDias" ColumnName="cantidadDias" />
+                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
+                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
+                <ScalarProperty Name="idHabitacion" ColumnName="idHabitacion" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="temporada">
+            <EntityTypeMapping TypeName="bdELSAModel.temporada">
+              <MappingFragment StoreEntitySet="temporada">
+                <ScalarProperty Name="variacionPrecio" ColumnName="variacionPrecio" />
+                <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1417,7 +1494,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

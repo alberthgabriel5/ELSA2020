@@ -190,7 +190,6 @@
     </Compile>
     <Compile Include="Models\About_UsEF.cs" />
     <Compile Include="Models\Caracteristica.cs" />
-
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\FacilitiesEF.cs" />
@@ -207,6 +206,9 @@
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="Reservacion.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_buscarHabitacionDisponibleParaReserva_Result.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_getDataAboutUsPage_Result.cs">
@@ -228,6 +230,9 @@
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_obtenerHotel_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_obtenerTemporadaIntervalo_Result.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_obtenerTemporada_Result.cs">
@@ -261,13 +266,13 @@
     <Content Include="Content\style.css" />
     <Content Include="EntityF.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityF.edmx</DependentUpon>
       <LastGenOutput>EntityF.Context.cs</LastGenOutput>
+      <DependentUpon>EntityF.edmx</DependentUpon>
     </Content>
     <Content Include="EntityF.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityF.edmx</DependentUpon>
       <LastGenOutput>EntityF.cs</LastGenOutput>
+      <DependentUpon>EntityF.edmx</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\ElegantIcons.svg" />
@@ -763,13 +768,11 @@
     <Content Include="phozogy\__MACOSX\phozogy\Source\._SlickNav-master.zip" />
     <Content Include="Views\Home\Tariff.cshtml" />
     <Content Include="Views\Home\Location.cshtml" />
-
     <Content Include="Views\Reservacion\ReservaEnLinea.cshtml" />
     <Content Include="Views\Reservacion\ReservaPositiva.cshtml" />
     <Content Include="Views\Reservacion\ReservaNegativa.cshtml" />
     <Content Include="Views\Reservacion\ReservaInformacion.cshtml" />
     <Content Include="Views\Facilidades\Index.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

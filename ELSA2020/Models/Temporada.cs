@@ -40,7 +40,7 @@ namespace ELSA2020.Models
         public string FechaFinal1 { get => FechaFinal; set => FechaFinal = value; }
         public float VariacionPrecio1 { get => VariacionPrecio; set => VariacionPrecio = value; }
 
-        public Temporada obtenerTemporada(string fechaI, string fechaf)
+        public Temporada ObtenerTemporada(string fechaI, string fechaf)
         {
             string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
             SqlConnection connection = new SqlConnection(connStr);
@@ -60,7 +60,8 @@ namespace ELSA2020.Models
             foreach (DataRow currentRow in dataRowCollection1)
             {
                 tem.Id1 = int.Parse(currentRow["id"].ToString());
-                tem.VariacionPrecio1 = float.Parse(currentRow["variaionPreio"].ToString());
+                ////tem.VariacionPrecio1 = float.Parse(currentRow["variaionPreio"].ToString());
+                tem.VariacionPrecio1 = 1;
                 break;
             }//Fin del foreach.
 
