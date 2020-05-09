@@ -28,19 +28,19 @@
                 </div>
                 <div class="input-group-prepend">
                     <span>Nombre</span>
-                    <input type="text" id="nombre" name="nombre">
+                    <input type="text" id="nombre" name="nombre" required>
                 </div>
                 <div class="input-group-prepend">
                     <span>Apellidos</span>
-                    <input type="text" id="apellidos" name="apellidos">
+                    <input type="text" id="apellidos" name="apellidos" required>
                 </div>
                 <div class="input-group-prepend">
                     <span>Email</span>
-                    <input type="text" id="email" name="email">
+                    <input type="text" id="email" name="email" required>
                 </div>
                 <div class="input-group-prepend">
                     <span>Tarjeta de Credito</span>
-                    <input type="text" id="tarjeta" name="tarjeta">
+                    <input type="text" id="tarjeta" name="tarjeta" required>
                 </div>
             </div>
             <div class="row">
@@ -48,7 +48,9 @@
                     <button type="submit" class="btn-group">Aceptar</button>
                 </div>
                 <div class="col-lg-2 col-sm-12 col-md-2">
-                    <input type="button" class="btn btn-secondary" id="btnCancelar" name="btnCancelar" value="Cancelar">
+                      <ul>
+                        <li class="btn">@Html.ActionLink("Cancelar", "ReservaEnLinea", "Reservacion")</li>
+                    </ul>
                 </div>
             </div>
         </div>
