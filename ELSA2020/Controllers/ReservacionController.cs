@@ -63,6 +63,7 @@ namespace ELSA2020.Controllers
             {
                 float precioColones = float.Parse(tipoHab.PrecioColones1);
                 Temporada temp = new Temporada();
+                temp = temp.ObtenerTemporada(fe[0],fs[0]);
                 float variacion = temp.VariacionPrecio1;
                 float variacionColones = precioColones - (precioColones * variacion);
                 tipoHab.PrecioColones1 = variacionColones.ToString();
