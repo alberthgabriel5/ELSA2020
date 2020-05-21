@@ -150,6 +150,7 @@
     <Compile Include="ContenidoTexto.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FacilidadesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReservacionController.cs" />
@@ -771,6 +772,8 @@
     <Content Include="Views\Reservacion\ReservaNegativa.cshtml" />
     <Content Include="Views\Reservacion\ReservaInformacion.cshtml" />
     <Content Include="Views\Facilidades\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
