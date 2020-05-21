@@ -197,6 +197,7 @@
     <Compile Include="Models\Reservacion.cs" />
     <Compile Include="Models\Temporada.cs" />
     <Compile Include="Models\TipoHabitacion.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Pagina.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
@@ -774,6 +775,8 @@
     <Content Include="Views\Facilidades\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\InicioSesion.cshtml" />
+    <Content Include="Views\Shared\_LayoutInicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
