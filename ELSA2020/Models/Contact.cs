@@ -7,7 +7,7 @@ namespace ELSA2020.Models
 {
     public class Contact
     {
-        public IEnumerable< ContenidoTexto> GetPageContact()
+        public IEnumerable< ContenidoTexto> getPageContact()
         {
             using (var context = new entityFramework())
             {
@@ -16,7 +16,7 @@ namespace ELSA2020.Models
             }
         }
 
-        public IEnumerable<ContenidoImagen> GetImagesContact()
+        public IEnumerable<ContenidoImagen> getImagesContact()
         {
             using (var context = new entityFramework())
             {
