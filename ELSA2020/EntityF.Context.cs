@@ -43,7 +43,6 @@ namespace ELSA2020
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Reservacion> Reservacion { get; set; }
         public virtual DbSet<temporada> temporada { get; set; }
-        public virtual DbSet<Temporal> Temporal { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -312,16 +311,6 @@ namespace ELSA2020
                 new ObjectParameter("idTemporada", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_registrarReservacion", numeroReservacionParameter, idClienteParameter, idHabitacionParameter, fechaEntradaParameter, fechaSalidaParameter, cantidadDiasParameter, cantidadNochesParameter, precioParameter, estadoParameter, idTemporadaParameter);
-        }
-    
-        public virtual ObjectResult<SpEstHabitaciones_Result> SpEstHabitaciones()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SpEstHabitaciones_Result>("SpEstHabitaciones");
-        }
-    
-        public virtual ObjectResult<SpEstHabitaciones_Result> MYSpEstHabitaciones()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SpEstHabitaciones_Result>("MYSpEstHabitaciones");
         }
     }
 }
