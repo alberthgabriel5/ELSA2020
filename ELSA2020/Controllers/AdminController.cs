@@ -10,6 +10,14 @@ namespace ELSA2020.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
+
+        EstadoHabitacionDATA estDATA = new EstadoHabitacionDATA();
+        public ActionResult estadoHabitacion()
+        {
+            //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
+            ViewBag.datos = estDATA.ListAll();
+            return View();
+        }
         public ActionResult Index()
         {
             /*ViewBag.NombreUnico = "Hotel de Montaña y Naturaleza";

@@ -410,6 +410,7 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_FECHA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_getDataAboutUsPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_getDataFacilitiesPageContent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sp_getFacilitiesInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -1044,6 +1045,7 @@
             <End Role="temporada" EntitySet="temporada" />
             <End Role="Reservacion" EntitySet="Reservacion" />
           </AssociationSet>
+          <FunctionImport Name="SP_FECHA" ReturnType="Collection(bdELSAModel.SP_FECHA_Result)" />
         </EntityContainer>
         <ComplexType Name="GetDataAboutUsPage_Result">
           <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
@@ -1182,6 +1184,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SP_FECHA_Result">
+          <Property Type="Int32" Name="numero" Nullable="false" />
+          <Property Type="Int32" Name="estado" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1477,6 +1484,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_FECHA" FunctionName="bdELSAModel.Store.SP_FECHA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bdELSAModel.SP_FECHA_Result">
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
