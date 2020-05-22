@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "estadoHabitacion";
+}
+
+<h2>Estado del Hotel Hoy</h2>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<section>
+    
+</section>
+<table class="table-bordered ">
+    <thead>
+        <tr>
+
+            <th scope="col">Numero de Habitaci&oacute;n</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.datos)
+        {
+            var est = "";
+            if (@item.estado == 0)
+            {
+                est = "Ocupado";
+            }
+            else if (@item.estado == 1)
+            {
+                est = "Disponible";
+            }
+            <tr>
+                <td>@item.numero</td>
+                <td>@item.tipo</td>
+                <td>@est</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
