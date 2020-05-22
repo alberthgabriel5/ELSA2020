@@ -158,6 +158,17 @@
           <Property Name="fechaFinal" Type="date" />
           <Property Name="variacionPrecio" Type="float" Nullable="false" />
         </EntityType>
+        <EntityType Name="Temporal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numero" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="fechaEntrada" Type="date" />
+          <Property Name="fechaSalida" Type="date" />
+          <Property Name="Estado" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="tipoHabitacion">
           <Key>
             <PropertyRef Name="id" />
@@ -454,6 +465,7 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SpEstHabitaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="bdELSAModelStoreContainer">
           <EntitySet Name="caracteristica" EntityType="Self.caracteristica" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="caracteristicaHabitacion" EntityType="Self.caracteristicaHabitacion" Schema="dbo" store:Type="Tables" />
@@ -469,6 +481,7 @@
           <EntitySet Name="Reservacion" EntityType="Self.Reservacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="temporada" EntityType="Self.temporada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temporal" EntityType="Self.Temporal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipoHabitacion" EntityType="Self.tipoHabitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Reservaci__idCli__797309D9" Association="Self.FK__Reservaci__idCli__797309D9">
@@ -1044,6 +1057,9 @@
             <End Role="temporada" EntitySet="temporada" />
             <End Role="Reservacion" EntitySet="Reservacion" />
           </AssociationSet>
+          <EntitySet Name="Temporal" EntityType="bdELSAModel.Temporal" />
+          <FunctionImport Name="SpEstHabitaciones" ReturnType="Collection(bdELSAModel.SpEstHabitaciones_Result)" />
+          <FunctionImport Name="MYSpEstHabitaciones" ReturnType="Collection(bdELSAModel.SpEstHabitaciones_Result)" />
         </EntityContainer>
         <ComplexType Name="GetDataAboutUsPage_Result">
           <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
@@ -1182,6 +1198,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="Sp_Estado_Habitaciones_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="numero" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fechaEntrada" Nullable="true" />
+          <Property Type="DateTime" Name="fechaSalida" Nullable="true" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="Sp_Estado_Habitaciones_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="numero" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fechaEntrada" Nullable="true" />
+          <Property Type="DateTime" Name="fechaSalida" Nullable="true" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="Sp_Estado_Habitaciones_Result2">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="numero" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fechaEntrada" Nullable="true" />
+          <Property Type="DateTime" Name="fechaSalida" Nullable="true" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="Temporal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaEntrada" Type="DateTime" Precision="0" />
+          <Property Name="fechaSalida" Type="DateTime" Precision="0" />
+          <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SpEstHabitaciones_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="numero" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fechaEntrada" Nullable="true" />
+          <Property Type="DateTime" Name="fechaSalida" Nullable="true" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="20" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1477,6 +1536,42 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Temporal">
+            <EntityTypeMapping TypeName="bdELSAModel.Temporal">
+              <MappingFragment StoreEntitySet="Temporal">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
+                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SpEstHabitaciones" FunctionName="bdELSAModel.Store.SpEstHabitaciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bdELSAModel.SpEstHabitaciones_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
+                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MYSpEstHabitaciones" FunctionName="bdELSAModel.Store.SpEstHabitaciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bdELSAModel.SpEstHabitaciones_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
+                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
