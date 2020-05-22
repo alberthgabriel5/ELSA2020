@@ -17,8 +17,10 @@ namespace ELSA2020.Models
         private List<Caracteristica> Caracteristicas;
         private String Descripcion;
         private String Imagen;
+        private String FechaEntrada;
+        private String FechaSalida;
 
-        public TipoHabitacion(int id, string nombre, string precioColones, string precioDolares, List<Caracteristica> caracteristicas, string descripcion, string imagen)
+        public TipoHabitacion(int id, string nombre, string precioColones, string precioDolares, List<Caracteristica> caracteristicas, string descripcion, string imagen, string fechaEntrada, string fechaSalida)
         {
             Id = id;
             Nombre = nombre;
@@ -27,6 +29,8 @@ namespace ELSA2020.Models
             Caracteristicas = caracteristicas;
             Descripcion = descripcion;
             Imagen = imagen;
+            FechaEntrada = fechaEntrada;
+            FechaSalida = fechaSalida;
         }
 
         public TipoHabitacion()
@@ -38,6 +42,8 @@ namespace ELSA2020.Models
             Caracteristicas = new List<Caracteristica>();
             Descripcion = "";
             Imagen = "";
+            FechaEntrada = "";
+            FechaSalida = "";
         }
 
         public int Id1 { get => Id; set => Id = value; }
@@ -47,8 +53,10 @@ namespace ELSA2020.Models
         public List<Caracteristica> Caracteristicas1 { get => Caracteristicas; set => Caracteristicas = value; }
         public string Descripcion1 { get => Descripcion; set => Descripcion = value; }
         public string Imagen1 { get => Imagen; set => Imagen = value; }
+        public string FechaEntrada1 { get => FechaEntrada; set => FechaEntrada = value; }
+        public string FechaSalida1 { get => FechaSalida; set => FechaSalida = value; }
 
-        public List<TipoHabitacion> obtenerTiposDeHabitacion()
+        public List<TipoHabitacion> ObtenerTiposDeHabitacion()
         {
             string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
 
@@ -111,6 +119,55 @@ namespace ELSA2020.Models
             }//Fin del foreach.
 
             return tiposDeHabitacion;
+        }
+
+        public TipoHabitacion ObtenerHabitacionReserva(Reservacion reserva)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connStr);
+            String sqlSelect = "sp_buscarHabitacionDisponibleParaReserva";
+            SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
+            sqlDataAdapterClient.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
+            sqlDataAdapterClient.SelectCommand.Connection = connection;
+            sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@fechaInicio", reserva.FechaEntrada1));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@fechaFin", reserva.FechaSalida1));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@tipoHabitacion", reserva.Tipo1));
+            DataSet dataSetTipoHabitacion = new DataSet();
+            sqlDataAdapterClient.Fill(dataSetTipoHabitacion, "bdELSA.tipoHabitacion");
+            sqlDataAdapterClient.SelectCommand.Connection.Close();
+
+            DataTable table = new DataTable();
+            DataRowCollection dataRowCollection = table.Rows;
+            int n = 0;
+            try
+            {
+                dataRowCollection = dataSetTipoHabitacion.Tables["bdELSA.tipoHabitacion"].Rows;
+            }
+            catch (Exception e){
+                n = 1;
+            }
+            
+
+            TipoHabitacion tipo = new TipoHabitacion();
+            tipo.Id1 = 0;
+            tipo.Descripcion1 = "";
+            tipo.Imagen1 = "";
+            tipo.PrecioColones1 = "";
+            if (n == 0)
+            {
+                foreach (DataRow currentRow in dataRowCollection)
+                {
+                    tipo.Id1 = int.Parse(currentRow["id"].ToString());
+                    tipo.Descripcion1 = currentRow["descripcion"].ToString();
+                    tipo.Imagen1 = currentRow["imagen"].ToString();
+                    tipo.PrecioColones1 = currentRow["precioColones"].ToString();
+                    tipo.PrecioDolares1 = currentRow["numero"].ToString();
+
+                }//Fin del foreach.
+            }
+            return tipo;
         }
     }
 }
