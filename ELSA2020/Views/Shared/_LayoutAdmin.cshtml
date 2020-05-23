@@ -21,18 +21,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js" type="text/javascript"></script>
-    <!-- Google Font -->
-    @*< <link href="https://fonts.googleapis.com/css?family=Quantico:400,700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="~/Content/owl.carousel.min.css" type="text/css">
-        <!-- Css Styles -->
-        link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
-            <link rel="stylesheet" href="~/Content/font-awesome.min.css" type="text/css">
-            <link rel="stylesheet" href="~/Content/elegant-icons.css" type="text/css">
 
-            <link rel="stylesheet" href="~/Content/magnific-popup.css" type="text/css">
-            <link rel="stylesheet" href="~/Content/slicknav.min.css" type="text/css">
-            <link rel="stylesheet" href="~/Content/style.css" type="text/css">*@
 
 
 </head>
@@ -42,7 +31,7 @@
             <div class="row" style="border-bottom: 0.5em solid black; margin-bottom: 3em;">
                 <div class="col-lg-6" style="display: inline-block">
                     <div class="logo">
-                        <a href="~/Views/Home/Index.cshtml">
+                        <a href="@Url.Action("Index", "Admin")">
                             <img src="~/img/logo.png" alt="Hotel Colibrí">
                         </a>
 
@@ -50,8 +39,10 @@
                 </div>
                 <div class="col-lg-6" style="display: inline-block">
                     <div style="text-align: right; margin-top: 1em; font-size: 2em;">
-                        <b>Bienvenido Usuario @*Aqui se debe traer el nombre del usuario despues de loguear*@</b>
-                        @Html.ActionLink("Salir", "CerrarSesion", "Admin")
+                        <b>
+                            Bienvenido  @Session["UserName"],
+                            @Html.ActionLink("Salir", "LogOut", "Admin")
+                        </b>
                     </div>
                 </div>
             </div>
@@ -82,19 +73,19 @@
             </div>
         </div>
         <div class="container-fluid" style="text-align: right; border-top: 0.5em solid black;">
-            <!-- Footer Section Begin -->
-            <footer style="margin-right: 1em;">
-                Copyright©Hotel Colibrí 2010      @*********Aqui se podria traer el nombre del hotel desde la bd*******@
-            </footer>
-            <!-- Footer Section End -->
-            <!-- Search model end -->
+
 
         </div>
     </header>
     <!-- Header End -->
+    <!-- Footer Section Begin -->
+    <footer style="margin-right: 1em;">
+        Copyright©Hotel Colibrí 2010      @*********Aqui se podria traer el nombre del hotel desde la bd*******@
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Search model end -->
 
 
-    
 
 
     @Scripts.Render("~/bundles/jquery")

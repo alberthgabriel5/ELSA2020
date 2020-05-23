@@ -48,7 +48,7 @@ namespace ELSA2020.Models
         public string Tipo1 { get => Tipo; set => Tipo = value; }
         public int IdHotel1 { get => IdHotel; set => IdHotel = value; }
 
-        public bool iniciarSesion(string usuario, string contrasenia)
+        public bool IniciarSesion(string usuario, string contrasenia)
         {
             string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
             SqlConnection connection = new SqlConnection(connStr);
