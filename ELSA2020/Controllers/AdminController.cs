@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ELSA2020;
+using ELSA2020.Models;
 
 namespace ELSA2020.Controllers
 {
@@ -14,6 +15,14 @@ namespace ELSA2020.Controllers
     {
         private entityFramework db = new entityFramework();
 
+
+        EstadoHabitacionDATA estDATA = new EstadoHabitacionDATA();
+        public ActionResult estadoHabitacion()
+        {
+            //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
+            ViewBag.datos = estDATA.ListAll();
+            return View();
+        }
 
         public ActionResult LogIn()
         {
