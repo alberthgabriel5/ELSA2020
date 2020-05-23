@@ -54,8 +54,6 @@
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -153,8 +151,10 @@
     <Compile Include="ContenidoTexto.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FacilidadesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReservacionController.cs" />
     <Compile Include="EntityF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -190,12 +190,15 @@
     </Compile>
     <Compile Include="Models\About_UsEF.cs" />
     <Compile Include="Models\Caracteristica.cs" />
+    <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\FacilitiesEF.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\Reservacion.cs" />
     <Compile Include="Models\Temporada.cs" />
     <Compile Include="Models\TipoHabitacion.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Pagina.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
@@ -204,6 +207,9 @@
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="Reservacion.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_buscarHabitacionDisponibleParaReserva_Result.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_getDataAboutUsPage_Result.cs">
@@ -225,6 +231,9 @@
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_obtenerHotel_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_obtenerTemporadaIntervalo_Result.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_obtenerTemporada_Result.cs">
@@ -258,13 +267,13 @@
     <Content Include="Content\style.css" />
     <Content Include="EntityF.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityF.edmx</DependentUpon>
       <LastGenOutput>EntityF.Context.cs</LastGenOutput>
+      <DependentUpon>EntityF.edmx</DependentUpon>
     </Content>
     <Content Include="EntityF.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityF.edmx</DependentUpon>
       <LastGenOutput>EntityF.cs</LastGenOutput>
+      <DependentUpon>EntityF.edmx</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\ElegantIcons.svg" />
@@ -656,6 +665,7 @@
     <Content Include="phozogy\__MACOSX\phozogy\js\._masonry.pkgd.min.js" />
     <Content Include="phozogy\__MACOSX\phozogy\js\._owl.carousel.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\DatePicker.js" />
     <Content Include="Scripts\gallery.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -759,7 +769,16 @@
     <Content Include="phozogy\__MACOSX\phozogy\Source\._SlickNav-master.zip" />
     <Content Include="Views\Home\Tariff.cshtml" />
     <Content Include="Views\Home\Location.cshtml" />
+    <Content Include="Views\Reservacion\ReservaEnLinea.cshtml" />
+    <Content Include="Views\Reservacion\ReservaPositiva.cshtml" />
+    <Content Include="Views\Reservacion\ReservaNegativa.cshtml" />
+    <Content Include="Views\Reservacion\ReservaInformacion.cshtml" />
     <Content Include="Views\Facilidades\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutInicio.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
