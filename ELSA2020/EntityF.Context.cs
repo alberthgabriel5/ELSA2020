@@ -312,5 +312,10 @@ namespace ELSA2020
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_registrarReservacion", numeroReservacionParameter, idClienteParameter, idHabitacionParameter, fechaEntradaParameter, fechaSalidaParameter, cantidadDiasParameter, cantidadNochesParameter, precioParameter, estadoParameter, idTemporadaParameter);
         }
+    
+        public virtual ObjectResult<SP_FECHA_Result> SP_FECHA()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_FECHA_Result>("SP_FECHA");
+        }
     }
 }
