@@ -672,6 +672,7 @@
     <Content Include="phozogy\__MACOSX\phozogy\js\._owl.carousel.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\DatePicker.js" />
+    <Content Include="Scripts\estadoHabitacion.js" />
     <Content Include="Scripts\gallery.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
