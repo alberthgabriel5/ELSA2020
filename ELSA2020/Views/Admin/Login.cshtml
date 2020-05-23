@@ -9,11 +9,19 @@
             <h2>@ViewBag.Title</h2>
         </div>
         <div class="container" style="text-align: center; margin-top: 5em;">
-            <form action="/Admin/InicioSesion" method="post">
+            <form action="/Admin/LogIn" method="post">
                 <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-12">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @if (@ViewBag.Message != null)
+                    {
+                        <div style="border: 1px solid red">
+                            @ViewBag.Message
+                        </div>
+                    }
                     <div class="form-group">
-                        <label for="usuario">Usuairo</label>
-                        <input id="usuario" name="usuario" class="form-control" type="text" placeholder="Usuario" required>
+                        <label for="usuario">Usuario</label>
+                        <input id="nickname" name="nickname" class="form-control" type="text" placeholder="Usuario" required>
                     </div>
                     <div class="form-group">
                         <label for="contrasenna">Contraseña</label>
@@ -21,6 +29,8 @@
                     </div>
                     <div>
                         <button type="submit" class="btn btn-primary mb-2">Aceptar</button>
+                        <button type="button" class="btn btn-secondary  mb-2" onclick="location.href='@Url.Action("Index", "Home")'">Cancelar</button>
+
                     </div>
                     <div class="form-group">
                         <a>@ViewBag.data</a>

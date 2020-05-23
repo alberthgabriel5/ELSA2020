@@ -1,49 +1,99 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ELSA2020.Models;
+using ELSA2020;
 
 namespace ELSA2020.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: Admin
-        public ActionResult Index()
-        {
-            /*ViewBag.NombreUnico = "Hotel de Montaña y Naturaleza";
-            Hotel hotel = new Hotel();
-            Hotel respuesta = hotel.obtenerHotel();*/
+        private entityFramework db = new entityFramework();
 
-            //var hotelrespuesta = respuesta;
-
-            //ViewBag.infoHotel = hotelrespuesta;
-
-            return View();
-        }
-
-        public ActionResult InicioSesion()
+        
+        public ActionResult LogIn()
         {
             ViewBag.data = "";
             return View();
         }
 
         [HttpPost]
-        public ActionResult InicioSesion(string usuario, string contrasenna)
+        [ValidateAntiForgeryToken]
+        public ActionResult LogIn(string nickname, string contrasenna)
         {
-            Models.Usuario usuarioAdmin = new Models.Usuario();
-            bool respuesta = usuarioAdmin.iniciarSesion(usuario,contrasenna);
-            if (respuesta)
+            if (ModelState.IsValid)
             {
-                return View("Index");
+                using (entityFramework db = new entityFramework())
+                {
+                    var obj = db.Usuario.Where(a => a.usuario1.Equals(nickname) && a.contrasenia.Equals(contrasenna)).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        Session["UserID"] = obj.id.ToString();
+                        Session["UserName"] = obj.nombre.ToString() + obj.apellidos.ToString();
+                        Session["Nickname"] = obj.usuario1.ToString();
+                        ViewBag.Usuario = Session["UserName"];
+                        return RedirectToAction("index", "Admin");
+                    }
+                }
+
+
+            }
+            @ViewBag.Message = "Error Usuario y Contraseña";
+            return View();
+        }
+        public ActionResult LogOut()
+        {
+
+            Session["UserID"] = null;
+            Session["UserName"] = null;
+            Session["Nickname"] = null;
+            return RedirectToAction("LogIn");
+
+        }
+
+
+        // GET: Admin
+        public ActionResult Index()
+        {
+            /* Todo lo que hagan en Admin le ponen este codigo al controlador*/
+
+
+
+            if (Session["UserID"] != null)
+            {
+
+               
+
+                var usuario = db.Usuario.Include(u => u.hotel);
+                return View();
             }
             else
             {
-                ViewBag.data = "Información incorrecta"; 
-                return View("InicioSesion");
+                return RedirectToAction("LogIn");
             }
-            
+        }
+
+
+        // GET: Admin/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (Session["UserID"] != null)
+            {
+
+                /* Todo lo que hagan en Admin le ponen este codigo al controlador*/
+
+                
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
         }
     }
+ 
 }
