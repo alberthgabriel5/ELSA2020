@@ -31,6 +31,8 @@ namespace ELSA2020
             bundles.Add(new ScriptBundle("~/bundles/carousel").Include(
                         "~/Scripts/owl.carousel.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
+                        "~/Scripts/estadoHabitacion.js"));
 
             bundles.Add(new StyleBundle("~/Content/map").Include(
                       "~/Content/style.css.map"));
