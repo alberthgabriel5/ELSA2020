@@ -11,15 +11,12 @@ namespace ELSA2020
 {
     using System;
     
-    public partial class sp_getDataFacilitiesPageContent_Result
+    public partial class sp_buscarHabitacionDisponibleParaReserva_Result
     {
         public int id { get; set; }
-        public string nombreUnico { get; set; }
-        public string valorTexto { get; set; }
-        public Nullable<System.DateTime> fechaCreacion { get; set; }
-        public Nullable<System.DateTime> fechaActualizacion { get; set; }
-        public string idioma { get; set; }
-        public Nullable<int> idHotel { get; set; }
-        public Nullable<int> idPagina { get; set; }
+        public int numero { get; set; }
+        public string descripcion { get; set; }
+        public double precioColones { get; set; }
+        public string imagen { get; set; }
     }
 }
