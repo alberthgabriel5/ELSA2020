@@ -17,7 +17,20 @@ namespace ELSA2020.Controllers
 
 
         EstadoHabitacionDATA estDATA = new EstadoHabitacionDATA();
+        ListaNombreHabitacionesDATA lnhDATA = new ListaNombreHabitacionesDATA();
         public ActionResult estadoHabitacion()
+        {
+            //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
+            ViewBag.datos = estDATA.ListAll();
+            return View();
+        }
+
+        public JsonResult ListaNombreHabitaciones()
+        {
+            return Json(lnhDATA.ListaNombreHabitaciones(), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult consultarDisponibilidadHabitaciones()
         {
             //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
             ViewBag.datos = estDATA.ListAll();
