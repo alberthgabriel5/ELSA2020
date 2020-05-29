@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>C onsultar Disponibilidad de Habitaciones</h2>
+<h2>Consultar Disponibilidad de Habitaciones</h2>
 
 
 <div class="row">
@@ -11,7 +11,7 @@
         <p id="textollegada">Fecha Llegada</p>
         <div class="form-group">
             <div class='input-group date' id='entrada'>
-                <input type='text'id="fechaEntrada" name="fechaEntrada" class="form-control" required />
+                <input type='text' id="fechaEntrada" name="fechaEntrada" class="form-control" required />
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -39,5 +39,31 @@
     </div>
 </div>
 
-<button class="btn-success" onclick="prueba()">Consultar</button>
+
+<button class="btn-success" onclick="disponibilidadHabitacion()">Consultar</button>
+<br />
+<br />
+
+<div class="table-responsive col-md-8">
+    <table class="table table-bordered table-hover" id="table">
+
+        <thead>
+            <tr>
+
+                <th>
+                    Numero
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Costo de estad&iacute;a
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+    </table>
+
+</div>
 

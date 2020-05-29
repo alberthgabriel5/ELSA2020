@@ -18,6 +18,7 @@ namespace ELSA2020.Controllers
 
         EstadoHabitacionDATA estDATA = new EstadoHabitacionDATA();
         ListaNombreHabitacionesDATA lnhDATA = new ListaNombreHabitacionesDATA();
+        DisponibilidadHabitacionDATA dhDATA = new DisponibilidadHabitacionDATA();
         public ActionResult estadoHabitacion()
         {
             //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
@@ -30,10 +31,17 @@ namespace ELSA2020.Controllers
             return Json(lnhDATA.ListaNombreHabitaciones(), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ListaDisponibilidadHabitaciones(string fechaCortaIinicio,
+         string fechaCortaFin,int dias,int tipoHab)
+        {
+            //ViewBag.datos = dhDATA.ListAll(fechaCortaIinicio, fechaCortaFin, dias, tipoHab);
+            return Json(dhDATA.ListAll(fechaCortaIinicio,fechaCortaFin,dias,tipoHab), JsonRequestBehavior.AllowGet);
+        }
+
+
         public ActionResult consultarDisponibilidadHabitaciones()
         {
             //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
-            ViewBag.datos = estDATA.ListAll();
             return View();
         }
 
