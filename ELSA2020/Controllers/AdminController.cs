@@ -85,6 +85,44 @@ namespace ELSA2020.Controllers
 
         }
 
+        
+        public ActionResult AdministracionHabitaciones() 
+        {
+            if (Session["UserID"] != null)
+            {
+                ViewBag.NombreUnico = "Administrar Habitaciones";
+                TipoHabitacion tipo = new TipoHabitacion();
+                List<TipoHabitacion> tiposDeHabitacion = tipo.ObtenerTiposHabitacionSinVariacion();
+
+                var tipos = tiposDeHabitacion;
+                ViewBag.tiposDeHabitacion = tipos;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
+        
+        public ActionResult CambiarDescripcionHabitacion( int idTipoHabitacion )
+        {
+            if (Session["UserID"] != null)
+            {
+                ViewBag.NombreUnico = "Modificar Habitación";
+                TipoHabitacion tipo = new TipoHabitacion();
+                TipoHabitacion tipoDeHabitacion = tipo.ObtenerTipoHabitacionPorID(idTipoHabitacion);
+
+                var tipoObtenido = tipoDeHabitacion;
+                ViewBag.tipoDeHabitacion = tipoObtenido;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
 
         // GET: Admin
         public ActionResult Index()
