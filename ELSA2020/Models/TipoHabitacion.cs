@@ -169,5 +169,92 @@ namespace ELSA2020.Models
             }
             return tipo;
         }
+
+        public List<TipoHabitacion> ObtenerTiposHabitacionSinVariacion() 
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+
+            SqlConnection connection = new SqlConnection(connStr);
+            String sqlSelect = "sp_obtenerTiposDeHabitacion";
+            SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
+            sqlDataAdapterClient.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
+            sqlDataAdapterClient.SelectCommand.Connection = connection;
+            sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            DataSet dataSetTiposHabitacion = new DataSet();
+            sqlDataAdapterClient.Fill(dataSetTiposHabitacion, "bdELSA.tipoHabitacion");
+            sqlDataAdapterClient.SelectCommand.Connection.Close();
+            DataRowCollection dataRowCollection = dataSetTiposHabitacion.Tables["bdELSA.tipoHabitacion"].Rows;
+
+            List<TipoHabitacion> tiposDeHabitacion = new List<TipoHabitacion>();
+
+            foreach (DataRow currentRow in dataRowCollection)
+            {
+                TipoHabitacion tipoActual = new TipoHabitacion();
+                tipoActual.Id1 = (int)currentRow["id"];
+                tipoActual.Nombre1 = currentRow["nombre"].ToString();
+
+                float precioColones = float.Parse(currentRow["precioColones"].ToString());
+                float variacionColones = precioColones;
+                tipoActual.PrecioColones1 = variacionColones.ToString();
+
+                float precioDolares = float.Parse(currentRow["precioDolares"].ToString());
+                float variacionDolares = precioDolares;
+                tipoActual.PrecioDolares1 = variacionDolares.ToString();
+
+                tipoActual.Descripcion1 = currentRow["descripcion"].ToString();
+                tipoActual.Imagen1 = currentRow["imagen"].ToString();
+
+                Caracteristica caracteristica = new Caracteristica();
+                tipoActual.Caracteristicas1 = caracteristica.obtenerCaracteristicas(tipoActual.Id1);
+
+                tiposDeHabitacion.Add(tipoActual);
+            }//Fin del foreach.
+
+            return tiposDeHabitacion;
+        }
+
+        public TipoHabitacion ObtenerTipoHabitacionPorID(int idTipoHabitacion) 
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+
+            SqlConnection connection = new SqlConnection(connStr);
+            String sqlSelect = "sp_obtenerTipoHabitacion";
+            SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
+            sqlDataAdapterClient.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
+            sqlDataAdapterClient.SelectCommand.Connection = connection;
+            sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@id", idTipoHabitacion));
+            DataSet dataSetTiposHabitacion = new DataSet();
+            sqlDataAdapterClient.Fill(dataSetTiposHabitacion, "bdELSA.tipoHabitacion");
+            sqlDataAdapterClient.SelectCommand.Connection.Close();
+            DataRowCollection dataRowCollection = dataSetTiposHabitacion.Tables["bdELSA.tipoHabitacion"].Rows;
+
+            TipoHabitacion tipoActual = new TipoHabitacion();
+            foreach (DataRow currentRow in dataRowCollection)
+            {
+                
+                tipoActual.Id1 = (int)currentRow["id"];
+                tipoActual.Nombre1 = currentRow["nombre"].ToString();
+
+                float precioColones = float.Parse(currentRow["precioColones"].ToString());
+                float variacionColones = precioColones;
+                tipoActual.PrecioColones1 = variacionColones.ToString();
+
+                float precioDolares = float.Parse(currentRow["precioDolares"].ToString());
+                float variacionDolares = precioDolares;
+                tipoActual.PrecioDolares1 = variacionDolares.ToString();
+
+                tipoActual.Descripcion1 = currentRow["descripcion"].ToString();
+                tipoActual.Imagen1 = currentRow["imagen"].ToString();
+
+                Caracteristica caracteristica = new Caracteristica();
+                tipoActual.Caracteristicas1 = caracteristica.obtenerCaracteristicas(tipoActual.Id1);
+
+            }//Fin del foreach.
+
+            return tipoActual;
+        }
     }
 }

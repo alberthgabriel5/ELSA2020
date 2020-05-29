@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "AdministracionHabitaciones";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="margin-left: 3em;">@ViewBag.NombreUnico</h2>
+
+@foreach (var tipo in ViewBag.tiposDeHabitacion)
+{
+    <div class="row">
+        <div class="container-fluid" style="margin-left: 6em;" >
+            <h3>@tipo.Nombre1 <u>@Html.ActionLink("Cambiar Descripción", "CambiarDescripcionHabitacion", new { idTipoHabitacion = tipo.Id1 })</u></h3>
+        </div>
+
+    </div>
+
+}
+
