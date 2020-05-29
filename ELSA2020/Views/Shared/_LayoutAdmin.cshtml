@@ -54,9 +54,9 @@
                                 <li>@Html.ActionLink("Inicio", "Index", "Admin")</li>
                                 <li>@Html.ActionLink("Administrar Páginas", "About", "Home")</li>
                                 <li>@Html.ActionLink("Listado de Reservaciones", "Index", "Facilidades")</li>
-                                <li>@Html.ActionLink("Administrar Habitaciones", "Index","Admin")</li>
+                                <li>@Html.ActionLink("Administrar Habitaciones", "Index", "Admin")</li>
                                 <li>@Html.ActionLink("Ver Estado del Hotel Hoy", "estadoHabitacion", "Admin")</li>
-                                <li>@Html.ActionLink("Consultar disponibilidad de habitaciones", "ReservaEnLinea", "Reservacion")</li>
+                                <li>@Html.ActionLink("Consultar disponibilidad de habitaciones", "consultarDisponibilidadHabitaciones", "Admin")</li>
                                 <li>@Html.ActionLink("Publicidad", "Contact", "Home")</li>
 
 
@@ -97,6 +97,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/carousel")
     @Scripts.Render("~/bundles/map")
+    @Scripts.Render("~/bundles/fecha")
     @RenderSection("scripts", required: false)
     <!-- Js Plugins -->
 </body>

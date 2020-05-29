@@ -198,9 +198,11 @@
     <Compile Include="Models\FacilitiesEF.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\ListaNombreHabitacionesDATA.cs" />
     <Compile Include="Models\Reservacion.cs" />
     <Compile Include="Models\Temporada.cs" />
     <Compile Include="Models\TipoHabitacion.cs" />
+    <Compile Include="Models\T_HabitacionDTO.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Pagina.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
@@ -672,6 +674,7 @@
     <Content Include="phozogy\__MACOSX\phozogy\js\._owl.carousel.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\DatePicker.js" />
+    <Content Include="Scripts\DisponibilidadHabitaciones.js" />
     <Content Include="Scripts\estadoHabitacion.js" />
     <Content Include="Scripts\gallery.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
@@ -786,6 +789,7 @@
     <Content Include="Views\Admin\InicioSesion.cshtml" />
     <Content Include="Views\Shared\_LayoutInicio.cshtml" />
     <Content Include="Views\Admin\estadoHabitacion.cshtml" />
+    <Content Include="Views\Admin\consultarDisponibilidadHabitaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
