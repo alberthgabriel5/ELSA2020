@@ -92,10 +92,15 @@ namespace ELSA2020.Controllers
             {
                 ViewBag.NombreUnico = "Administrar Habitaciones";
                 TipoHabitacion tipo = new TipoHabitacion();
+                Habitacion habitacion = new Habitacion();
                 List<TipoHabitacion> tiposDeHabitacion = tipo.ObtenerTiposHabitacionSinVariacion();
+                List<Habitacion> listaHabitaciones = habitacion.ObtenerHabitaciones();
 
                 var tipos = tiposDeHabitacion;
+                var habitaciones = listaHabitaciones;
+
                 ViewBag.tiposDeHabitacion = tipos;
+                ViewBag.habitaciones = habitaciones;
                 return View();
             }
             else
