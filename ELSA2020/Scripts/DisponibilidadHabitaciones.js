@@ -97,6 +97,7 @@ function cargaTipoHabitacion() {
             data: "{}",
             success: function (data) {
                 var s = '<option value="-1">Tipo de Habitacion</option>';
+                s += '<option value="0">Todas</option>';
                 for (var i = 0; i < data.length; i++) {
                     s += '<option value="' + data[i].id + '">' + data[i].nombre + '</option>';
                 }
