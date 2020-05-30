@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ELSA2020;
+using ELSA2020.Models;
 
 namespace ELSA2020.Controllers
 {
@@ -14,6 +15,35 @@ namespace ELSA2020.Controllers
     {
         private entityFramework db = new entityFramework();
 
+
+        EstadoHabitacionDATA estDATA = new EstadoHabitacionDATA();
+        ListaNombreHabitacionesDATA lnhDATA = new ListaNombreHabitacionesDATA();
+        DisponibilidadHabitacionDATA dhDATA = new DisponibilidadHabitacionDATA();
+        public ActionResult estadoHabitacion()
+        {
+            //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
+            ViewBag.datos = estDATA.ListAll();
+            return View();
+        }
+
+        public JsonResult ListaNombreHabitaciones()
+        {
+            return Json(lnhDATA.ListaNombreHabitaciones(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ListaDisponibilidadHabitaciones(string fechaCortaIinicio,
+         string fechaCortaFin,int dias,int tipoHab)
+        {
+            //ViewBag.datos = dhDATA.ListAll(fechaCortaIinicio, fechaCortaFin, dias, tipoHab);
+            return Json(dhDATA.ListAll(fechaCortaIinicio,fechaCortaFin,dias,tipoHab), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult consultarDisponibilidadHabitaciones()
+        {
+            //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
+            return View();
+        }
 
         public ActionResult LogIn()
         {
@@ -53,6 +83,49 @@ namespace ELSA2020.Controllers
             Session["Nickname"] = null;
             return RedirectToAction("LogIn");
 
+        }
+
+        
+        public ActionResult AdministracionHabitaciones() 
+        {
+            if (Session["UserID"] != null)
+            {
+                ViewBag.NombreUnico = "Administrar Habitaciones";
+                TipoHabitacion tipo = new TipoHabitacion();
+                Habitacion habitacion = new Habitacion();
+                List<TipoHabitacion> tiposDeHabitacion = tipo.ObtenerTiposHabitacionSinVariacion();
+                List<Habitacion> listaHabitaciones = habitacion.ObtenerHabitaciones();
+
+                var tipos = tiposDeHabitacion;
+                var habitaciones = listaHabitaciones;
+
+                ViewBag.tiposDeHabitacion = tipos;
+                ViewBag.habitaciones = habitaciones;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
+        
+        public ActionResult CambiarDescripcionHabitacion( int idTipoHabitacion )
+        {
+            if (Session["UserID"] != null)
+            {
+                ViewBag.NombreUnico = "Modificar Habitación";
+                TipoHabitacion tipo = new TipoHabitacion();
+                TipoHabitacion tipoDeHabitacion = tipo.ObtenerTipoHabitacionPorID(idTipoHabitacion);
+
+                var tipoObtenido = tipoDeHabitacion;
+                ViewBag.tipoDeHabitacion = tipoObtenido;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
         }
 
 

@@ -31,11 +31,32 @@ namespace ELSA2020
             bundles.Add(new ScriptBundle("~/bundles/carousel").Include(
                         "~/Scripts/owl.carousel.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
+                        "~/Scripts/estadoHabitacion.js"));
 
             bundles.Add(new StyleBundle("~/Content/map").Include(
                       "~/Content/style.css.map"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fecha").Include(
+                        "~/Scripts/DisponibilidadHabitaciones.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                    "~/Scripts/datatables.js",
+                    "~/Scripts/dataTables.bootstrap.js",
+                    "~/Scripts/dataTables.bootstrap4.js",
+                    "~/Scripts/dataTables.foundation.js",
+                    "~/Scripts/dataTables.jqueryui.js",
+                    "~/Scripts/dataTables.semanticui.js",
+                    "~/Scripts/jquery.dataTables.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                    "~/Content/datatables.css",
+                    "~/Content/dataTables.bootstrap.css",
+                    "~/Content/dataTables.bootstrap4.css",
+                    "~/Content/dataTables.foundation.css",
+                    "~/Content/dataTables.jqueryui.css",
+                    "~/Content/dataTables.semanticui.css",
+                    "~/Content/jquery.dataTables.css",
                       "~/Content/bootstrap.min.css",
                       "~/Content/elegant-icons.css",
                       "~/Content/flaticon.css",

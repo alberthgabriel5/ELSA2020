@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.3.7.0-1.final\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.3.7.0-1.final\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.Toolset.3.7.0-1.final\build\Microsoft.Net.Compilers.Toolset.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.Toolset.3.7.0-1.final\build\Microsoft.Net.Compilers.Toolset.props')" />
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -194,14 +194,18 @@
     <Compile Include="Models\Caracteristica.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\DisponibilidadHabitacion.cs" />
+    <Compile Include="Models\DisponibilidadHabitacionDATA.cs" />
     <Compile Include="Models\EstadoHabitacion.cs" />
     <Compile Include="Models\EstadoHabitacionDATA.cs" />
     <Compile Include="Models\FacilitiesEF.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\ListaNombreHabitacionesDATA.cs" />
     <Compile Include="Models\Reservacion.cs" />
     <Compile Include="Models\Temporada.cs" />
     <Compile Include="Models\TipoHabitacion.cs" />
+    <Compile Include="Models\T_HabitacionDTO.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Pagina.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
@@ -264,10 +268,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dataTables.bootstrap.css" />
+    <Content Include="Content\dataTables.bootstrap4.css" />
+    <Content Include="Content\datatables.css" />
+    <Content Include="Content\dataTables.foundation.css" />
+    <Content Include="Content\dataTables.jqueryui.css" />
+    <Content Include="Content\dataTables.semanticui.css" />
     <Content Include="Content\elegant-icons.css" />
     <Content Include="Content\flaticon.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\gallery.css" />
+    <Content Include="Content\jquery.dataTables.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\owl.carousel.min.css" />
     <Content Include="Content\slicknav.min.css" />
@@ -672,10 +683,19 @@
     <Content Include="phozogy\__MACOSX\phozogy\js\._masonry.pkgd.min.js" />
     <Content Include="phozogy\__MACOSX\phozogy\js\._owl.carousel.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dataTables.bootstrap.js" />
+    <Content Include="Scripts\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\dataTables.foundation.js" />
+    <Content Include="Scripts\dataTables.jqueryui.js" />
+    <Content Include="Scripts\datatables.js" />
+    <Content Include="Scripts\dataTables.semanticui.js" />
     <Content Include="Scripts\DatePicker.js" />
+    <Content Include="Scripts\DisponibilidadHabitaciones.js" />
+    <Content Include="Scripts\estadoHabitacion.js" />
     <Content Include="Scripts\gallery.js" />
     <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
     <Content Include="Scripts\jquery.magnific-popup.min.js" />
     <Content Include="Scripts\jquery.slicknav.js" />
     <Content Include="Scripts\main.js" />
@@ -786,11 +806,17 @@
     <Content Include="Views\Admin\InicioSesion.cshtml" />
     <Content Include="Views\Shared\_LayoutInicio.cshtml" />
     <Content Include="Views\Admin\estadoHabitacion.cshtml" />
+
     <Content Include="Views\Temporada\Create.cshtml" />
     <Content Include="Views\Temporada\Delete.cshtml" />
     <Content Include="Views\Temporada\Details.cshtml" />
     <Content Include="Views\Temporada\Edit.cshtml" />
     <Content Include="Views\Temporada\Index.cshtml" />
+
+    <Content Include="Views\Admin\consultarDisponibilidadHabitaciones.cshtml" />
+    <Content Include="Views\Admin\AdministracionHabitaciones.cshtml" />
+    <Content Include="Views\Admin\CambiarDescripcionHabitacion.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -833,9 +859,9 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.Toolset.3.7.0-1.final\build\Microsoft.Net.Compilers.Toolset.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.Toolset.3.7.0-1.final\build\Microsoft.Net.Compilers.Toolset.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.3.7.0-1.final\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.3.7.0-1.final\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

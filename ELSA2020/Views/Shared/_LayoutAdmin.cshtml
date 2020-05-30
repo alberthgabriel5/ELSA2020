@@ -36,6 +36,7 @@
                         </a>
 
                     </div>
+                    <p style="margin-top: 3em;">Módulo Administrativo</p>
                 </div>
                 <div class="col-lg-6" style="display: inline-block">
                     <div style="text-align: right; margin-top: 1em; font-size: 2em;">
@@ -54,10 +55,13 @@
                                 <li>@Html.ActionLink("Inicio", "Index", "Admin")</li>
                                 <li>@Html.ActionLink("Administrar Páginas", "About", "Home")</li>
                                 <li>@Html.ActionLink("Listado de Reservaciones", "Index", "Facilidades")</li>
+
                                 <li>@Html.ActionLink("Administrar Habitaciones", "Location", "Home")</li>
                                 <li>@Html.ActionLink("Ver Estado del Hotel Hoy", "Tariff", "Home")</li>
                                 <li>@Html.ActionLink("Consultar disponibilidad de habitaciones", "ReservaEnLinea", "Reservacion")</li>
                                 <li>@Html.ActionLink("Promociones", "Index","Temporada")</li>
+
+
 
 
                             </ul>
@@ -79,7 +83,7 @@
     </header>
     <!-- Header End -->
     <!-- Footer Section Begin -->
-    <footer style="margin-right: 1em;">
+    <footer style="margin-right: 6em; text-align: right;">
         Copyright©Hotel Colibrí 2010      @*********Aqui se podria traer el nombre del hotel desde la bd*******@
     </footer>
     <!-- Footer Section End -->
@@ -97,6 +101,8 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/carousel")
     @Scripts.Render("~/bundles/map")
+    @Scripts.Render("~/bundles/fecha")
+    @Scripts.Render("~/bundles/datatables")
     @RenderSection("scripts", required: false)
     <!-- Js Plugins -->
 </body>

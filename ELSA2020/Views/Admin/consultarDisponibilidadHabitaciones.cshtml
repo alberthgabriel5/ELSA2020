@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "consultarDisponibilidadHabitaciones";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Consultar Disponibilidad de Habitaciones</h2>
+
+
+<div class="row">
+    <div class='col-sm-3'>
+        <p id="textollegada">Fecha Llegada</p>
+        <div class="form-group">
+            <div class='input-group date' id='entrada'>
+                <input type='text' id="fechaEntrada" name="fechaEntrada" class="form-control" required />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class='col-sm-3'>
+        <p id="textosalida">Fecha Salida</p>
+        <div class="form-group">
+            <div class='input-group date' id='salida'>
+                <input type='text' id="fechaSalida" name="fechaSalida" class="form-control" required />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class='col-sm-3'>
+        <p>Tipo de Habitaci&oacute;n</p>
+        <div class="form-group">
+            <div>
+                <select class="browser-default custom-select" id="tipoHabitacion"></select>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<button class="btn-success" onclick="disponibilidadHabitacion()">Consultar</button>
+<br />
+<br />
+
+<div class="table-responsive col-md-8">
+    <table class="table table-bordered table-hover" id="table">
+
+        <thead>
+            <tr>
+
+                <th>
+                    Numero
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Costo de estad&iacute;a
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+    </table>
+
+</div>
+
