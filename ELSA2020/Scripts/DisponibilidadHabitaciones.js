@@ -42,7 +42,7 @@ function disponibilidadHabitacion() {
                         
                         item.numero,
                         item.nombre,
-                        item.precioColones,
+                        "¢"+item.precioColones,
 
                     ];
 
