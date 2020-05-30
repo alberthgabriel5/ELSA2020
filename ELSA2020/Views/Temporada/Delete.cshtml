@@ -1,0 +1,57 @@
+﻿@model ELSA2020.temporada
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Eliminar Temporada</h2>
+
+<h3>Estas seguro que desea eliminar la temporada</h3>
+<div>
+    <h4>Temporada</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.variacionPrecio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.variacionPrecio)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

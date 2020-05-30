@@ -156,6 +156,7 @@
     <Compile Include="Controllers\FacilidadesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReservacionController.cs" />
+    <Compile Include="Controllers\TemporadaController.cs" />
     <Compile Include="EntityF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -805,9 +806,17 @@
     <Content Include="Views\Admin\InicioSesion.cshtml" />
     <Content Include="Views\Shared\_LayoutInicio.cshtml" />
     <Content Include="Views\Admin\estadoHabitacion.cshtml" />
+
+    <Content Include="Views\Temporada\Create.cshtml" />
+    <Content Include="Views\Temporada\Delete.cshtml" />
+    <Content Include="Views\Temporada\Details.cshtml" />
+    <Content Include="Views\Temporada\Edit.cshtml" />
+    <Content Include="Views\Temporada\Index.cshtml" />
+
     <Content Include="Views\Admin\consultarDisponibilidadHabitaciones.cshtml" />
     <Content Include="Views\Admin\AdministracionHabitaciones.cshtml" />
     <Content Include="Views\Admin\CambiarDescripcionHabitacion.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
