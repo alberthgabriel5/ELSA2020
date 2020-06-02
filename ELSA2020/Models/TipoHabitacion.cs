@@ -145,10 +145,10 @@ namespace ELSA2020.Models
             {
                 dataRowCollection = dataSetTipoHabitacion.Tables["bdELSA.tipoHabitacion"].Rows;
             }
-            catch (Exception e){
+            catch (Exception e)
+            {
                 n = 1;
             }
-            
 
             TipoHabitacion tipo = new TipoHabitacion();
             tipo.Id1 = 0;

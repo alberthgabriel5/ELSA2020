@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using ELSA2020.Models;
 using System.Web.Mvc;
+using System.Net.Mail;
+using System.Configuration;
 
 namespace ELSA2020.Controllers
 {
@@ -112,6 +114,32 @@ namespace ELSA2020.Controllers
             reservacion.NumeroReservacion1 = reservacion.generarNumeroReservacion(nombre);
             string numReserva = reservacion.reservarHabitacion(reservacion);
 
+            //enviar correo
+            String correoEnviar = email;
+            String correo = ConfigurationManager.ConnectionStrings["Correo"].ConnectionString;
+            String contrasenia = ConfigurationManager.ConnectionStrings["Contrasenia"].ConnectionString;
+
+            String mensaje = "<p>Hola "+nombre+"!</p><br><p>Su reservacion fue exitosa</p><br><p>Numero de reservacion: "+numReserva+"</p><br><p>Gracias por preferirnos. Te esperamos!</p>";
+            MailMessage oMailMessage = new MailMessage();
+            oMailMessage.To.Add(new MailAddress(correoEnviar));
+            oMailMessage.From = new MailAddress(correo);
+            oMailMessage.IsBodyHtml = true;
+            oMailMessage.Priority = MailPriority.Normal;
+            oMailMessage.Subject = "Asunto: Reservacion en Hotel Colibri";
+            oMailMessage.Body = mensaje;
+
+            SmtpClient oSmtpClient = new SmtpClient();
+            oSmtpClient.Host = "smtp.gmail.com";
+            oSmtpClient.Port = 587;
+            oSmtpClient.EnableSsl = true;
+            oSmtpClient.UseDefaultCredentials = false;
+            oSmtpClient.Credentials = new System.Net.NetworkCredential(correo, contrasenia);
+
+            oSmtpClient.Send(oMailMessage);
+            oMailMessage.Dispose();
+
+
+            //respuesta a la vista
             ViewBag.nombre = nombre;
             ViewBag.numReserva = numReserva;
             ViewBag.email = email;
