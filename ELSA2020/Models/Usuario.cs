@@ -73,6 +73,33 @@ namespace ELSA2020.Models
             }//Fin del foreach.
             return inicio;
         }
+
+        public string RegistrarUsuario(Usuario usuario)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connStr);
+            String sqlSelect = "sp_registrarUsuario";
+            SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
+            sqlDataAdapterClient.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
+            sqlDataAdapterClient.SelectCommand.Connection = connection;
+            sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@nombre", usuario.Nombre1));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@apellidos", usuario.Apellidos1));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@usuario", usuario.Usuario11));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@contrasenia", usuario.Contrasenia1));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@tipo", usuario.Tipo1));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@idHotel", usuario.IdHotel1));
+  
+            DataSet dataSetRegistrar = new DataSet();
+            sqlDataAdapterClient.Fill(dataSetRegistrar, "bdELSA.Usuario");
+            sqlDataAdapterClient.SelectCommand.Connection.Close();
+
+            string num = "";
+            return num;
+        }
+
     }
 
 }

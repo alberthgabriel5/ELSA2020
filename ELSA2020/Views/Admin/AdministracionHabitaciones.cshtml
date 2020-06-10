@@ -31,14 +31,14 @@
                         {
                             <tr>
                                 <td>@habitacion.Numero1</td>
-                                <td><input type='checkbox' name='estados' disabled /></td>
+                                <td><input id="@habitacion.Numero1" type='checkbox' name='estados'  onclick="cambiarEstado('@habitacion.Numero1')" /></td>
                             </tr>
                         }
                         else
                         {
                             <tr>
                                 <td>@habitacion.Numero1</td>
-                                <td><input type='checkbox' name='estados' checked disabled /></td>
+                                <td><input id="@habitacion.Numero1" type='checkbox' name='estados' onclick="cambiarEstado('@habitacion.Numero1')" checked /></td>
                             </tr>
                         }
                     }
