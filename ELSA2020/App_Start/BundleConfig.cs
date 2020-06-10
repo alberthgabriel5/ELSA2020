@@ -47,7 +47,13 @@ namespace ELSA2020
                     "~/Scripts/dataTables.foundation.js",
                     "~/Scripts/dataTables.jqueryui.js",
                     "~/Scripts/dataTables.semanticui.js",
-                    "~/Scripts/jquery.dataTables.js"));
+                    "~/Scripts/jquery.dataTables.js",
+                    "~/Scripts/dataTables.buttons.min.js",
+                    "~/Scripts/pdfmake.min.js",
+                    "~/Scripts/buttons.print.min.js",
+                    "~/Scripts/jszip.min.js",
+                    "~/Scripts/buttons.html5.min.js",
+                    "~/Scripts/vfs_fonts.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                     "~/Content/datatables.css",
