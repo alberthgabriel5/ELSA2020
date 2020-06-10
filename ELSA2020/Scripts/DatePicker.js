@@ -16,7 +16,7 @@
         });
 });
 
-//Para la targeta
+//Para la tarjeta
 var creditcard = document.getElementById('tarjeta');
 
 function onkeyPress(event) {

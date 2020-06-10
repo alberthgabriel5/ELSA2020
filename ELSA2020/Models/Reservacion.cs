@@ -73,7 +73,7 @@ namespace ELSA2020.Models
         public string NumeroReservacion1 { get => NumeroReservacion; set => NumeroReservacion = value; }
 
 
-        public string reservarHabitacion(Reservacion reserva)
+        public string[] reservarHabitacion(Reservacion reserva)
         {
             string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
             SqlConnection connection = new SqlConnection(connStr);
@@ -83,7 +83,7 @@ namespace ELSA2020.Models
             sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
             sqlDataAdapterClient.SelectCommand.Connection = connection;
             sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            
+
             sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@numeroReservacion", reserva.NumeroReservacion1));
             sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@idCliente", reserva.IdCliente1));
             sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@idHabitacion", reserva.IdHabitacion1));
@@ -99,11 +99,13 @@ namespace ELSA2020.Models
             sqlDataAdapterClient.SelectCommand.Connection.Close();
             DataRowCollection dataRowCollection = dataSetReservar.Tables["bdELSA.Reservacion"].Rows;
 
-            string num = "";
+            string[] num = new string[2];
             foreach (DataRow currentRow in dataRowCollection)
             {
-                num = currentRow["numeroReserva"].ToString();
-                
+                num[0] = currentRow["numeroReserva"].ToString();
+                num[1] = reserva.IdHabitacion1.ToString();
+
+
             }//Fin del foreach.
 
             return num;

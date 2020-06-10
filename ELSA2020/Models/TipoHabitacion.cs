@@ -256,5 +256,27 @@ namespace ELSA2020.Models
 
             return tipoActual;
         }
+
+        public String ActualizarInformacionHabitacion(int tipoHabitacion, int precioColones, float precioDolares, String descripcion)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+
+            SqlConnection connection = new SqlConnection(connStr);
+            String sqlSelect = "sp_actualizarInformacionHabitacion";
+            SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
+            sqlDataAdapterClient.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
+            sqlDataAdapterClient.SelectCommand.Connection = connection;
+            sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@id", tipoHabitacion));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@precioColones", precioColones));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@precioDolares", precioDolares));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@descripcion", descripcion));
+            DataSet dataSetTiposHabitacion = new DataSet();
+            sqlDataAdapterClient.Fill(dataSetTiposHabitacion, "bdELSA.tipoHabitacion");
+            sqlDataAdapterClient.SelectCommand.Connection.Close();
+
+            return "Correcto";
+        }
     }
 }

@@ -166,3 +166,25 @@ function validaFecha(){
         });
 
 };
+
+function cambiarEstado(idHabitacion) {
+    var estado = 0;
+    if (document.getElementById(idHabitacion).checked) {
+        estado = 0;
+    } else {
+        estado = 1;
+    }
+
+    var parametros = {
+        'estado': estado,
+        'id': idHabitacion
+    }
+    $.ajax({
+        type: "POST",
+        url: "/Admin/estadoHabitacion",
+        data: parametros,
+        success: function (data) {
+        }
+    });
+
+}
