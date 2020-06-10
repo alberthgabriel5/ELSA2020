@@ -128,9 +128,17 @@ namespace ELSA2020.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult estadoHabitacion(string estado, string id)
+        {
+            Habitacion habitacion = new Habitacion();
+            habitacion.actualizarEstadoHabitacion(estado,id);
+            return Json("Actualizado");
+        }
 
-        // GET: Admin
-        public ActionResult Index()
+
+            // GET: Admin
+            public ActionResult Index()
         {
             /* Todo lo que hagan en Admin le ponen este codigo al controlador*/
 

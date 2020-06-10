@@ -112,14 +112,14 @@ namespace ELSA2020.Controllers
             temporada = temporada.ObtenerTemporada(reservacion.FechaEntrada1, reservacion.FechaSalida1);
             reservacion.IdTemporada1 = temporada.Id1;
             reservacion.NumeroReservacion1 = reservacion.generarNumeroReservacion(nombre);
-            string numReserva = reservacion.reservarHabitacion(reservacion);
-
+            string[] numeros = reservacion.reservarHabitacion(reservacion);
+            string numReserva = numeros[0];
             //enviar correo
             String correoEnviar = email;
             String correo = ConfigurationManager.ConnectionStrings["Correo"].ConnectionString;
             String contrasenia = ConfigurationManager.ConnectionStrings["Contrasenia"].ConnectionString;
 
-            String mensaje = "<p>Hola "+nombre+"!</p><br><p>Su reservacion fue exitosa</p><br><p>Numero de reservacion: "+numReserva+"</p><br><p>Gracias por preferirnos. Te esperamos!</p>";
+            String mensaje = "<p>Hola "+nombre+"!</p><br><p>Su reservacion fue exitosa</p><br><p>Numero de reservacion: "+numReserva+ "</p><br><p>Numero de habitacion: " + numeros[1] + "</p><br><p>Gracias por preferirnos. Te esperamos!</p>";
             MailMessage oMailMessage = new MailMessage();
             oMailMessage.To.Add(new MailAddress(correoEnviar));
             oMailMessage.From = new MailAddress(correo);
@@ -142,6 +142,7 @@ namespace ELSA2020.Controllers
             //respuesta a la vista
             ViewBag.nombre = nombre;
             ViewBag.numReserva = numReserva;
+            ViewBag.numHabitacion = numeros[1];
             ViewBag.email = email;
             return View("ReservaInformacion");
         }
