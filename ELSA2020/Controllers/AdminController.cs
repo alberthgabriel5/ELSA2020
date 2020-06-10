@@ -128,6 +128,36 @@ namespace ELSA2020.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult ActualizarInformacionHabitacion(int tipoHabitacion, int precioColones, float precioDolares, String descripcion) 
+        {
+            if (Session["UserID"] != null)
+            {
+                ViewBag.confirmacionActualizacion = "Nulo";
+                TipoHabitacion tipo = new TipoHabitacion();
+                String tipoDeHabitacion = tipo.ActualizarInformacionHabitacion(tipoHabitacion, precioColones, precioDolares, descripcion);
+                TempData["message"] = "Cambios realizados exitosamente.";
+                return RedirectToAction("Index");
+            }
+            else 
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
+        public ActionResult CancelarModificacionDescripcionTipoHabitacion(bool confirm) 
+        {
+            if (Session["UserID"] != null)
+            {
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
 
         // GET: Admin
         public ActionResult Index()
