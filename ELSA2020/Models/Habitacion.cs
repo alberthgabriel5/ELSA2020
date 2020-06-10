@@ -78,5 +78,24 @@ namespace ELSA2020.Models
 
             return habitaciones;
         }
+
+        public void actualizarEstadoHabitacion(String estado, String idHabitacion)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connStr);
+            String sqlSelect = "sp_actualizarEstadoHabitacion";
+            SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
+            sqlDataAdapterClient.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
+            sqlDataAdapterClient.SelectCommand.Connection = connection;
+            sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@estado", estado));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@idHabitacion", idHabitacion));
+            DataSet dataSetActualizar = new DataSet();
+            sqlDataAdapterClient.Fill(dataSetActualizar, "bdELSA.Habitacion");
+            sqlDataAdapterClient.SelectCommand.Connection.Close();
+        }
+
     }
 }
