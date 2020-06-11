@@ -4,13 +4,15 @@
     ViewBag.Pagina = "Home";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 <h2>@ViewBag.Title</h2>
 
 <div>
     <div class="row">
-        <div class="col-3" style="margin-left: 3em;">
-            @ViewBag.Pagina
+        <div class="col-3" style="margin-top: 3em;">
+            <h4>@ViewBag.Pagina</h4>
         </div>
     </div>
     <div class="form-group" style="margin-top: 5em;">
@@ -34,7 +36,7 @@
         <div class="col-4 container text-center" style="height: auto; display: flex;">
             <div style="display: inline-block; align-self: flex-end;">
                 <button type="button" class="btn btn-success" onclick="actualizarHome('@ViewBag.hotel.Imagen1')">Aceptar</button>
-                <button type="button" class="btn btn-secondary  mb-2" onclick="cancelarActualizarHome">Cancelar</button>
+                <button type="button" class="btn btn-secondary  mb-2" onclick="cancelarActualizarHome('@ViewBag.hotel.Descripcion1','@ViewBag.hotel.Imagen1')">Cancelar</button>
             </div>
         </div>
     </div>
