@@ -193,6 +193,7 @@
     <Compile Include="Models\About_UsEF.cs" />
     <Compile Include="Models\Caracteristica.cs" />
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\ClienteReservacion.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\DisponibilidadHabitacion.cs" />
     <Compile Include="Models\DisponibilidadHabitacionDATA.cs" />
@@ -838,6 +839,8 @@
     <Content Include="Views\Admin\consultarDisponibilidadHabitaciones.cshtml" />
     <Content Include="Views\Admin\AdministracionHabitaciones.cshtml" />
     <Content Include="Views\Admin\CambiarDescripcionHabitacion.cshtml" />
+    <Content Include="Views\Admin\ListarReservaciones.cshtml" />
+    <Content Include="Views\Admin\InfoReserva.cshtml" />
     <Content Include="Views\Admin\actualizarHome.cshtml" />
     <Content Include="Views\Admin\modificarPaginas.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
