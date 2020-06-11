@@ -17,6 +17,18 @@ namespace ELSA2020.Models
             }
         }
 
+
+        public int ActualizaTextoPaginaSobreNosotros(int id,string texto)
+        {
+            int resultToReturn = 0;
+            using (var context = new entityFramework())
+            {
+                resultToReturn= context.SP_ActualizaTextoSobreNosotros(id,texto);
+            }
+
+            return resultToReturn;
+        }
+
         public IEnumerable<ContenidoImagen> getImagesAboutUs()
         {
             using (var context = new entityFramework())
