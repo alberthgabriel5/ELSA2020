@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
     //cargaTexto();
+    $('#btnGuardarSobreNosotros').attr("disabled", false);
+    $('#btnCancelarSobreNosotros').attr("disabled", false);
 });
 
 function cargaTexto() {
@@ -61,6 +63,8 @@ function cambiarTextoSobreNosotros(id) {
         data: parametros,
         success: function (data) {
             $('#textAreaNuevaDescripcion').val('');
+            $('#btnGuardarSobreNosotros').attr("disabled", true);
+            $('#btnCancelarSobreNosotros').attr("disabled", true);
             setTimeout(function () {
                 $('#msjExito').html('Cambio Realizado');
                 $('#msjExito').fadeIn(2500);

@@ -33,7 +33,9 @@ namespace ELSA2020
 
             bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
                         "~/Scripts/estadoHabitacion.js",
-                        "~/Scripts/AdministrarSobreNosotros.js"));
+                        "~/Scripts/AdministrarSobreNosotros.js",
+                        "~/Scripts/EstadoHabitaciones.js",
+                       "~/Scripts/modificacionDePaginas.js"));
 
             bundles.Add(new StyleBundle("~/Content/map").Include(
                       "~/Content/style.css.map"));

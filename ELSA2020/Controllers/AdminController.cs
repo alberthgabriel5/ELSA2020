@@ -25,9 +25,16 @@ namespace ELSA2020.Controllers
         public ActionResult estadoHabitacion()
         {
             //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
-            ViewBag.datos = estDATA.ListAll();
+            //ViewBag.datos = estDATA.ListAll();
             return View();
         }
+
+        public JsonResult listarEstadoHabitaciones()
+        {
+            return Json(estDATA.ListAll(), JsonRequestBehavior.AllowGet);
+
+        }
+
 
         public ActionResult AdministrarPaginaSobreNosotros()
         {
@@ -179,12 +186,12 @@ namespace ELSA2020.Controllers
             }
          }
          
-        public JsonResult estadoHabitacion(string estado, string id)
-        {
-            Habitacion habitacion = new Habitacion();
-            habitacion.actualizarEstadoHabitacion(estado,id);
-            return Json("Actualizado");
-        }
+        //public JsonResult estadoHabitacion(string estado, string id)
+        //{
+        //    Habitacion habitacion = new Habitacion();
+        //    habitacion.actualizarEstadoHabitacion(estado,id);
+        //    return Json("Actualizado");
+        //}
 
         public ActionResult modificarPaginas()
         {
