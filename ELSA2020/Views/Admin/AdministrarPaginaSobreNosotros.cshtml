@@ -20,7 +20,7 @@
 <div class="col-md-12">
     <h2>Valor Nuevo</h2>
     <textarea class="form-control" id="textAreaNuevaDescripcion" rows="4"></textarea><br />
-    <button class="btn btn-success" onclick="cambiarTextoSobreNosotros('@ViewBag.idPaginaSobreNosotros')">Aceptar</button>
+    <button class="btn btn-success" id="btnGuardarSobreNosotros" onclick="cambiarTextoSobreNosotros('@ViewBag.idPaginaSobreNosotros')">Aceptar</button>
 
-    <button class="btn btn-danger" onclick="(desecharCambios())">Cancelar</button>
+    <button class="btn btn-danger" id="btnCancelarSobreNosotros" onclick="(desecharCambios())">Cancelar</button>
 </div>
