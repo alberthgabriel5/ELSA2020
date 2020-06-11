@@ -1,0 +1,6 @@
+﻿.mensajeExito {
+    display: none;
+    color: forestgreen;
+    float: right;
+    font-size: 25px;
+}

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using ELSA2020;
 using ELSA2020.Models;
 
@@ -15,7 +18,7 @@ namespace ELSA2020.Controllers
     {
         private entityFramework db = new entityFramework();
 
-
+        public About_UsEF aboutUs = new About_UsEF();
         EstadoHabitacionDATA estDATA = new EstadoHabitacionDATA();
         ListaNombreHabitacionesDATA lnhDATA = new ListaNombreHabitacionesDATA();
         DisponibilidadHabitacionDATA dhDATA = new DisponibilidadHabitacionDATA();
@@ -24,6 +27,24 @@ namespace ELSA2020.Controllers
             //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
             ViewBag.datos = estDATA.ListAll();
             return View();
+        }
+
+        public ActionResult AdministrarPaginaSobreNosotros()
+        {
+            ViewBag.valorTexto = aboutUs.getPageAboutUs().valorTexto;
+            ViewBag.idPaginaSobreNosotros = aboutUs.getPageAboutUs().id;
+            return View();
+        }
+        //cuando no se accede desde el llamado a la vista
+        public JsonResult CargaPaginaSobreNosotros()
+        {
+            return Json(aboutUs.getPageAboutUs(), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult ActualizaTextoPaginaSobreNosotros(int id,string texto)
+        {
+            return Json(aboutUs.ActualizaTextoPaginaSobreNosotros(id,texto), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ListaNombreHabitaciones()
@@ -163,9 +184,59 @@ namespace ELSA2020.Controllers
             Habitacion habitacion = new Habitacion();
             habitacion.actualizarEstadoHabitacion(estado, id);
             return Json("Actualizado");
-
         }
 
+        public ActionResult modificarPaginas()
+        {
+            if (Session["UserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
+        public ActionResult actualizarHome()
+        {
+            if (Session["UserID"] != null)
+            {
+                Hotel hotel = new Hotel();
+                ViewBag.hotel = hotel.obtenerHotel();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
+        [HttpPost]
+        public JsonResult actualizarHomePaginna(HttpPostedFileBase imagen, String imagenNombre, String estado, String descripcion)
+        {
+            if (estado.CompareTo("Si") == 0) {
+                imagenNombre = Path.GetFileName(imagen.FileName);
+                try
+                {
+                    string path = Server.MapPath("~/img/paginainicio/");
+
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    imagen.SaveAs(path + Path.GetFileName(imagen.FileName));
+                }
+                catch (Exception e) { }
+            }
+
+            Hotel hotel = new Hotel();
+            hotel.Descripcion1 = descripcion;
+            hotel.Imagen1 = imagenNombre;
+            hotel.Id1 = 1;
+            hotel.actualizarHotel(hotel);
+            return Json("Actualizando home");
+        }
 
         // GET: Admin
         public ActionResult Index()
