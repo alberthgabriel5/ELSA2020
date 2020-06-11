@@ -184,19 +184,32 @@ namespace ELSA2020.Controllers
             Habitacion habitacion = new Habitacion();
             habitacion.actualizarEstadoHabitacion(estado,id);
             return Json("Actualizado");
-
         }
 
         public ActionResult modificarPaginas()
         {
-            return View();
+            if (Session["UserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
         }
 
         public ActionResult actualizarHome()
         {
-            Hotel hotel = new Hotel();
-            ViewBag.hotel = hotel.obtenerHotel();
-            return View();
+            if (Session["UserID"] != null)
+            {
+                Hotel hotel = new Hotel();
+                ViewBag.hotel = hotel.obtenerHotel();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
         }
 
         [HttpPost]
@@ -204,7 +217,8 @@ namespace ELSA2020.Controllers
         {
             if (estado.CompareTo("Si") == 0) {
                 imagenNombre = Path.GetFileName(imagen.FileName);
-                try {
+                try
+                {
                     string path = Server.MapPath("~/img/paginainicio/");
 
                     if (!Directory.Exists(path))
@@ -213,14 +227,8 @@ namespace ELSA2020.Controllers
                     }
                     imagen.SaveAs(path + Path.GetFileName(imagen.FileName));
                 }
-                catch (Exception e)
-                {
-
-                }
+                catch (Exception e) { }
             }
-            //var path = Path.Combine(Server.MapPath("~/img/paginainicio/"), originalFilename);
-            //imagen.SaveAs(path);
-
 
             Hotel hotel = new Hotel();
             hotel.Descripcion1 = descripcion;

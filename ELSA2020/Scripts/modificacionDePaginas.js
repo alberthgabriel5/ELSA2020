@@ -27,14 +27,60 @@
                 $("#mensaje").html("Procesando, \n\ espere por favor...");
             },
             success: function (data) {
-                if (typeof (data.Value) != "undefined") {
-                    alert(data.Message);
-                } else {
-                    alert("Error no identificado");
-                }
+                $.confirm({
+                    title: 'Informacion',
+                    content: 'Actualizacion Exitosa',
+                    type: 'green',
+                    typeAnimated: true,
+                    buttons: {
+                        confirm: {
+                            text: 'Aceptar',
+                            btnClass: 'btn-green',
+                            action: function () {
+                                window.location.href = "/Admin/Index";
+                            }
+                        }
+                    }
+
+                });
             }
         }
     );
 
+
+}
+
+function cancelarActualizarHome(descripcion, imagenNombre) {
+    var descripcionCambiada = $("#descripcion").val();
+    var selectFile = ($('#imagen'))[0].files[0];
+    var dataString = new FormData();
+    if (descripcion == descripcionCambiada && !selectFile) {
+            window.location.href = "/Admin/Index";
+    } else {
+        $.confirm({
+            title: 'Descartar Cambios',
+            content: '¿Esta Seguro?',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                confirm: {
+                    text: 'Si',
+                    btnClass: 'btn-green',
+                    action: function () {
+                        $('#descripcion').val('');
+                        $('#imagen').val('');
+                        window.location.href = "/Admin/Index";
+                    }
+                },
+                close: {
+                    text: 'No',
+                    btnClass: 'btn-red',
+                    action: function () {
+                    }
+                }
+            }
+
+        });
+    }
 
 }

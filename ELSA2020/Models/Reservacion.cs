@@ -142,7 +142,7 @@ namespace ELSA2020.Models
 
             }//Fin del foreach.
 
-            if (num.CompareTo("System") == 0)
+            if (num.CompareTo("Existe") == 0)
             {
                 generarNumeroReservacion(nombre);
             }
