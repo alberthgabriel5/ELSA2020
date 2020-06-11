@@ -63,5 +63,25 @@ namespace ELSA2020.Models
 
             return hotelResultado;
         }
+
+        public Hotel actualizarHotel(Hotel hotel)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connStr);
+            String sqlSelect = "sp_actualizarHotel";
+            SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
+            sqlDataAdapterClient.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
+            sqlDataAdapterClient.SelectCommand.Connection = connection;
+            sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@descripcion", hotel.Descripcion1));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@imagen", hotel.Imagen1));
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@id", hotel.Id1));
+            DataSet dataSetHotel = new DataSet();
+            sqlDataAdapterClient.Fill(dataSetHotel, "bdELSA.hotel");
+            sqlDataAdapterClient.SelectCommand.Connection.Close();
+
+            return hotel;
+        }
     }
 }
