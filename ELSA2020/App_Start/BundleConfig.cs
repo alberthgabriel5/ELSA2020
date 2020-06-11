@@ -32,7 +32,8 @@ namespace ELSA2020
                         "~/Scripts/owl.carousel.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
-                        "~/Scripts/estadoHabitacion.js"));
+                        "~/Scripts/estadoHabitacion.js",
+                        "~/Scripts/AdministrarSobreNosotros.js"));
 
             bundles.Add(new StyleBundle("~/Content/map").Include(
                       "~/Content/style.css.map"));
@@ -69,7 +70,8 @@ namespace ELSA2020
                       "~/Content/font-awesome.min.css",
                       "~/Content/magnific-popup.css",
                       "~/Content/slicknav.min.css",
-                      "~/Content/style.css"));
+                      "~/Content/style.css",
+                      "~/Content/AdministrarSobreNosotros.css"));
         }
     }
 }

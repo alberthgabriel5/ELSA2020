@@ -18,7 +18,7 @@ namespace ELSA2020.Controllers
     {
         private entityFramework db = new entityFramework();
 
-
+        public About_UsEF aboutUs = new About_UsEF();
         EstadoHabitacionDATA estDATA = new EstadoHabitacionDATA();
         ListaNombreHabitacionesDATA lnhDATA = new ListaNombreHabitacionesDATA();
         DisponibilidadHabitacionDATA dhDATA = new DisponibilidadHabitacionDATA();
@@ -27,6 +27,24 @@ namespace ELSA2020.Controllers
             //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
             ViewBag.datos = estDATA.ListAll();
             return View();
+        }
+
+        public ActionResult AdministrarPaginaSobreNosotros()
+        {
+            ViewBag.valorTexto = aboutUs.getPageAboutUs().valorTexto;
+            ViewBag.idPaginaSobreNosotros = aboutUs.getPageAboutUs().id;
+            return View();
+        }
+        //cuando no se accede desde el llamado a la vista
+        public JsonResult CargaPaginaSobreNosotros()
+        {
+            return Json(aboutUs.getPageAboutUs(), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult ActualizaTextoPaginaSobreNosotros(int id,string texto)
+        {
+            return Json(aboutUs.ActualizaTextoPaginaSobreNosotros(id,texto), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ListaNombreHabitaciones()
@@ -132,11 +150,41 @@ namespace ELSA2020.Controllers
         }
 
         [HttpPost]
+        public ActionResult ActualizarInformacionHabitacion(int tipoHabitacion, int precioColones, float precioDolares, String descripcion) 
+        {
+            if (Session["UserID"] != null)
+            {
+                ViewBag.confirmacionActualizacion = "Nulo";
+                TipoHabitacion tipo = new TipoHabitacion();
+                String tipoDeHabitacion = tipo.ActualizarInformacionHabitacion(tipoHabitacion, precioColones, precioDolares, descripcion);
+                TempData["message"] = "Cambios realizados exitosamente.";
+                return RedirectToAction("Index");
+            }
+            else 
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
+        public ActionResult CancelarModificacionDescripcionTipoHabitacion(bool confirm) 
+        {
+            if (Session["UserID"] != null)
+            {
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+         }
+         
         public JsonResult estadoHabitacion(string estado, string id)
         {
             Habitacion habitacion = new Habitacion();
             habitacion.actualizarEstadoHabitacion(estado,id);
             return Json("Actualizado");
+
         }
 
         public ActionResult modificarPaginas()

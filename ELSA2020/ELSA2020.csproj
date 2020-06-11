@@ -267,6 +267,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdministrarSobreNosotros.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dataTables.bootstrap.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
@@ -688,6 +689,7 @@
     <Content Include="phozogy\__MACOSX\phozogy\js\._main.js" />
     <Content Include="phozogy\__MACOSX\phozogy\js\._masonry.pkgd.min.js" />
     <Content Include="phozogy\__MACOSX\phozogy\js\._owl.carousel.min.js" />
+    <Content Include="Scripts\AdministrarSobreNosotros.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\buttons.html5.min.js" />
     <Content Include="Scripts\buttons.print.min.js" />
@@ -839,6 +841,7 @@
     <Content Include="Views\Admin\actualizarHome.cshtml" />
     <Content Include="Views\Admin\modificarPaginas.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\AdministrarPaginaSobreNosotros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

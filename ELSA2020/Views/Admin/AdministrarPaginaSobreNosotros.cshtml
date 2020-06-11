@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "AdministrarPaginaSobreNosotros";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+<h1>Administrar Pagina SobreNosotros</h1>
+
+<label id="msjExito" class="mensajeExito"></label>
+
+<div class="col-md-12">
+    <h2>Valor Actual</h2>
+    <p style=" text-align: justify" id="textoSobreNosotros">@ViewBag.valorTexto</p>
+
+</div>
+
+<div class="col-md-12">
+    <h2>Valor Nuevo</h2>
+    <textarea class="form-control" id="textAreaNuevaDescripcion" rows="4"></textarea><br />
+    <button class="btn btn-success" onclick="cambiarTextoSobreNosotros('@ViewBag.idPaginaSobreNosotros')">Aceptar</button>
+
+    <button class="btn btn-danger" onclick="(desecharCambios())">Cancelar</button>
+</div>

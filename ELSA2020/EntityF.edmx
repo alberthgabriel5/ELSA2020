@@ -386,6 +386,10 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="SP_ActualizaTextoSobreNosotros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="texto" Type="varchar(max)" Mode="In" />
+        </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -1046,6 +1050,10 @@
             <End Role="Reservacion" EntitySet="Reservacion" />
           </AssociationSet>
           <FunctionImport Name="SP_FECHA" ReturnType="Collection(bdELSAModel.SP_FECHA_Result)" />
+          <FunctionImport Name="SP_ActualizaTextoSobreNosotros">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="texto" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetDataAboutUsPage_Result">
           <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
@@ -1493,6 +1501,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ActualizaTextoSobreNosotros" FunctionName="bdELSAModel.Store.SP_ActualizaTextoSobreNosotros" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

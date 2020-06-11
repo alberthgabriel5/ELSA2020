@@ -4,13 +4,23 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<body>
+    <body>
 
-    <div class="row">
-        <div class="container" style="text-align: center; margin-top: 20em;">
-            @ViewBag.Title
+        <div class="row">
+            <div class="container" style="text-align: center; margin-top: 20em;">
+                @ViewBag.Title
+            </div>
         </div>
-    </div>
 
-</body>
+        @{
+            if (TempData["message"] != null)
+            {
+                <script type="text/javascript">
+        alert(@Html.Raw(Json.Encode(TempData["message"])));
+                </script>
+                TempData["message"] = null;
+            }
+        }
+
+    </body>
 
