@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "ListarReservaciones";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Listado de Reservaciones</h2>
+
+<div>
+    <div class="row container">
+        <table class="table table-striped" id="tblReservas">
+            <thead>
+                <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Id Reserva</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Fecha Llegada</th>
+                    <th scope="col">Fecha Salida</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Ver</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @*@foreach (var reserva in ViewBag.listaReservaciones) {
+                    <tr>
+                        <th scope="row">@reserva.FechaCreacion1</th>
+                        <td>@reserva.NumeroReservacion1</td>
+                        <td>@reserva.NombreCliente1</td>
+                        <td>@reserva.ApellidosCliente1</td>
+                        <td>@reserva.CorreoCliente1</td>
+                        <td>@reserva.FechaEntrada1</td>
+                        <td>@reserva.FechaSalida1</td>
+                        <td>@reserva.Tipo1</td>
+                        <td>""</td>
+                        <td>""</td>
+                    </tr>
+                    }*@
+            </tbody>
+        </table>
+
+        <script>
+            $(document).ready(function () {
+                var tablaReservas = $('#tblReservas').DataTable(
+                    {
+                        "ajax":
+                        {
+                            "url": "TraerListaReservas",
+                            "type": "GET",
+                            "datatype": "json"
+                        },
+                        "columns": [
+                            { "data": "FechaCreacion1" },
+                            { "data": "NumeroReservacion1" },
+                            { "data": "NombreCliente1" },
+                            { "data": "ApellidosCliente1" },
+                            { "data": "CorreoCliente1" },
+                            { "data": "FechaEntrada1" },
+                            { "data": "FechaSalida1" },
+                            { "data": "Tipo1" },
+                            { "defaultContent": "<button type='button' class='verReserva'><i>Ver</i></button>" },
+                            { "defaultContent": "<button type='button' class='eliminarReserva'><i>Eliminar</i></button>" }
+                        ]
+                    }
+                );
+                verReserva("#tblReservas tbody", tablaReservas);
+                eliminarReserva("#tblReservas tbody", tablaReservas);
+            });
+
+            function eliminarReserva(tbody, table) {
+                $(document).on("click", "button.eliminarReserva", function () {
+                    var datan = table.row($(this).parents("tr")).data();
+                    var parametros = {
+                        "numeroReservacion": datan.NumeroReservacion1
+                    };
+                    $.ajax(
+                        {
+                            data: parametros,
+                            url: 'EliminarReserva',
+                            type: 'post',
+                            beforeSend: function () {
+                            },
+                            success: function (response) {
+                                //location.reload();
+                            }
+                        }
+                    );
+                    $('#tblReservas').DataTable().ajax.reload();
+                });
+
+            }
+
+            function verReserva(tbody, table) {
+                $(document).on("click", "button.verReserva", function () {
+                    var datan = table.row($(this).parents("tr")).data();
+                    var parametros = {
+                        "numeroReservacion": datan.NumeroReservacion1
+                    };
+                    window.location.href = "VerReserva?numeroReservacion=" + datan.NumeroReservacion1;
+                });
+            }
+        </script>
+    </div>
+</div>
+
