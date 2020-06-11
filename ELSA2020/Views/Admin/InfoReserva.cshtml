@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "InfoReserva";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Listado de Reservaciones - Ver Reserva</h2>
+
+<div class="row" style="display: table-cell; !important;">
+    <div id="divAImprimir" style="display: table-cell; margin-left: 3em; margin-top: 3em;" ;>
+        <p>Fecha: @ViewBag.infoReserva.FechaCreacion1 </p>
+        <p>ID Reserva: @ViewBag.infoReserva.NumeroReservacion1 </p>
+        <p>Nombre: @ViewBag.infoReserva.NombreCliente1 </p>
+        <p>Apellidos: @ViewBag.infoReserva.ApellidosCliente1 </p>
+        <p>Email: @ViewBag.infoReserva.CorreoCliente1 </p>
+        <p>Fecha llegada: @ViewBag.infoReserva.FechaEntrada1 </p>
+        <p>Fecha salida: @ViewBag.infoReserva.FechaSalida1 </p>
+        <p>Tipo habitación: @ViewBag.infoReserva.Tipo1 </p>
+    </div>
+    <div>
+        @Html.ActionLink("Eliminar", "EliminarReservacion", new { numeroReservacion = ViewBag.infoReserva.NumeroReservacion1 }, new { @class = "btn btn-danger" })
+        <input type="button" value="Imprimir" class="btn btn-secondary" onclick="printDiv()">
+    </div>
+
+    <script>
+
+        function printDiv() {
+            var divContents = document.getElementById("divAImprimir").innerHTML;
+            //Get the HTML of whole page
+            var oldPage = document.body.innerHTML;
+
+            //Reset the page's HTML with div's HTML only
+            document.body.innerHTML =
+                "<html><head><title></title></head><body>" +
+            divContents + "</body>";
+
+            //Print Page
+            window.print();
+
+            //Restore orignal HTML
+            document.body.innerHTML = oldPage;
+        }
+    </script>
+</div>
+

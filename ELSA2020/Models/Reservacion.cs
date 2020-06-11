@@ -149,5 +149,21 @@ namespace ELSA2020.Models
             return numero;
             
         }
+
+        public void EliminarReserva(String numeroReservacion)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connStr);
+            String sqlSelect = "sp_eliminarReservacion";
+            SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
+            sqlDataAdapterClient.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
+            sqlDataAdapterClient.SelectCommand.Connection = connection;
+            sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@numeroReservacion", numeroReservacion));
+            DataSet dataSetReservar = new DataSet();
+            sqlDataAdapterClient.Fill(dataSetReservar, "bdELSA.Reservacion");
+            sqlDataAdapterClient.SelectCommand.Connection.Close();
+        }
     }
 }
