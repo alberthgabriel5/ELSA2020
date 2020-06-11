@@ -721,6 +721,7 @@
     <Content Include="Scripts\jszip.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\masonry.pkgd.min.js" />
+    <Content Include="Scripts\modificacionDePaginas.js" />
     <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\pdfmake.min.js" />
     <Content Include="Scripts\vfs_fonts.js" />
@@ -837,7 +838,11 @@
     <Content Include="Views\Admin\consultarDisponibilidadHabitaciones.cshtml" />
     <Content Include="Views\Admin\AdministracionHabitaciones.cshtml" />
     <Content Include="Views\Admin\CambiarDescripcionHabitacion.cshtml" />
+    <Content Include="Views\Admin\actualizarHome.cshtml" />
+    <Content Include="Views\Admin\modificarPaginas.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\AdministrarPaginaSobreNosotros.cshtml" />
+    <Content Include="Views\Admin\RegistrarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -53,7 +53,7 @@
                         <nav class="nav-menu mobile-menu">
                             <ul>
                                 <li>@Html.ActionLink("Inicio", "Index", "Admin")</li>
-                                <li>@Html.ActionLink("Administrar Páginas", "About", "Home")</li>
+                                <li>@Html.ActionLink("Administrar Páginas", "modificarPaginas", "Admin")</li>
                                 <li>@Html.ActionLink("Listado de Reservaciones", "Index", "Facilidades")</li>
 
                                 <li>@Html.ActionLink("Administrar Habitaciones", "AdministracionHabitaciones", "Admin")</li>
@@ -107,4 +107,6 @@
     @RenderSection("scripts", required: false)
     <!-- Js Plugins -->
 </body>
+
+<script src="~/Scripts/modificacionDePaginas.js"></script>
 </html>
