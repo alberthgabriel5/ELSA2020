@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using ELSA2020;
 using ELSA2020.Models;
 
@@ -184,9 +187,50 @@ namespace ELSA2020.Controllers
 
         }
 
+        public ActionResult modificarPaginas()
+        {
+            return View();
+        }
 
-            // GET: Admin
-            public ActionResult Index()
+        public ActionResult actualizarHome()
+        {
+            Hotel hotel = new Hotel();
+            ViewBag.hotel = hotel.obtenerHotel();
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult actualizarHomePaginna(HttpPostedFileBase imagen, String imagenNombre, String estado, String descripcion)
+        {
+            if (estado.CompareTo("Si") == 0) {
+                imagenNombre = Path.GetFileName(imagen.FileName);
+                try {
+                    string path = Server.MapPath("~/img/paginainicio/");
+
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    imagen.SaveAs(path + Path.GetFileName(imagen.FileName));
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+            //var path = Path.Combine(Server.MapPath("~/img/paginainicio/"), originalFilename);
+            //imagen.SaveAs(path);
+
+
+            Hotel hotel = new Hotel();
+            hotel.Descripcion1 = descripcion;
+            hotel.Imagen1 = imagenNombre;
+            hotel.Id1 = 1;
+            hotel.actualizarHotel(hotel);
+            return Json("Actualizando home");
+        }
+        // GET: Admin
+        public ActionResult Index()
         {
             /* Todo lo que hagan en Admin le ponen este codigo al controlador*/
 
