@@ -5,6 +5,7 @@
 });
 
 function otro() {
+    var nueva = '';
 $.ajax({
     url: "/Admin/listarEstadoHabitaciones",
     type: "GET",
@@ -15,12 +16,19 @@ $.ajax({
         dataSet = new Array();
         var html = '';
         $.each(result, function (key, item) {
-
+            if (item.estado == '0') {
+                nueva = 'disponible';
+            }
+            else if (item.estado == '1') {
+                nueva = 'ocupado';
+            } else if (item.estado == '2') {
+                nueva = 'Quien sabe';
+            }
             data = [
 
                 item.numero,
                 item.tipo,
-                item.estado,
+                nueva,
 
             ];
 
@@ -38,7 +46,7 @@ $.ajax({
                     text: '<i class="fa fa-file-excel-o"></i>',
                     titleAttr: 'Exportar a Excel',
                     className: 'btn btn-success',
-                    title: 'Disponibilidad de las Habitaciones Hotel Colibrí',
+                    title: 'Estado del Hotel Colibrí Hoy',
 
                 },
                 {
@@ -46,14 +54,14 @@ $.ajax({
                     text: '<i class="fa fa-file-pdf-o"></i>',
                     titleAttr: 'Exportar a PDF',
                     className: 'btn btn-danger',
-                    title: 'Disponibilidad de las Habitaciones Hotel Colibrí',
+                    title: 'Estado del Hotel Colibrí Hoy',
                 },
                 {
                     extend: 'print',
                     text: '<i class="fa fa-print"></i>',
                     titleAttr: 'Imprimir',
                     className: 'btn btn-warning',
-                    title: 'Disponibilidad de las Habitaciones Hotel Colibrí',
+                    title: 'Estado del Hotel Colibrí Hoy',
                 },
 
             ],
