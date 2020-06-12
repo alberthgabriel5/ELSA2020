@@ -61,7 +61,7 @@
                             { "data": "FechaSalida1" },
                             { "data": "Tipo1" },
                             { "defaultContent": "<button type='button' class='verReserva'><i>Ver</i></button>" },
-                            { "defaultContent": "<button type='button' class='eliminarReserva'><i>Eliminar</i></button>" }
+                            { "defaultContent": "<button type='button' class='eliminarReserva' ><i>Eliminar</i></button>" }
                         ]
                     }
                 );
@@ -71,25 +71,28 @@
 
             function eliminarReserva(tbody, table) {
                 $(document).on("click", "button.eliminarReserva", function () {
-                    var datan = table.row($(this).parents("tr")).data();
-                    var parametros = {
-                        "numeroReservacion": datan.NumeroReservacion1
-                    };
-                    $.ajax(
-                        {
-                            data: parametros,
-                            url: 'EliminarReserva',
-                            type: 'post',
-                            beforeSend: function () {
-                            },
-                            success: function (response) {
-                                //location.reload();
-                            }
-                        }
-                    );
-                    $('#tblReservas').DataTable().ajax.reload();
-                });
 
+                    if (confirm('¿Desea eliminar?')) {
+                        var datan = table.row($(this).parents("tr")).data();
+                        var parametros = {
+                            "numeroReservacion": datan.NumeroReservacion1
+                        };
+                        $.ajax(
+                            {
+                                data: parametros,
+                                url: 'EliminarReserva',
+                                type: 'post',
+                                beforeSend: function () {
+                                },
+                                success: function (response) {
+                                    //si lo comento no recarga
+                                    location.reload();
+                                }
+                            }
+                        );
+                        $('#tblReservas').DataTable().ajax.reload();
+                    } else { }
+                });
             }
 
             function verReserva(tbody, table) {
