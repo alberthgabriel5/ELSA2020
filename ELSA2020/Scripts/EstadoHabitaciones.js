@@ -17,12 +17,12 @@ $.ajax({
         var html = '';
         $.each(result, function (key, item) {
             if (item.estado == '0') {
-                nueva = 'disponible';
+                nueva = 'Disponible';
             }
             else if (item.estado == '1') {
-                nueva = 'ocupado';
+                nueva = 'Desactivado';
             } else if (item.estado == '2') {
-                nueva = 'Quien sabe';
+                nueva = 'Reservado';
             }
             data = [
 
