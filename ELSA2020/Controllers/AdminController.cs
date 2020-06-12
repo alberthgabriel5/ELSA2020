@@ -185,13 +185,13 @@ namespace ELSA2020.Controllers
                 return RedirectToAction("LogIn");
             }
          }
-         
-        //public JsonResult estadoHabitacion(string estado, string id)
-        //{
-        //    Habitacion habitacion = new Habitacion();
-        //    habitacion.actualizarEstadoHabitacion(estado,id);
-        //    return Json("Actualizado");
-        //}
+
+        public JsonResult cambiarEstadoHabitacion(string estado, string id)
+        {
+            Habitacion habitacion = new Habitacion();
+            habitacion.actualizarEstadoHabitacion(estado, id);
+            return Json("Actualizado");
+        }
 
         public ActionResult modificarPaginas()
         {
@@ -276,6 +276,72 @@ namespace ELSA2020.Controllers
 
 
                 return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
+        public ActionResult ListarReservaciones()
+        {
+            if (Session["UserID"] != null)
+            {
+
+                return View("");
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
+        public ActionResult TraerListaReservas()
+        {
+            ClienteReservacion reservacion = new ClienteReservacion();
+            return Json(new { data = reservacion.obtenerListaDeReservaciones() }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult EliminarReserva(String numeroReservacion)
+        {
+            if (Session["UserID"] != null)
+            {
+                Models.Reservacion reserva = new Models.Reservacion();
+                reserva.EliminarReserva(numeroReservacion);
+
+                return View("ListarReservaciones");
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
+        public ActionResult EliminarReservacion(String numeroReservacion)
+        {
+            if (Session["UserID"] != null)
+            {
+                Models.Reservacion reserva = new Models.Reservacion();
+                reserva.EliminarReserva(numeroReservacion);
+
+                return View("ListarReservaciones");
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult VerReserva(String numeroReservacion)
+        {
+            if (Session["UserID"] != null)
+            {
+                ClienteReservacion reserva = new ClienteReservacion();
+                var infoReserva = reserva.obtenerReservacionPorNumero(numeroReservacion);
+                ViewBag.infoReserva = infoReserva;
+                return View("InfoReserva");
             }
             else
             {

@@ -181,7 +181,7 @@ function cambiarEstado(idHabitacion) {
     }
     $.ajax({
         type: "POST",
-        url: "/Admin/estadoHabitacion",
+        url: "/Admin/cambiarEstadoHabitacion",
         data: parametros,
         success: function (data) {
         }

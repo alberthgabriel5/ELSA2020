@@ -18,7 +18,8 @@
         <p>Tipo habitación: @ViewBag.infoReserva.Tipo1 </p>
     </div>
     <div>
-        @Html.ActionLink("Eliminar", "EliminarReservacion", new { numeroReservacion = ViewBag.infoReserva.NumeroReservacion1 }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Eliminar", "EliminarReservacion", "Admin",  new { numeroReservacion = ViewBag.infoReserva.NumeroReservacion1 }, new { @class = "btn btn-danger", onclick = "return confirm('¿Desea eliminar?')" })
+ 
         <input type="button" value="Imprimir" class="btn btn-secondary" onclick="printDiv()">
     </div>
 
