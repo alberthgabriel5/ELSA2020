@@ -10,13 +10,6 @@
 <br />
 <br />
 
-@*<div class="row" style="margin-bottom:10px">
-
-        <input type="text" id="dia" class="col-md-2 input-number" placeholder="Dia" style="margin-right:5px" />
-        <input type="text" id="mes" class="col-md-2 input-number" placeholder="Mes" style="margin-right:5px" />
-        <input type="text" id="ano" class="col-md-2 input-number" placeholder="Año" style="margin-right:5px"/>
-         <button class="btn-success" onclick="">Buscar</button>
-    </div>*@
 
 <div class="table-responsive col-md-8">
     <table class="table table-bordered table-hover" id="tableEstHab">
@@ -41,38 +34,3 @@
 
 </div>
 
-
-
-
-@*<table class=" table-bordered " style="border:3px solid" id="table">
-    <thead>
-        <tr>
-
-            <th>Numero de Habitaci&oacute;n</th>
-            <th>Tipo</th>
-            <th>Estado</th>
-        </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>*@
-
-
-@*@foreach (var item in ViewBag.datos)
-{
-    var est = "";
-    if (@item.estado == 0)
-    {
-        est = "Ocupado";
-    }
-    else if (@item.estado == 1)
-    {
-        est = "Disponible";
-    }
-    <tr>
-        <td>@item.numero</td>
-        <td>@item.tipo</td>
-        <td>@est</td>
-    </tr>
-}*@

@@ -1,4 +1,4 @@
 ﻿function aaa(nombre) {
-   alert(nombre);
+    alert(nombre);
 }
    
