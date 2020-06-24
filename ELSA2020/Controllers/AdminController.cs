@@ -66,6 +66,12 @@ namespace ELSA2020.Controllers
             return Json(facilidadesDATA.obtenerDescripcionFacilidad(id), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ActualizaTextoPaginaFacilidades(int id, string texto)
+        {
+            return Json(facilidadesDATA.ActualizaTextoPaginaFacilidades(id, texto), JsonRequestBehavior.AllowGet);
+        }
+
+
 
 
         public JsonResult ListaNombreHabitaciones()
