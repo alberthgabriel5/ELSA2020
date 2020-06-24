@@ -61,14 +61,10 @@
                                 <li>@Html.ActionLink("Listado de Reservaciones", "ListarReservaciones", "Admin")</li>
                                 <li>@Html.ActionLink("Administrar Habitaciones", "AdministracionHabitaciones", "Admin")</li>
                                 <li>@Html.ActionLink("Ver Estado del Hotel Hoy", "estadoHabitacion", "Admin")</li>
-                                <li>@Html.ActionLink("Consultar disponibilidad de habitaciones", "consultarDisponibilidadHabitaciones", "Admin")</li>
+                                <li>@Html.ActionLink("Consultar Disponibilidad de Habitaciones", "consultarDisponibilidadHabitaciones", "Admin")</li>
                                 <li>@Html.ActionLink("Promociones", "Index", "Temporada")</li>
-
-
-
-
+                                <li>@Html.ActionLink("Registrar Usuario", "RegistrarUsuario", "Admin")</li>
                             </ul>
-
                         </nav>
                         <div id="mobile-menu-wrap"></div>
                     </div>
@@ -111,5 +107,5 @@
     @RenderSection("scripts", required: false)
     <!-- Js Plugins -->
 </body>
-
+<script src="~/Scripts/Admin.js"></script>
 </html>

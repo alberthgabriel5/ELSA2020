@@ -89,7 +89,6 @@ namespace ELSA2020.Models
             sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@apellidos", usuario.Apellidos1));
             sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@usuario", usuario.Usuario11));
             sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@contrasenia", usuario.Contrasenia1));
-            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@tipo", usuario.Tipo1));
             sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@idHotel", usuario.IdHotel1));
   
             DataSet dataSetRegistrar = new DataSet();
@@ -98,6 +97,31 @@ namespace ELSA2020.Models
 
             string num = "";
             return num;
+        }
+
+        public bool ComprobarNombreUsuario(string usuario)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["bdConn"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connStr);
+            String sqlSelect = "sp_comprobarUsuario";
+            SqlDataAdapter sqlDataAdapterClient = new SqlDataAdapter();
+            sqlDataAdapterClient.SelectCommand = new SqlCommand();
+            sqlDataAdapterClient.SelectCommand.CommandText = sqlSelect;
+            sqlDataAdapterClient.SelectCommand.Connection = connection;
+            sqlDataAdapterClient.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlDataAdapterClient.SelectCommand.Parameters.Add(new SqlParameter("@usuario", usuario));
+            DataSet dataSetUsuario = new DataSet();
+            sqlDataAdapterClient.Fill(dataSetUsuario, "bdELSA.Usuario");
+            sqlDataAdapterClient.SelectCommand.Connection.Close();
+            DataRowCollection dataRowCollection = dataSetUsuario.Tables["bdELSA.Usuario"].Rows;
+
+            bool inicio = false;
+
+            foreach (DataRow currentRow in dataRowCollection)
+            {
+                inicio = true;
+            }//Fin del foreach.
+            return inicio;
         }
 
     }
