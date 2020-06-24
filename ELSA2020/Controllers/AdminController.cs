@@ -348,6 +348,32 @@ namespace ELSA2020.Controllers
                 return RedirectToAction("LogIn");
             }
         }
+
+        public ActionResult RegistrarUsuario()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult RegistrarNuevoUsuario(string nombre, string apellidos, string nombreUsuario, string contrasenna)
+        {
+            Models.Usuario usuario = new Models.Usuario();
+            string respuesta = "";
+            if (usuario.ComprobarNombreUsuario(nombreUsuario))
+            {
+                respuesta = "No";
+            }
+            else
+            {
+                usuario.Nombre1 = nombre;
+                usuario.Apellidos1 = apellidos;
+                usuario.Usuario11 = nombreUsuario;
+                usuario.Contrasenia1 = contrasenna;
+                usuario.IdHotel1 = 1;
+                respuesta = usuario.RegistrarUsuario(usuario);
+            }
+            return Json(respuesta);
+        }
     }
 
 }
