@@ -690,6 +690,7 @@
     <Content Include="phozogy\__MACOSX\phozogy\js\._main.js" />
     <Content Include="phozogy\__MACOSX\phozogy\js\._masonry.pkgd.min.js" />
     <Content Include="phozogy\__MACOSX\phozogy\js\._owl.carousel.min.js" />
+    <Content Include="Scripts\Admin.js" />
     <Content Include="Scripts\AdministrarSobreNosotros.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\buttons.html5.min.js" />
