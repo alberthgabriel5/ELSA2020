@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Registrar Usuario";
-    Layout = "~/Views/Shared/_LayoutInicio.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <body>
@@ -9,7 +9,7 @@
             <h2>@ViewBag.Title</h2>
         </div>
         <div class="container" style="text-align: center; margin-top: 5em;">
-            <form action="/Admin/LogIn" method="post">
+            <form>
                 <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-12">
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
@@ -35,15 +35,10 @@
                         <label for="contrasenna">Contraseña</label>
                         <input id="contrasenna" name="contrasenna" class="form-control" type="password" placeholder="Contraseña" required>
                     </div>
-                    <div class="form-group">
-                        <label for="tipo">Tipo</label>
-                        <input id="tipo" name="tipo" class="form-control" type="text" placeholder="Tipo" required>
-                    </div>
                     <div>
-                        <button type="submit" class="btn btn-primary mb-2">Aceptar</button>
-                        <button type="button" class="btn btn-secondary  mb-2" onclick="location.href='@Url.Action("Index", "Home")'">Cancelar</button>
-
+                        <button type="button" class="btn btn-primary  mb-2" onclick="Registrarse()">Registrar Usuario</button>
                     </div>
+                    <div><a id="mensaje"></a></div>
                     <div class="form-group">
                         <a>@ViewBag.data</a>
                     </div>
