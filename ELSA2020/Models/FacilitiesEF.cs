@@ -22,5 +22,24 @@ namespace ELSA2020.Models
                 return context.Sp_getFacilitiesInfo().ToList();
             }
         }
+
+        public int ActualizaTextoPaginaFacilidades(int id, string texto)
+        {
+            int resultToReturn = 0;
+            using (var context = new entityFramework())
+            {
+                resultToReturn = context.SP_ActualizaTextoFacilidades(id, texto);
+            }
+
+            return resultToReturn;
+        }
+
+        public obtenerDescripcionFacilidad_Result1 obtenerDescripcionFacilidad(int id)
+        {
+            using (var context = new entityFramework())
+            {
+                return context.obtenerDescripcionFacilidad(id).Single();
+            }
+        }
     }
 }

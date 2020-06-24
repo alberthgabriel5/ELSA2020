@@ -22,6 +22,7 @@ namespace ELSA2020.Controllers
         EstadoHabitacionDATA estDATA = new EstadoHabitacionDATA();
         ListaNombreHabitacionesDATA lnhDATA = new ListaNombreHabitacionesDATA();
         DisponibilidadHabitacionDATA dhDATA = new DisponibilidadHabitacionDATA();
+        FacilitiesEF facilidadesDATA = new FacilitiesEF();
         public ActionResult estadoHabitacion()
         {
             //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
@@ -48,11 +49,24 @@ namespace ELSA2020.Controllers
             return Json(aboutUs.getPageAboutUs(), JsonRequestBehavior.AllowGet);
         }
 
-
         public JsonResult ActualizaTextoPaginaSobreNosotros(int id,string texto)
         {
             return Json(aboutUs.ActualizaTextoPaginaSobreNosotros(id,texto), JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult AdministrarPaginaFacilidades()
+        {
+            
+            ViewBag.ContenidoPagina = facilidadesDATA.getPageFacilities();
+            return View();
+        }
+
+        public JsonResult CargaTextoPaginaFacilidades(int id)
+        {
+            return Json(facilidadesDATA.obtenerDescripcionFacilidad(id), JsonRequestBehavior.AllowGet);
+        }
+
+
 
         public JsonResult ListaNombreHabitaciones()
         {

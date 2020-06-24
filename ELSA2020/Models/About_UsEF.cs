@@ -17,6 +17,14 @@ namespace ELSA2020.Models
             }
         }
 
+        public ContenidoTexto getPaginaFacilidades()
+        {
+            using (var context = new entityFramework())
+            {
+                return context.sp_getDataFacilitiesPageContent().Single();
+            }
+        }
+
 
         public int ActualizaTextoPaginaSobreNosotros(int id,string texto)
         {
