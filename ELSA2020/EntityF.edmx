@@ -1066,7 +1066,7 @@
             <Parameter Name="texto" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="obtenerDescripcionFacilidad" ReturnType="Collection(bdELSAModel.obtenerDescripcionFacilidad_Result1)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetDataAboutUsPage_Result">

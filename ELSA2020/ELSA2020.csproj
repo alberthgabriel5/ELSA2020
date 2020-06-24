@@ -208,6 +208,12 @@
     <Compile Include="Models\TipoHabitacion.cs" />
     <Compile Include="Models\T_HabitacionDTO.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="obtenerDescripcionFacilidad_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="obtenerDescripcionFacilidad_Result1.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Pagina.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
@@ -228,6 +234,9 @@
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_getDataFacilitiesPageContent_Result.cs">
+      <DependentUpon>EntityF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getDatosPaginaFacilidades_Result.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="Sp_getFacilitiesInfo_Result.cs">
