@@ -11,16 +11,24 @@
 
 <label id="msjExito" class="mensajeExito"></label>
 
-<div class="col-md-12">
-    <h2>Valor Actual</h2>
-    <p style=" text-align: justify" id="textoSobreNosotros">@ViewBag.valorTexto</p>
-
+<div class="card">
+    <div class="card-header">
+        Valor Actual
+    </div>
+    <div class="card-body">
+        <p style=" text-align: justify" id="textoSobreNosotros">@ViewBag.valorTexto</p>
+    </div>
 </div>
+<br />
+<br />
 
-<div class="col-md-12">
-    <h2>Valor Nuevo</h2>
-    <textarea class="form-control" id="textAreaNuevaDescripcion" rows="4"></textarea><br />
-    <button class="btn btn-success" id="btnGuardarSobreNosotros" onclick="cambiarTextoSobreNosotros('@ViewBag.idPaginaSobreNosotros')">Aceptar</button>
-
-    <button class="btn btn-danger" id="btnCancelarSobreNosotros" onclick="(desecharCambios())">Cancelar</button>
+<div class="card">
+    <div class="card-header">
+        Valor Nuevo
+    </div>
+    <div class="card-body">
+        <textarea class="form-control" id="textAreaNuevaDescripcion" rows="4"></textarea><br />
+        <button class="btn btn-success" id="btnGuardarSobreNosotros" onclick="cambiarTextoSobreNosotros('@ViewBag.idPaginaSobreNosotros')">Aceptar</button>
+        <button class="btn btn-danger" id="btnCancelarSobreNosotros" onclick="(desecharCambios())">Cancelar</button>
+    </div>
 </div>

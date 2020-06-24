@@ -10,8 +10,8 @@ namespace ELSA2020
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.min.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            //          "~/Scripts/bootstrap.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryslicknav").Include(
                        "~/Scripts/jquery.slicknav.js"));
@@ -35,7 +35,9 @@ namespace ELSA2020
                         "~/Scripts/estadoHabitacion.js",
                         "~/Scripts/AdministrarSobreNosotros.js",
                         "~/Scripts/EstadoHabitaciones.js",
-                       "~/Scripts/modificacionDePaginas.js"));
+                       "~/Scripts/modificacionDePaginas.js",
+                       "~/Scripts/AdministrarFacilidades.js",
+                       "~/Scripts/toastr.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/map").Include(
                       "~/Content/style.css.map"));
@@ -73,7 +75,8 @@ namespace ELSA2020
                       "~/Content/magnific-popup.css",
                       "~/Content/slicknav.min.css",
                       "~/Content/style.css",
-                      "~/Content/AdministrarSobreNosotros.css"));
+                      "~/Content/AdministrarSobreNosotros.css",
+                      "~/Content/toastr.css"));
         }
     }
 }

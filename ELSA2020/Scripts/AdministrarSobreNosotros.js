@@ -65,20 +65,28 @@ function cambiarTextoSobreNosotros(id) {
             $('#textAreaNuevaDescripcion').val('');
             $('#btnGuardarSobreNosotros').attr("disabled", true);
             $('#btnCancelarSobreNosotros').attr("disabled", true);
-            setTimeout(function () {
-                $('#msjExito').html('Cambio Realizado');
-                $('#msjExito').fadeIn(2500);
-            }, 1000);
-            setTimeout(function () {
-                $('#msjExito').fadeOut(2500);
-                
-            }, 1000);
+            toastr.success("Actualizado");
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+           
             setTimeout(function () {
                 window.location.href = "/Admin/Index";
-            }, 4000);
-            $("#msjExito").val('');
-            
-
+            }, 2000);
         }
     });
 }

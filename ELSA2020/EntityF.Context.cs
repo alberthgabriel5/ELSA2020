@@ -330,5 +330,27 @@ namespace ELSA2020
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ActualizaTextoSobreNosotros", idParameter, textoParameter);
         }
+    
+        public virtual int SP_ActualizaTextoFacilidades(Nullable<int> id, string texto)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var textoParameter = texto != null ?
+                new ObjectParameter("texto", texto) :
+                new ObjectParameter("texto", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ActualizaTextoFacilidades", idParameter, textoParameter);
+        }
+    
+        public virtual ObjectResult<obtenerDescripcionFacilidad_Result1> obtenerDescripcionFacilidad(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<obtenerDescripcionFacilidad_Result1>("obtenerDescripcionFacilidad", idParameter);
+        }
     }
 }

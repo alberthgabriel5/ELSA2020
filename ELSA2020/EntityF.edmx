@@ -386,6 +386,13 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="obtenerDescripcionFacilidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_ActualizaTextoFacilidades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="texto" Type="varchar(max)" Mode="In" />
+        </Function>
         <Function Name="SP_ActualizaTextoSobreNosotros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="texto" Type="varchar(max)" Mode="In" />
@@ -1054,6 +1061,13 @@
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="texto" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_ActualizaTextoFacilidades">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="texto" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="obtenerDescripcionFacilidad" ReturnType="Collection(bdELSAModel.obtenerDescripcionFacilidad_Result1)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetDataAboutUsPage_Result">
           <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
@@ -1196,6 +1210,28 @@
           <Property Type="Int32" Name="numero" Nullable="false" />
           <Property Type="Int32" Name="estado" Nullable="true" />
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_getDatosPaginaFacilidades_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="valorTexto" Nullable="true" />
+          <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fechaActualizacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="idioma" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="idHotel" Nullable="true" />
+          <Property Type="Int32" Name="idPagina" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="obtenerDescripcionFacilidad_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="descripcionEsp" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="obtenerDescripcionFacilidad_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Binary" Name="Imagen" Nullable="true" />
+          <Property Type="String" Name="descripcionEsp" Nullable="true" />
+          <Property Type="String" Name="descripcionEn" Nullable="true" />
+          <Property Type="Int32" Name="idHotel" Nullable="true" />
+          <Property Type="String" Name="ImgSrc" Nullable="true" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1502,6 +1538,19 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_ActualizaTextoSobreNosotros" FunctionName="bdELSAModel.Store.SP_ActualizaTextoSobreNosotros" />
+          <FunctionImportMapping FunctionImportName="SP_ActualizaTextoFacilidades" FunctionName="bdELSAModel.Store.SP_ActualizaTextoFacilidades" />
+          <FunctionImportMapping FunctionImportName="obtenerDescripcionFacilidad" FunctionName="bdELSAModel.Store.obtenerDescripcionFacilidad">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bdELSAModel.obtenerDescripcionFacilidad_Result1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="descripcionEsp" ColumnName="descripcionEsp" />
+                <ScalarProperty Name="descripcionEn" ColumnName="descripcionEn" />
+                <ScalarProperty Name="idHotel" ColumnName="idHotel" />
+                <ScalarProperty Name="ImgSrc" ColumnName="ImgSrc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

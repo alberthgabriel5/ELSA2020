@@ -22,6 +22,7 @@ namespace ELSA2020.Controllers
         EstadoHabitacionDATA estDATA = new EstadoHabitacionDATA();
         ListaNombreHabitacionesDATA lnhDATA = new ListaNombreHabitacionesDATA();
         DisponibilidadHabitacionDATA dhDATA = new DisponibilidadHabitacionDATA();
+        FacilitiesEF facilidadesDATA = new FacilitiesEF();
         public ActionResult estadoHabitacion()
         {
             //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
@@ -48,11 +49,24 @@ namespace ELSA2020.Controllers
             return Json(aboutUs.getPageAboutUs(), JsonRequestBehavior.AllowGet);
         }
 
-
         public JsonResult ActualizaTextoPaginaSobreNosotros(int id,string texto)
         {
             return Json(aboutUs.ActualizaTextoPaginaSobreNosotros(id,texto), JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult AdministrarPaginaFacilidades()
+        {
+            
+            ViewBag.ContenidoPagina = facilidadesDATA.getPageFacilities();
+            return View();
+        }
+
+        public JsonResult CargaTextoPaginaFacilidades(int id)
+        {
+            return Json(facilidadesDATA.obtenerDescripcionFacilidad(id), JsonRequestBehavior.AllowGet);
+        }
+
+
 
         public JsonResult ListaNombreHabitaciones()
         {
@@ -347,6 +361,32 @@ namespace ELSA2020.Controllers
             {
                 return RedirectToAction("LogIn");
             }
+        }
+
+        public ActionResult RegistrarUsuario()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult RegistrarNuevoUsuario(string nombre, string apellidos, string nombreUsuario, string contrasenna)
+        {
+            Models.Usuario usuario = new Models.Usuario();
+            string respuesta = "";
+            if (usuario.ComprobarNombreUsuario(nombreUsuario))
+            {
+                respuesta = "No";
+            }
+            else
+            {
+                usuario.Nombre1 = nombre;
+                usuario.Apellidos1 = apellidos;
+                usuario.Usuario11 = nombreUsuario;
+                usuario.Contrasenia1 = contrasenna;
+                usuario.IdHotel1 = 1;
+                respuesta = usuario.RegistrarUsuario(usuario);
+            }
+            return Json(respuesta);
         }
     }
 
