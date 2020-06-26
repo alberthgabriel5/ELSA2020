@@ -15,7 +15,7 @@ namespace ELSA2020.Controllers
         {
 
             ViewBag.infoHotel ="HOla";
-
+            ViewBag.mensaje = "";
             return View();
         }
 
@@ -47,6 +47,11 @@ namespace ELSA2020.Controllers
         public ActionResult ReservaEnLinea(DateTime fechaEntrada, DateTime fechaSalida, string tipoHabitacion)
         {
 
+            if (tipoHabitacion.CompareTo("1") !=0 && tipoHabitacion.CompareTo("2") != 0)
+            {
+                ViewBag.mensaje = "Seleccione un Tipo de Habitacion";
+                return View("ReservaEnLinea");
+            }
             TipoHabitacion tipoHab = new TipoHabitacion();
             Models.Reservacion reservar = new Models.Reservacion();
             String[] fe = (fechaEntrada.ToString()).Split(' ');
