@@ -11,10 +11,12 @@ namespace ELSA2020
 {
     using System;
     
-    public partial class sp_obtenerTemporadaIntervalo_Result
+    public partial class estadoH_Result
     {
-        public int id { get; set; }
+        public int numero { get; set; }
         public string nombre { get; set; }
-        public double variacionPrecio { get; set; }
+        public System.DateTime fechaEntrada { get; set; }
+        public System.DateTime fechaSalida { get; set; }
+        public string Estado { get; set; }
     }
 }

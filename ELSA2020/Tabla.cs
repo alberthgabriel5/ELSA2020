@@ -10,11 +10,15 @@
 namespace ELSA2020
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_obtenerTemporadaIntervalo_Result
+    public partial class Tabla
     {
         public int id { get; set; }
+        public Nullable<int> numero { get; set; }
         public string nombre { get; set; }
-        public double variacionPrecio { get; set; }
+        public Nullable<System.DateTime> fechaEntrada { get; set; }
+        public Nullable<System.DateTime> fechaSalida { get; set; }
+        public string Estado { get; set; }
     }
 }
