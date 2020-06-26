@@ -238,6 +238,19 @@ namespace ELSA2020.Controllers
                 return RedirectToAction("LogIn");
             }
         }
+        public ActionResult ActualizarLocation()
+        {
+            if (Session["UserID"] != null)
+            {
+                
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
+        }
+
 
         [HttpPost]
         public JsonResult actualizarHomePaginna(HttpPostedFileBase imagen, String imagenNombre, String estado, String descripcion)

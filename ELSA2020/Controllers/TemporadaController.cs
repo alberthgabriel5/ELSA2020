@@ -17,7 +17,7 @@ namespace ELSA2020.Controllers
         // GET: Temporada
         public ActionResult Index()
         {
-            return View(db.temporada.ToList());
+            return View(db.Temporada.ToList());
         }
 
         // GET: Temporada/Details/5
@@ -27,7 +27,7 @@ namespace ELSA2020.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            temporada temporada = db.temporada.Find(id);
+            Temporada temporada = db.Temporada.Find(id);
             if (temporada == null)
             {
                 return HttpNotFound();
@@ -46,11 +46,11 @@ namespace ELSA2020.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre,fechaInicio,fechaFinal,variacionPrecio")] temporada temporada)
+        public ActionResult Create([Bind(Include = "id,nombre,fechaInicio,fechaFinal,variacionPrecio")] Temporada temporada)
         {
             if (ModelState.IsValid)
             {
-                db.temporada.Add(temporada);
+                db.Temporada.Add(temporada);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace ELSA2020.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            temporada temporada = db.temporada.Find(id);
+            Temporada temporada = db.Temporada.Find(id);
             if (temporada == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace ELSA2020.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,fechaInicio,fechaFinal,variacionPrecio")] temporada temporada)
+        public ActionResult Edit([Bind(Include = "id,nombre,fechaInicio,fechaFinal,variacionPrecio")] Temporada temporada)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace ELSA2020.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            temporada temporada = db.temporada.Find(id);
+            Temporada temporada = db.Temporada.Find(id);
             if (temporada == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace ELSA2020.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            temporada temporada = db.temporada.Find(id);
-            db.temporada.Remove(temporada);
+            Temporada temporada = db.Temporada.Find(id);
+            db.Temporada.Remove(temporada);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

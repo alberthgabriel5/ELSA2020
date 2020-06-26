@@ -11,13 +11,26 @@ namespace ELSA2020
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class temporada
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class Temporada
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Temporada()
+        {
+            this.Reservacion = new HashSet<Reservacion>();
+        }
+    
         public int id { get; set; }
+        
+        [Required]
+        [MinLength(6)]
         public string nombre { get; set; }
-        public Nullable<System.DateTime> fechaInicio { get; set; }
-        public Nullable<System.DateTime> fechaFinal { get; set; }
+        public System.DateTime fechaInicio { get; set; }
+        public System.DateTime fechaFinal { get; set; }
         public double variacionPrecio { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reservacion> Reservacion { get; set; }
     }
 }

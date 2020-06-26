@@ -1,14 +1,13 @@
-﻿@model IEnumerable<ELSA2020.temporada>
+﻿@model IEnumerable<ELSA2020.Temporada>
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Administrar Temporadas</h2>
+<h2>Lista de Temporadas</h2>
 
 <p>
-    @Html.ActionLink("Crear Nueva", "Create")
+    @Html.ActionLink("Nueva", "Create")
 </p>
 <table class="table">
     <tr>

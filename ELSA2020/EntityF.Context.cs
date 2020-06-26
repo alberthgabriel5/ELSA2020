@@ -40,8 +40,8 @@ namespace ELSA2020
         public virtual DbSet<tipoHabitacion> tipoHabitacion { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Reservacion> Reservacion { get; set; }
-        public virtual DbSet<temporada> temporada { get; set; }
         public virtual DbSet<Tabla> Tabla { get; set; }
+        public virtual DbSet<Temporada> Temporada { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

@@ -29,6 +29,6 @@ namespace ELSA2020
     
         public virtual Cliente Cliente { get; set; }
         public virtual habitacion habitacion { get; set; }
-        public virtual temporada temporada { get; set; }
+        public virtual Temporada Temporada { get; set; }
     }
 }
