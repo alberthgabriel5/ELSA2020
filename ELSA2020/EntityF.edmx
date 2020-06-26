@@ -92,15 +92,6 @@
           <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="imagen" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="Mobiliario">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="numeroSerie" Type="varchar" MaxLength="50" />
-          <Property Name="tipo" Type="varchar" MaxLength="50" />
-          <Property Name="idHabitacion" Type="int" />
-        </EntityType>
         <EntityType Name="Pagina">
           <Key>
             <PropertyRef Name="id" />
@@ -108,18 +99,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="NombreMostrar" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="ReporteDaño">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idCliente" Type="int" Nullable="false" />
-          <Property Name="idHabitacion" Type="int" Nullable="false" />
-          <Property Name="idMobiliario" Type="int" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="fechaCreacion" Type="datetime" Nullable="false" />
-          <Property Name="estado" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Reservacion">
           <Key>
@@ -147,6 +126,17 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tabla">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numero" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="fechaEntrada" Type="date" />
+          <Property Name="fechaSalida" Type="date" />
+          <Property Name="Estado" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="temporada">
           <Key>
@@ -325,54 +315,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Mobiliario_Habitacion">
-          <End Role="habitacion" Type="Self.habitacion" Multiplicity="0..1" />
-          <End Role="Mobiliario" Type="Self.Mobiliario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="habitacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Mobiliario">
-              <PropertyRef Name="idHabitacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReporteDaño_Cliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="ReporteDaño" Type="Self.ReporteDaño" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ReporteDaño">
-              <PropertyRef Name="idCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReporteDaño_Habitacion">
-          <End Role="habitacion" Type="Self.habitacion" Multiplicity="1" />
-          <End Role="ReporteDaño" Type="Self.ReporteDaño" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="habitacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ReporteDaño">
-              <PropertyRef Name="idHabitacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReporteDaño_Mobiliario">
-          <End Role="Mobiliario" Type="Self.Mobiliario" Multiplicity="0..1" />
-          <End Role="ReporteDaño" Type="Self.ReporteDaño" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mobiliario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ReporteDaño">
-              <PropertyRef Name="idMobiliario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Usuario_Hotel">
           <End Role="hotel" Type="Self.hotel" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -385,6 +327,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="estadoH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="obtenerDescripcionFacilidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -440,7 +383,7 @@
         <Function Name="sp_obtenerHotel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_obtenerTemporada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_obtenerTemporadaIntervalo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+          <Parameter Name="fechaInicio" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_obtenerTiposDeHabitacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_registrarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -475,11 +418,10 @@
           <EntitySet Name="Facilidades" EntityType="Self.Facilidades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="habitacion" EntityType="Self.habitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="hotel" EntityType="Self.hotel" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Mobiliario" EntityType="Self.Mobiliario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pagina" EntityType="Self.Pagina" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ReporteDaño" EntityType="Self.ReporteDaño" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservacion" EntityType="Self.Reservacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabla" EntityType="Self.Tabla" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="temporada" EntityType="Self.temporada" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipoHabitacion" EntityType="Self.tipoHabitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
@@ -531,22 +473,6 @@
             <End Role="tipoHabitacion" EntitySet="tipoHabitacion" />
             <End Role="habitacion" EntitySet="habitacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mobiliario_Habitacion" Association="Self.FK_Mobiliario_Habitacion">
-            <End Role="habitacion" EntitySet="habitacion" />
-            <End Role="Mobiliario" EntitySet="Mobiliario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReporteDaño_Cliente" Association="Self.FK_ReporteDaño_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="ReporteDaño" EntitySet="ReporteDaño" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReporteDaño_Habitacion" Association="Self.FK_ReporteDaño_Habitacion">
-            <End Role="habitacion" EntitySet="habitacion" />
-            <End Role="ReporteDaño" EntitySet="ReporteDaño" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReporteDaño_Mobiliario" Association="Self.FK_ReporteDaño_Mobiliario">
-            <End Role="Mobiliario" EntitySet="Mobiliario" />
-            <End Role="ReporteDaño" EntitySet="ReporteDaño" />
-          </AssociationSet>
           <AssociationSet Name="FK_Usuario_Hotel" Association="Self.FK_Usuario_Hotel">
             <End Role="hotel" EntitySet="hotel" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -589,7 +515,6 @@
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="paisOrigen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="ReporteDaño" Relationship="Self.FK_ReporteDaño_Cliente" FromRole="Cliente" ToRole="ReporteDaño" />
         </EntityType>
         <EntityType Name="ContenidoImagen">
           <Key>
@@ -644,8 +569,6 @@
           <Property Name="estado" Type="Int32" />
           <NavigationProperty Name="hotel" Relationship="Self.FK_habitacion_hotel" FromRole="habitacion" ToRole="hotel" />
           <NavigationProperty Name="tipoHabitacion" Relationship="Self.FK_habitacion_tipoHabitacion1" FromRole="habitacion" ToRole="tipoHabitacion" />
-          <NavigationProperty Name="Mobiliario" Relationship="Self.FK_Mobiliario_Habitacion" FromRole="habitacion" ToRole="Mobiliario" />
-          <NavigationProperty Name="ReporteDaño" Relationship="Self.FK_ReporteDaño_Habitacion" FromRole="habitacion" ToRole="ReporteDaño" />
           <NavigationProperty Name="Reservacion" Relationship="bdELSAModel.FK__Reservaci__idHab__7A672E12" FromRole="habitacion" ToRole="Reservacion" />
         </EntityType>
         <EntityType Name="hotel">
@@ -662,17 +585,6 @@
           <NavigationProperty Name="habitacion" Relationship="Self.FK_habitacion_hotel" FromRole="hotel" ToRole="habitacion" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Hotel" FromRole="hotel" ToRole="Usuario" />
         </EntityType>
-        <EntityType Name="Mobiliario">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="numeroSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idHabitacion" Type="Int32" />
-          <NavigationProperty Name="habitacion" Relationship="Self.FK_Mobiliario_Habitacion" FromRole="Mobiliario" ToRole="habitacion" />
-          <NavigationProperty Name="ReporteDaño" Relationship="Self.FK_ReporteDaño_Mobiliario" FromRole="Mobiliario" ToRole="ReporteDaño" />
-        </EntityType>
         <EntityType Name="Pagina">
           <Key>
             <PropertyRef Name="id" />
@@ -682,21 +594,6 @@
           <Property Name="NombreMostrar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ContenidoImagen" Relationship="Self.FK_ContenidoImagen_Pagina" FromRole="Pagina" ToRole="ContenidoImagen" />
           <NavigationProperty Name="ContenidoTexto" Relationship="Self.FK_ContenidoTexto_Pagina" FromRole="Pagina" ToRole="ContenidoTexto" />
-        </EntityType>
-        <EntityType Name="ReporteDaño">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idCliente" Type="Int32" Nullable="false" />
-          <Property Name="idHabitacion" Type="Int32" Nullable="false" />
-          <Property Name="idMobiliario" Type="Int32" />
-          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_ReporteDaño_Cliente" FromRole="ReporteDaño" ToRole="Cliente" />
-          <NavigationProperty Name="habitacion" Relationship="Self.FK_ReporteDaño_Habitacion" FromRole="ReporteDaño" ToRole="habitacion" />
-          <NavigationProperty Name="Mobiliario" Relationship="Self.FK_ReporteDaño_Mobiliario" FromRole="ReporteDaño" ToRole="Mobiliario" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -755,18 +652,6 @@
             </Principal>
             <Dependent Role="caracteristicaHabitacion">
               <PropertyRef Name="idTipoHabitacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReporteDaño_Cliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="ReporteDaño" Type="Self.ReporteDaño" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ReporteDaño">
-              <PropertyRef Name="idCliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -854,30 +739,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Mobiliario_Habitacion">
-          <End Role="habitacion" Type="Self.habitacion" Multiplicity="0..1" />
-          <End Role="Mobiliario" Type="Self.Mobiliario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="habitacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Mobiliario">
-              <PropertyRef Name="idHabitacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReporteDaño_Habitacion">
-          <End Role="habitacion" Type="Self.habitacion" Multiplicity="1" />
-          <End Role="ReporteDaño" Type="Self.ReporteDaño" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="habitacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ReporteDaño">
-              <PropertyRef Name="idHabitacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Usuario_Hotel">
           <End Role="hotel" Type="Self.hotel" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -890,18 +751,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReporteDaño_Mobiliario">
-          <End Role="Mobiliario" Type="Self.Mobiliario" Multiplicity="0..1" />
-          <End Role="ReporteDaño" Type="Self.ReporteDaño" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mobiliario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ReporteDaño">
-              <PropertyRef Name="idMobiliario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="entityFramework" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="caracteristica" EntityType="Self.caracteristica" />
           <EntitySet Name="caracteristicaHabitacion" EntityType="Self.caracteristicaHabitacion" />
@@ -911,9 +760,7 @@
           <EntitySet Name="Facilidades" EntityType="Self.Facilidades" />
           <EntitySet Name="habitacion" EntityType="Self.habitacion" />
           <EntitySet Name="hotel" EntityType="Self.hotel" />
-          <EntitySet Name="Mobiliario" EntityType="Self.Mobiliario" />
           <EntitySet Name="Pagina" EntityType="Self.Pagina" />
-          <EntitySet Name="ReporteDaño" EntityType="Self.ReporteDaño" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tipoHabitacion" EntityType="Self.tipoHabitacion" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
@@ -924,10 +771,6 @@
           <AssociationSet Name="FK_caracteristicaHabiatacion_tipoHabitacion" Association="Self.FK_caracteristicaHabiatacion_tipoHabitacion">
             <End Role="tipoHabitacion" EntitySet="tipoHabitacion" />
             <End Role="caracteristicaHabitacion" EntitySet="caracteristicaHabitacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReporteDaño_Cliente" Association="Self.FK_ReporteDaño_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="ReporteDaño" EntitySet="ReporteDaño" />
           </AssociationSet>
           <AssociationSet Name="FK_ContenidoImagen_hotel" Association="Self.FK_ContenidoImagen_hotel">
             <End Role="hotel" EntitySet="hotel" />
@@ -957,21 +800,9 @@
             <End Role="tipoHabitacion" EntitySet="tipoHabitacion" />
             <End Role="habitacion" EntitySet="habitacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mobiliario_Habitacion" Association="Self.FK_Mobiliario_Habitacion">
-            <End Role="habitacion" EntitySet="habitacion" />
-            <End Role="Mobiliario" EntitySet="Mobiliario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReporteDaño_Habitacion" Association="Self.FK_ReporteDaño_Habitacion">
-            <End Role="habitacion" EntitySet="habitacion" />
-            <End Role="ReporteDaño" EntitySet="ReporteDaño" />
-          </AssociationSet>
           <AssociationSet Name="FK_Usuario_Hotel" Association="Self.FK_Usuario_Hotel">
             <End Role="hotel" EntitySet="hotel" />
             <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReporteDaño_Mobiliario" Association="Self.FK_ReporteDaño_Mobiliario">
-            <End Role="Mobiliario" EntitySet="Mobiliario" />
-            <End Role="ReporteDaño" EntitySet="ReporteDaño" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1023,7 +854,7 @@
           <Parameter Name="numeroReserva" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_obtenerTemporadaIntervalo" ReturnType="Collection(bdELSAModel.sp_obtenerTemporadaIntervalo_Result)">
-          <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+          <Parameter Name="fechaInicio" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_registrarCliente" ReturnType="Collection(Int32)">
             <Parameter Name="nombre" Mode="In" Type="String" />
@@ -1068,6 +899,8 @@
           <FunctionImport Name="obtenerDescripcionFacilidad" ReturnType="Collection(bdELSAModel.obtenerDescripcionFacilidad_Result1)">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Tabla" EntityType="bdELSAModel.Tabla" />
+          <FunctionImport Name="estadoH" ReturnType="Collection(bdELSAModel.estadoH_Result)" />
         </EntityContainer>
         <ComplexType Name="GetDataAboutUsPage_Result">
           <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
@@ -1233,6 +1066,24 @@
           <Property Type="Int32" Name="idHotel" Nullable="true" />
           <Property Type="String" Name="ImgSrc" Nullable="true" MaxLength="255" />
         </ComplexType>
+        <EntityType Name="Tabla">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaEntrada" Type="DateTime" Precision="0" />
+          <Property Name="fechaSalida" Type="DateTime" Precision="0" />
+          <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="estadoH_Result">
+          <Property Type="Int32" Name="numero" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="fechaEntrada" Nullable="false" />
+          <Property Type="DateTime" Name="fechaSalida" Nullable="false" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="1" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1334,35 +1185,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Mobiliario">
-            <EntityTypeMapping TypeName="bdELSAModel.Mobiliario">
-              <MappingFragment StoreEntitySet="Mobiliario">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="numeroSerie" ColumnName="numeroSerie" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="idHabitacion" ColumnName="idHabitacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Pagina">
             <EntityTypeMapping TypeName="bdELSAModel.Pagina">
               <MappingFragment StoreEntitySet="Pagina">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="NombreMostrar" ColumnName="NombreMostrar" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReporteDaño">
-            <EntityTypeMapping TypeName="bdELSAModel.ReporteDaño">
-              <MappingFragment StoreEntitySet="ReporteDaño">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-                <ScalarProperty Name="idHabitacion" ColumnName="idHabitacion" />
-                <ScalarProperty Name="idMobiliario" ColumnName="idMobiliario" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1548,6 +1376,29 @@
                 <ScalarProperty Name="descripcionEn" ColumnName="descripcionEn" />
                 <ScalarProperty Name="idHotel" ColumnName="idHotel" />
                 <ScalarProperty Name="ImgSrc" ColumnName="ImgSrc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Tabla">
+            <EntityTypeMapping TypeName="bdELSAModel.Tabla">
+              <MappingFragment StoreEntitySet="Tabla">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
+                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="estadoH" FunctionName="bdELSAModel.Store.estadoH">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bdELSAModel.estadoH_Result">
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
+                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

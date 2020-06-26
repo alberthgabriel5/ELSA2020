@@ -13,15 +13,11 @@
         <EntityTypeShape EntityType="bdELSAModel.Facilidades" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="bdELSAModel.habitacion" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="bdELSAModel.hotel" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="bdELSAModel.Mobiliario" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bdELSAModel.Pagina" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="bdELSAModel.ReporteDaño" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="bdELSAModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bdELSAModel.tipoHabitacion" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="bdELSAModel.Usuario" Width="1.5" PointX="3" PointY="24.125" IsExpanded="true" />
         <AssociationConnector Association="bdELSAModel.FK_caracteristicaHabiatacion_caracteristica" ManuallyRouted="false" />
         <AssociationConnector Association="bdELSAModel.FK_caracteristicaHabiatacion_tipoHabitacion" ManuallyRouted="false" />
-        <AssociationConnector Association="bdELSAModel.FK_ReporteDaño_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="bdELSAModel.FK_ContenidoImagen_hotel" ManuallyRouted="false" />
         <AssociationConnector Association="bdELSAModel.FK_ContenidoImagen_Pagina" ManuallyRouted="false" />
         <AssociationConnector Association="bdELSAModel.FK_ContenidoTexto_hotel" ManuallyRouted="false" />
@@ -29,15 +25,13 @@
         <AssociationConnector Association="bdELSAModel.FK_Facilidades_Hotel" ManuallyRouted="false" />
         <AssociationConnector Association="bdELSAModel.FK_habitacion_hotel" ManuallyRouted="false" />
         <AssociationConnector Association="bdELSAModel.FK_habitacion_tipoHabitacion1" ManuallyRouted="false" />
-        <AssociationConnector Association="bdELSAModel.FK_Mobiliario_Habitacion" ManuallyRouted="false" />
-        <AssociationConnector Association="bdELSAModel.FK_ReporteDaño_Habitacion" ManuallyRouted="false" />
         <AssociationConnector Association="bdELSAModel.FK_Usuario_Hotel" ManuallyRouted="false" />
-        <AssociationConnector Association="bdELSAModel.FK_ReporteDaño_Mobiliario" ManuallyRouted="false" />
         <EntityTypeShape EntityType="bdELSAModel.Reservacion" Width="1.5" PointX="5.25" PointY="2.625" />
         <EntityTypeShape EntityType="bdELSAModel.temporada" Width="1.5" PointX="3" PointY="20.5" />
         <AssociationConnector Association="bdELSAModel.FK__Reservaci__idCli__797309D9" />
         <AssociationConnector Association="bdELSAModel.FK__Reservaci__idHab__7A672E12" />
         <AssociationConnector Association="bdELSAModel.FK__Reservaci__idTem__7B5B524B" />
+        <EntityTypeShape EntityType="bdELSAModel.Tabla" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
