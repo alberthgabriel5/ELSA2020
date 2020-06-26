@@ -9,6 +9,8 @@ namespace ELSA2020.Controllers
     {
         public About_UsEF aboutUs = new About_UsEF();
         public Contact contact = new Contact();
+        public Location location = new Location();
+        public Pagina pagina = new Pagina();
         public ActionResult Index()
         {
             ViewBag.NombreUnico = "Hotel de Montaña y Naturaleza";
@@ -16,7 +18,7 @@ namespace ELSA2020.Controllers
             Hotel respuesta = hotel.obtenerHotel();
 
             var hotelrespuesta = respuesta;
-            
+
             ViewBag.infoHotel = hotelrespuesta;
 
             return View();
@@ -30,7 +32,7 @@ namespace ELSA2020.Controllers
             return View();
         }
 
-       
+
 
         public ActionResult Contact()
         {
@@ -38,8 +40,8 @@ namespace ELSA2020.Controllers
             ViewBag.NombreUnico = "Contactenos";
             ViewBag.valorTexto = this.contact.GetPageContact().ToList();
             ViewBag.Imagenes = this.contact.GetImagesContact().ToList();
-            
-            
+
+
             return View();
         }
         public ActionResult Ofert()
@@ -66,8 +68,10 @@ namespace ELSA2020.Controllers
         }
         public ActionResult Location()
         {
-            ViewBag.NombreUnico = "Como llegar";
-            ViewBag.Message = "Como llegar";
+            ViewBag.NombreUnico = "¿Cómo llegar?";
+            ViewBag.valorTexto = this.location.GetPageLocation().ToList();
+            ViewBag.Message = this.location.GetPageLocationText().ToList();
+
 
 
             return View();

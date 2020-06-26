@@ -15,7 +15,7 @@ namespace ELSA2020.Controllers
         {
 
             ViewBag.infoHotel ="HOla";
-
+            ViewBag.mensaje = "";
             return View();
         }
 
@@ -47,6 +47,11 @@ namespace ELSA2020.Controllers
         public ActionResult ReservaEnLinea(DateTime fechaEntrada, DateTime fechaSalida, string tipoHabitacion)
         {
 
+            if (tipoHabitacion.CompareTo("1") !=0 && tipoHabitacion.CompareTo("2") != 0)
+            {
+                ViewBag.mensaje = "Seleccione un Tipo de Habitacion";
+                return View("ReservaEnLinea");
+            }
             TipoHabitacion tipoHab = new TipoHabitacion();
             Models.Reservacion reservar = new Models.Reservacion();
             String[] fe = (fechaEntrada.ToString()).Split(' ');
@@ -65,14 +70,29 @@ namespace ELSA2020.Controllers
             {
                 float precioColones = float.Parse(tipoHab.PrecioColones1);
                 Temporada temp = new Temporada();
+                temp = temp.ObtenerTemporada(fe[0],fs[0]);
                 float variacion = temp.VariacionPrecio1;
-                float variacionColones = precioColones - (precioColones * variacion);
-                tipoHab.PrecioColones1 = variacionColones.ToString();
+                if (variacion != 0)
+                {
+                    float variacionColones = precioColones - (precioColones * variacion);
+                    tipoHab.PrecioColones1 = variacionColones.ToString();
 
-                tipoHab.FechaEntrada1 = fechaEntrada.ToString();
-                tipoHab.FechaSalida1 = fechaSalida.ToString();
-                ViewBag.infoReserva = tipoHab;
-                return View("ReservaPositiva");
+                    tipoHab.FechaEntrada1 = fechaEntrada.ToString();
+                    tipoHab.FechaSalida1 = fechaSalida.ToString();
+                    ViewBag.infoReserva = tipoHab;
+                    return View("ReservaPositiva");
+                }
+                else
+                {
+                    tipoHab.PrecioColones1 = precioColones.ToString();
+
+                    tipoHab.FechaEntrada1 = fechaEntrada.ToString();
+                    tipoHab.FechaSalida1 = fechaSalida.ToString();
+                    ViewBag.infoReserva = tipoHab;
+                    return View("ReservaPositiva");
+                }
+
+               
             }
         }
 
