@@ -70,11 +70,12 @@ namespace ELSA2020.Controllers
             {
                 float precioColones = float.Parse(tipoHab.PrecioColones1);
                 Temporada temp = new Temporada();
+
                 temp = temp.ObtenerTemporada(fe[0],fs[0]);
-                float variacion = temp.VariacionPrecio1;
+                double variacion = temp.variacionPrecio;
                 if (variacion != 0)
                 {
-                    float variacionColones = precioColones - (precioColones * variacion);
+                    double variacionColones = precioColones - (precioColones * variacion);
                     tipoHab.PrecioColones1 = variacionColones.ToString();
 
                     tipoHab.FechaEntrada1 = fechaEntrada.ToString();
@@ -93,6 +94,7 @@ namespace ELSA2020.Controllers
                 }
 
                
+
             }
         }
 
@@ -128,9 +130,9 @@ namespace ELSA2020.Controllers
             {
                 reservacion.Estado1 = "Pagado";
             }
-            Temporada temporada = new Temporada();
+            Models.Temporada temporada = new Models.Temporada();
             temporada = temporada.ObtenerTemporada(reservacion.FechaEntrada1, reservacion.FechaSalida1);
-            reservacion.IdTemporada1 = temporada.Id1;
+            reservacion.IdTemporada1 = temporada.Id;
             reservacion.NumeroReservacion1 = reservacion.generarNumeroReservacion(nombre);
             string[] numeros = reservacion.reservarHabitacion(reservacion);
             string numReserva = numeros[0];

@@ -7,7 +7,7 @@
       <Diagram DiagramId="73c8cfa684e144d0b4757be76c007b73" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="bdELSAModel.caracteristica" Width="1.5" PointX="5.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bdELSAModel.caracteristicaHabitacion" Width="1.5" PointX="8" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="bdELSAModel.Cliente" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdELSAModel.Cliente" Width="1.5" PointX="2.875" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="bdELSAModel.ContenidoImagen" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="bdELSAModel.ContenidoTexto" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="bdELSAModel.Facilidades" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
@@ -27,11 +27,11 @@
         <AssociationConnector Association="bdELSAModel.FK_habitacion_tipoHabitacion1" ManuallyRouted="false" />
         <AssociationConnector Association="bdELSAModel.FK_Usuario_Hotel" ManuallyRouted="false" />
         <EntityTypeShape EntityType="bdELSAModel.Reservacion" Width="1.5" PointX="5.25" PointY="2.625" />
-        <EntityTypeShape EntityType="bdELSAModel.temporada" Width="1.5" PointX="3" PointY="20.5" />
         <AssociationConnector Association="bdELSAModel.FK__Reservaci__idCli__797309D9" />
         <AssociationConnector Association="bdELSAModel.FK__Reservaci__idHab__7A672E12" />
-        <AssociationConnector Association="bdELSAModel.FK__Reservaci__idTem__7B5B524B" />
         <EntityTypeShape EntityType="bdELSAModel.Tabla" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="bdELSAModel.Temporada" Width="1.5" PointX="5.375" PointY="7.875" />
+        <AssociationConnector Association="bdELSAModel.FK__Reservaci__idTem__7B5B524B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

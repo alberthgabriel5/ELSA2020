@@ -17,10 +17,6 @@ namespace ELSA2020
         public int id { get; set; }
         public string nombre { get; set; }
         public string apellidos { get; set; }
-        public string identificacion { get; set; }
-        public string telefono { get; set; }
         public string email { get; set; }
-        public string paisOrigen { get; set; }
-        public Nullable<System.DateTime> fechaCreacion { get; set; }
     }
 }

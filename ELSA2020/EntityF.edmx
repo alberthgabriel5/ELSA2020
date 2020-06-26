@@ -30,11 +30,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="apellidos" Type="varchar" MaxLength="100" />
-          <Property Name="identificacion" Type="varchar" MaxLength="50" />
-          <Property Name="telefono" Type="varchar" MaxLength="50" />
           <Property Name="email" Type="varchar" MaxLength="100" />
-          <Property Name="paisOrigen" Type="varchar" MaxLength="50" />
-          <Property Name="fechaCreacion" Type="datetime" />
         </EntityType>
         <EntityType Name="ContenidoImagen">
           <Key>
@@ -138,14 +134,14 @@
           <Property Name="fechaSalida" Type="date" />
           <Property Name="Estado" Type="varchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="temporada">
+        <EntityType Name="Temporada">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fechaInicio" Type="date" />
-          <Property Name="fechaFinal" Type="date" />
+          <Property Name="fechaInicio" Type="date" Nullable="false" />
+          <Property Name="fechaFinal" Type="date" Nullable="false" />
           <Property Name="variacionPrecio" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="tipoHabitacion">
@@ -196,10 +192,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Reservaci__idTem__7B5B524B">
-          <End Role="temporada" Type="Self.temporada" Multiplicity="1" />
+          <End Role="Temporada" Type="Self.Temporada" Multiplicity="1" />
           <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="temporada">
+            <Principal Role="Temporada">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Reservacion">
@@ -422,7 +418,7 @@
           <EntitySet Name="Reservacion" EntityType="Self.Reservacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tabla" EntityType="Self.Tabla" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="temporada" EntityType="Self.temporada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temporada" EntityType="Self.Temporada" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipoHabitacion" EntityType="Self.tipoHabitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Reservaci__idCli__797309D9" Association="Self.FK__Reservaci__idCli__797309D9">
@@ -434,7 +430,7 @@
             <End Role="Reservacion" EntitySet="Reservacion" />
           </AssociationSet>
           <AssociationSet Name="FK__Reservaci__idTem__7B5B524B" Association="Self.FK__Reservaci__idTem__7B5B524B">
-            <End Role="temporada" EntitySet="temporada" />
+            <End Role="Temporada" EntitySet="Temporada" />
             <End Role="Reservacion" EntitySet="Reservacion" />
           </AssociationSet>
           <AssociationSet Name="FK_caracteristicaHabiatacion_caracteristica" Association="Self.FK_caracteristicaHabiatacion_caracteristica">
@@ -510,11 +506,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="identificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="paisOrigen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ContenidoImagen">
           <Key>
@@ -874,17 +866,12 @@
             <Parameter Name="idTemporada" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="Reservacion" EntityType="bdELSAModel.Reservacion" />
-          <EntitySet Name="temporada" EntityType="bdELSAModel.temporada" />
           <AssociationSet Name="FK__Reservaci__idCli__797309D9" Association="bdELSAModel.FK__Reservaci__idCli__797309D9">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Reservacion" EntitySet="Reservacion" />
           </AssociationSet>
           <AssociationSet Name="FK__Reservaci__idHab__7A672E12" Association="bdELSAModel.FK__Reservaci__idHab__7A672E12">
             <End Role="habitacion" EntitySet="habitacion" />
-            <End Role="Reservacion" EntitySet="Reservacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reservaci__idTem__7B5B524B" Association="bdELSAModel.FK__Reservaci__idTem__7B5B524B">
-            <End Role="temporada" EntitySet="temporada" />
             <End Role="Reservacion" EntitySet="Reservacion" />
           </AssociationSet>
           <FunctionImport Name="SP_FECHA" ReturnType="Collection(bdELSAModel.SP_FECHA_Result)" />
@@ -901,6 +888,11 @@
           </FunctionImport>
           <EntitySet Name="Tabla" EntityType="bdELSAModel.Tabla" />
           <FunctionImport Name="estadoH" ReturnType="Collection(bdELSAModel.estadoH_Result)" />
+          <EntitySet Name="Temporada" EntityType="bdELSAModel.Temporada" />
+          <AssociationSet Name="FK__Reservaci__idTem__7B5B524B" Association="bdELSAModel.FK__Reservaci__idTem__7B5B524B">
+            <End Role="Temporada" EntitySet="Temporada" />
+            <End Role="Reservacion" EntitySet="Reservacion" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="GetDataAboutUsPage_Result">
           <Property Type="String" Name="nombreUnico" Nullable="false" MaxLength="50" />
@@ -991,17 +983,7 @@
           <Property Name="numeroReserva" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cliente" Relationship="bdELSAModel.FK__Reservaci__idCli__797309D9" FromRole="Reservacion" ToRole="Cliente" />
           <NavigationProperty Name="habitacion" Relationship="bdELSAModel.FK__Reservaci__idHab__7A672E12" FromRole="Reservacion" ToRole="habitacion" />
-          <NavigationProperty Name="temporada" Relationship="bdELSAModel.FK__Reservaci__idTem__7B5B524B" FromRole="Reservacion" ToRole="temporada" />
-        </EntityType>
-        <EntityType Name="temporada">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fechaInicio" Type="DateTime" Precision="0" />
-          <Property Name="fechaFinal" Type="DateTime" Precision="0" />
-          <Property Name="variacionPrecio" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Temporada" Relationship="bdELSAModel.FK__Reservaci__idTem__7B5B524B" FromRole="Reservacion" ToRole="Temporada" />
         </EntityType>
         <Association Name="FK__Reservaci__idCli__797309D9">
           <End Type="bdELSAModel.Cliente" Role="Cliente" Multiplicity="1" />
@@ -1024,18 +1006,6 @@
             </Principal>
             <Dependent Role="Reservacion">
               <PropertyRef Name="idHabitacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reservaci__idTem__7B5B524B">
-          <End Type="bdELSAModel.temporada" Role="temporada" Multiplicity="1" />
-          <End Type="bdELSAModel.Reservacion" Role="Reservacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="temporada">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Reservacion">
-              <PropertyRef Name="idTemporada" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1084,6 +1054,29 @@
           <Property Type="DateTime" Name="fechaSalida" Nullable="false" />
           <Property Type="String" Name="Estado" Nullable="false" MaxLength="1" />
         </ComplexType>
+        <EntityType Name="Temporada">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFinal" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="variacionPrecio" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Reservacion" Relationship="bdELSAModel.FK__Reservaci__idTem__7B5B524B" FromRole="Temporada" ToRole="Reservacion" />
+        </EntityType>
+        <Association Name="FK__Reservaci__idTem__7B5B524B">
+          <End Type="bdELSAModel.Temporada" Role="Temporada" Multiplicity="1" />
+          <End Type="bdELSAModel.Reservacion" Role="Reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Temporada">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reservacion">
+              <PropertyRef Name="idTemporada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1116,12 +1109,8 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="paisOrigen" ColumnName="paisOrigen" />
-                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ContenidoImagen">
@@ -1345,17 +1334,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="temporada">
-            <EntityTypeMapping TypeName="bdELSAModel.temporada">
-              <MappingFragment StoreEntitySet="temporada">
-                <ScalarProperty Name="variacionPrecio" ColumnName="variacionPrecio" />
-                <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
-                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SP_FECHA" FunctionName="bdELSAModel.Store.SP_FECHA">
             <ResultMapping>
               <ComplexTypeMapping TypeName="bdELSAModel.SP_FECHA_Result">
@@ -1402,6 +1380,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Temporada">
+            <EntityTypeMapping TypeName="bdELSAModel.Temporada">
+              <MappingFragment StoreEntitySet="Temporada">
+                <ScalarProperty Name="variacionPrecio" ColumnName="variacionPrecio" />
+                <ScalarProperty Name="fechaFinal" ColumnName="fechaFinal" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -267,7 +267,7 @@
     <Compile Include="Tabla.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
-    <Compile Include="temporada.cs">
+    <Compile Include="Temporada.cs">
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="tipoHabitacion.cs">
@@ -843,11 +843,6 @@
     <Content Include="Views\Admin\InicioSesion.cshtml" />
     <Content Include="Views\Shared\_LayoutInicio.cshtml" />
     <Content Include="Views\Admin\estadoHabitacion.cshtml" />
-    <Content Include="Views\Temporada\Create.cshtml" />
-    <Content Include="Views\Temporada\Delete.cshtml" />
-    <Content Include="Views\Temporada\Details.cshtml" />
-    <Content Include="Views\Temporada\Edit.cshtml" />
-    <Content Include="Views\Temporada\Index.cshtml" />
     <Content Include="Views\Admin\consultarDisponibilidadHabitaciones.cshtml" />
     <Content Include="Views\Admin\AdministracionHabitaciones.cshtml" />
     <Content Include="Views\Admin\CambiarDescripcionHabitacion.cshtml" />
@@ -858,6 +853,12 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\AdministrarPaginaSobreNosotros.cshtml" />
     <Content Include="Views\Admin\RegistrarUsuario.cshtml" />
+    <Content Include="Views\Admin\ActualizarLocation.cshtml" />
+    <Content Include="Views\Temporada\Create.cshtml" />
+    <Content Include="Views\Temporada\Delete.cshtml" />
+    <Content Include="Views\Temporada\Details.cshtml" />
+    <Content Include="Views\Temporada\Edit.cshtml" />
+    <Content Include="Views\Temporada\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
