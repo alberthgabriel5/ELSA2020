@@ -60,8 +60,7 @@ namespace ELSA2020.Models
             foreach (DataRow currentRow in dataRowCollection1)
             {
                 tem.Id1 = int.Parse(currentRow["id"].ToString());
-                ////tem.VariacionPrecio1 = float.Parse(currentRow["variaionPreio"].ToString());
-                tem.VariacionPrecio1 = 1;
+                tem.VariacionPrecio1 = float.Parse(currentRow["variacionPrecio"].ToString());
                 break;
             }//Fin del foreach.
 
