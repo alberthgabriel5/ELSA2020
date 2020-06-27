@@ -2,12 +2,13 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Lista de Temporadas</h2>
 
 <p>
-    @Html.ActionLink("Nueva", "Create")
+    @Html.ActionLink("Crear nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -41,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.variacionPrecio)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Detalle", "Details", new { id=item.id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.id })
+            @Html.ActionLink("Editar", "Edit",  new { id=item.id }) |
+            @Html.ActionLink("Detalles", "Details",  new { id=item.id }) |
+            @Html.ActionLink("Eliminar", "Delete",  new { id=item.id })
         </td>
     </tr>
 }
