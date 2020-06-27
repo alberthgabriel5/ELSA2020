@@ -7,6 +7,16 @@ namespace ELSA2020.Models
 {
     public class Location
     {
+        public Location()
+        {
+            PaginaLocation = GetPage(4).First();
+            Titulo = GetPageLocation().First();
+            Resumen = GetPageLocationText().First();
+
+        }
+        public Pagina PaginaLocation { set; get; }
+        public ContenidoTexto Titulo { set; get; }
+        public ContenidoTexto Resumen { set; get; }
         public IEnumerable<ContenidoTexto> GetPageLocation()
         {
             using (var context = new entityFramework())
@@ -23,11 +33,11 @@ namespace ELSA2020.Models
 
             }
         }
-        public Pagina GetPage(int id)
+        public IEnumerable<Pagina> GetPage(int id)
         {
             using (var context = new entityFramework())
             {
-                return context.Pagina.Where(Pagina => Pagina.id == id).FirstOrDefault();
+                return context.Pagina.Where(Pagina => Pagina.id == id).ToList();
 
             }
         }
