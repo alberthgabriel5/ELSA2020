@@ -1,0 +1,75 @@
+﻿@model ELSA2020.ContenidoTexto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ContenidoTexto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreUnico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreUnico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valorTexto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valorTexto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaActualizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaActualizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idioma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idioma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hotel.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hotel.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pagina.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pagina.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

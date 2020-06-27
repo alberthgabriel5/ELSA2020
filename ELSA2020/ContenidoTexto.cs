@@ -11,11 +11,14 @@ namespace ELSA2020
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ContenidoTexto
     {
         public int id { get; set; }
         public string nombreUnico { get; set; }
+        [Required]
+        [MinLength(6)]
         public string valorTexto { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }
         public Nullable<System.DateTime> fechaActualizacion { get; set; }

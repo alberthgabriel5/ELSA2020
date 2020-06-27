@@ -23,6 +23,7 @@ namespace ELSA2020.Controllers
         ListaNombreHabitacionesDATA lnhDATA = new ListaNombreHabitacionesDATA();
         DisponibilidadHabitacionDATA dhDATA = new DisponibilidadHabitacionDATA();
         FacilitiesEF facilidadesDATA = new FacilitiesEF();
+        public Location location = new Location();
         public ActionResult estadoHabitacion()
         {
             //List<SP_FECHA_Result> lista = new List<SP_FECHA_Result>();
@@ -242,7 +243,8 @@ namespace ELSA2020.Controllers
         {
             if (Session["UserID"] != null)
             {
-                
+                ViewBag.valorTexto = this.location.GetPageLocation().Select(l=>l.valorTexto);
+                ViewBag.Message = this.location.GetPageLocationText().Select(l => l.valorTexto);
                 return View();
             }
             else

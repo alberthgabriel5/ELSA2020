@@ -69,11 +69,8 @@ namespace ELSA2020.Controllers
         public ActionResult Location()
         {
             ViewBag.NombreUnico = "¿Cómo llegar?";
-            ViewBag.valorTexto = this.location.GetPageLocation().ToList();
-            ViewBag.Message = this.location.GetPageLocationText().ToList();
-
-
-
+            ViewBag.valorTexto = this.location.getTitle();
+            ViewBag.Message = this.location.getText();
             return View();
         }
     }
