@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ELSA2020.ContenidoTexto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Contenido ¿Cómo llegar?</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreUnico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valorTexto)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.idioma)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreUnico )
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valorTexto)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.idioma)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Editar", "Edit",  new { id=item.id }) |
+            @Html.ActionLink("Detalles", "Details",  new { id=item.id }) |
+           
+        </td>
+    </tr>
+}
+
+</table>

@@ -153,6 +153,7 @@
       <DependentUpon>EntityF.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ContenidoTextoController.cs" />
     <Compile Include="Controllers\FacilidadesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReservacionController.cs" />
@@ -853,7 +854,9 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\AdministrarPaginaSobreNosotros.cshtml" />
     <Content Include="Views\Admin\RegistrarUsuario.cshtml" />
-    <Content Include="Views\Admin\ActualizarLocation.cshtml" />
+    <Content Include="Views\ContenidoTexto\Details.cshtml" />
+    <Content Include="Views\ContenidoTexto\Edit.cshtml" />
+    <Content Include="Views\ContenidoTexto\Index.cshtml" />
     <Content Include="Views\Temporada\Create.cshtml" />
     <Content Include="Views\Temporada\Delete.cshtml" />
     <Content Include="Views\Temporada\Details.cshtml" />

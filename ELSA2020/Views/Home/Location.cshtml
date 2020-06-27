@@ -4,16 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@foreach (var tipo in ViewBag.ValorTexto)
-{
-    <h3>@tipo.valorTexto</h3>
 
-}
-@foreach (var tipo in ViewBag.Message)
-{
-    <h3>@tipo.valorTexto</h3>
+    <p>@ViewBag.ValorTexto</p>
 
-}
+
+    <p>@ViewBag.Message</p>
+
+
 
 
 
